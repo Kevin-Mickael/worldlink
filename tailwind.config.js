@@ -3,6 +3,9 @@ export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {},
+    fontFamily: {
+      sans: ['"Nunito Sans"', 'ui-sans-serif', 'system-ui', '-apple-system', '"Segoe UI"', 'Helvetica Neue', 'Arial', 'sans-serif'],
+    },
   },
   plugins: [],
 };

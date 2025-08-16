@@ -23,44 +23,44 @@ const translations: Record<string, Translation> = {
       faq: 'FAQ'
     },
     hero: {
-      title: 'Solutions Logistiques Complètes',
-      subtitle: 'Expédition, Entreposage & Livraison de Confiance',
-      description: 'Nous offrons des solutions logistiques complètes incluant expédition, entreposage, gestion d\'inventaire, livraison à domicile, et services CFS.',
+      title: 'Votre guichet unique pour la logistique',
+      subtitle: 'Fret aérien, fret maritime, douane et entreposage',
+      description: 'Depuis près de 30 ans, nous orchestrons vos flux de bout en bout: transport, dédouanement, projets hors gabarit, périssables et dangereux, et solutions d\'entreposage.',
       cta: 'Nos Services',
       video: 'Regarder la Vidéo'
     },
     services: {
       title: 'Nos Services',
-      subtitle: 'Solutions logistiques adaptées à vos besoins',
+      subtitle: 'Des solutions logistiques conçues pour vos opérations',
       shipping: {
-        title: 'Expédition',
-        description: 'Services d\'expédition fiables et rapides pour tous vos besoins'
+        title: 'Fret Aérien',
+        description: 'Organisation et suivi de vos envois urgents partout dans le monde'
       },
       warehousing: {
         title: 'Entreposage',
-        description: 'Installations d\'entreposage sécurisées et modernes'
+        description: 'Stockage sécurisé, préparation de commandes et solutions flexibles'
       },
       inventory: {
-        title: 'Gestion d\'Inventaire',
-        description: 'Systèmes avancés de gestion et suivi d\'inventaire'
+        title: 'Dédouanement',
+        description: 'Accompagnement complet en classification, conformité et formalités douanières'
       },
       delivery: {
-        title: 'Livraison à Domicile',
-        description: 'Services de livraison rapides et fiables jusqu\'à votre porte'
+        title: 'Projets & Hors Gabarit',
+        description: 'Gestion de cargaisons spéciales avec planification et exécution sur mesure'
       },
       cfs: {
-        title: 'Services CFS',
-        description: 'Container Freight Station et entrepôt sous douane'
+        title: 'Périssables & Dangereux',
+        description: 'Permis, emballage, chaîne du froid et conditions de transport adaptées'
       }
     },
     about: {
       title: 'À Propos de Nous',
-      subtitle: 'Votre Partenaire Logistique de Confiance',
-      description: 'Nous sommes spécialisés dans les solutions logistiques complètes, servant les clients B2B et B2C avec excellence et professionnalisme.',
+      subtitle: 'Partenaire logistique fiable et réactif',
+      description: 'Depuis 1994, nous aidons les entreprises à chaque étape de leur chaîne logistique: fret aérien et maritime, formalités douanières, entreposage et solutions projets. Présence active à Maurice, Madagascar et en Afrique du Sud.',
       mission: 'Notre Mission',
-      missionText: 'Fournir des solutions logistiques innovantes et fiables qui dépassent les attentes de nos clients.',
+      missionText: 'Simplifier la logistique avec des solutions fiables, transparentes et performantes.',
       vision: 'Notre Vision',
-      visionText: 'Être le leader régional en solutions logistiques intégrées.'
+      visionText: 'Relier durablement les marchés d\'Afrique, d\'Asie et d\'Europe grâce à des services intégrés.'
     },
     contact: {
       title: 'Contactez-Nous',
@@ -85,8 +85,8 @@ const translations: Record<string, Translation> = {
       subtitle: 'Trouvez rapidement les réponses à vos questions'
     },
     footer: {
-      company: 'Logistics Solutions',
-      description: 'Votre partenaire de confiance pour tous vos besoins logistiques.',
+      company: 'WorldLink Logistics',
+      description: 'Votre partenaire de confiance pour le fret, la douane et l\'entreposage.',
       links: 'Liens Rapides',
       contact: 'Contact',
       rights: 'Tous droits réservés.'
@@ -108,44 +108,44 @@ const translations: Record<string, Translation> = {
       faq: 'FAQ'
     },
     hero: {
-      title: 'Comprehensive Logistics Solutions',
-      subtitle: 'Trusted Shipping, Warehousing & Delivery',
-      description: 'We provide comprehensive logistics solutions including shipping, warehousing, inventory management, home delivery, and CFS services.',
+      title: 'Your one-stop partner for logistics',
+      subtitle: 'Air freight, ocean freight, customs and warehousing',
+      description: 'For nearly three decades, we orchestrate end-to-end flows: transport, customs clearance, project cargo, perishables and dangerous goods, and flexible warehousing.',
       cta: 'Our Services',
       video: 'Watch Video'
     },
     services: {
       title: 'Our Services',
-      subtitle: 'Logistics solutions tailored to your needs',
+      subtitle: 'Logistics solutions purpose-built for your operations',
       shipping: {
-        title: 'Shipping',
-        description: 'Reliable and fast shipping services for all your needs'
+        title: 'Air Freight',
+        description: 'Time-critical shipments arranged and monitored worldwide'
       },
       warehousing: {
         title: 'Warehousing',
-        description: 'Secure and modern warehousing facilities'
+        description: 'Secure storage, order preparation and flexible capacity'
       },
       inventory: {
-        title: 'Inventory Management',
-        description: 'Advanced inventory management and tracking systems'
+        title: 'Customs Clearing',
+        description: 'End-to-end support for classification, compliance and clearance'
       },
       delivery: {
-        title: 'Home Delivery',
-        description: 'Fast and reliable delivery services to your doorstep'
+        title: 'Project Cargo',
+        description: 'Out-of-gauge and heavy-lift moves with tailored engineering'
       },
       cfs: {
-        title: 'CFS Services',
-        description: 'Container Freight Station and duty paid warehouse'
+        title: 'Perishables & Dangerous Goods',
+        description: 'Permits, packaging, cold chain and special freight conditions'
       }
     },
     about: {
       title: 'About Us',
-      subtitle: 'Your Trusted Logistics Partner',
-      description: 'We specialize in comprehensive logistics solutions, serving both B2B and B2C clients with excellence and professionalism.',
+      subtitle: 'Reliable and responsive logistics partner',
+      description: 'Established in 1994, we support businesses across the supply chain: air and ocean freight, customs formalities, warehousing and project solutions. Active presence in Mauritius, Madagascar and South Africa.',
       mission: 'Our Mission',
-      missionText: 'To provide innovative and reliable logistics solutions that exceed our clients\' expectations.',
+      missionText: 'Simplify logistics through reliable, transparent and high-performance solutions.',
       vision: 'Our Vision',
-      visionText: 'To be the regional leader in integrated logistics solutions.'
+      visionText: 'Sustainably connect African, Asian and European markets with integrated services.'
     },
     contact: {
       title: 'Contact Us',
@@ -170,8 +170,8 @@ const translations: Record<string, Translation> = {
       subtitle: 'Find quick answers to your questions'
     },
     footer: {
-      company: 'Logistics Solutions',
-      description: 'Your trusted partner for all logistics needs.',
+      company: 'WorldLink Logistics',
+      description: 'Your trusted partner for freight, customs and warehousing.',
       links: 'Quick Links',
       contact: 'Contact',
       rights: 'All rights reserved.'
@@ -189,10 +189,29 @@ const translations: Record<string, Translation> = {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [currentLanguage, setCurrentLanguage] = useState<Language>(languages[0]);
+  const [currentLanguage, setCurrentLanguage] = useState<Language>(() => {
+    try {
+      const savedLanguageCode = typeof window !== 'undefined' ? localStorage.getItem('language') : null;
+      const defaultLanguage = languages.find(lang => lang.code === 'en') || languages[0];
+      if (savedLanguageCode) {
+        const savedLanguage = languages.find(lang => lang.code === savedLanguageCode);
+        return savedLanguage || defaultLanguage;
+      }
+      return defaultLanguage;
+    } catch {
+      return languages.find(lang => lang.code === 'en') || languages[0];
+    }
+  });
 
   const changeLanguage = (language: Language) => {
     setCurrentLanguage(language);
+    try {
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('language', language.code);
+      }
+    } catch {
+      // Ignore persistence errors
+    }
   };
 
   const t = (key: string): string => {

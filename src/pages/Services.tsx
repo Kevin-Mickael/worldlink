@@ -15,10 +15,10 @@ const ServicesPage: React.FC<ServicesProps> = ({ onPageChange }) => {
       title: t('services.shipping.title'),
       description: t('services.shipping.description'),
       features: [
-        'Transport international et national',
-        'Suivi en temps réel',
-        'Options express disponibles',
-        'Assurance marchandise incluse'
+        'Capacités express et prioritaire',
+        'Suivi proactif porte-à-porte',
+        'Gestion des aéroports majeurs',
+        'Assurance marchandise et conformité'
       ],
       image: 'https://images.pexels.com/photos/4481327/pexels-photo-4481327.jpeg?auto=compress&cs=tinysrgb&w=800',
       gradient: 'from-blue-900 to-blue-700'
@@ -28,10 +28,10 @@ const ServicesPage: React.FC<ServicesProps> = ({ onPageChange }) => {
       title: t('services.warehousing.title'),
       description: t('services.warehousing.description'),
       features: [
-        'Entrepôts sécurisés et climatisés',
-        'Système de gestion moderne',
-        'Accès 24/7',
-        'Solutions de stockage flexibles'
+        'Sites sécurisés et climatisés',
+        'WMS et préparation de commandes',
+        'Fenêtres d’accès 24/7',
+        'Capacité modulable et scalable'
       ],
       image: 'https://images.pexels.com/photos/4481327/pexels-photo-4481327.jpeg?auto=compress&cs=tinysrgb&w=800',
       gradient: 'from-sky-600 to-sky-800'
@@ -41,10 +41,10 @@ const ServicesPage: React.FC<ServicesProps> = ({ onPageChange }) => {
       title: t('services.inventory.title'),
       description: t('services.inventory.description'),
       features: [
-        'Suivi automatisé des stocks',
-        'Rapports détaillés',
-        'Alertes de réapprovisionnement',
-        'Intégration avec vos systèmes'
+        'Classement tarifaire et conformité',
+        'Procédures d’import/export',
+        'Optimisation des délais de mainlevée',
+        'Gestion documentaire complète'
       ],
       image: 'https://images.pexels.com/photos/4481327/pexels-photo-4481327.jpeg?auto=compress&cs=tinysrgb&w=800',
       gradient: 'from-blue-800 to-sky-600'
@@ -54,10 +54,10 @@ const ServicesPage: React.FC<ServicesProps> = ({ onPageChange }) => {
       title: t('services.delivery.title'),
       description: t('services.delivery.description'),
       features: [
-        'Livraison le jour même',
-        'Créneaux de livraison flexibles',
-        'Signature électronique',
-        'Service de retour gratuit'
+        'Ingénierie et plan de levage',
+        'Équipements spécialisés',
+        'Escortes et autorisations',
+        'Coordination bout en bout'
       ],
       image: 'https://images.pexels.com/photos/4481327/pexels-photo-4481327.jpeg?auto=compress&cs=tinysrgb&w=800',
       gradient: 'from-sky-700 to-blue-800'
@@ -67,10 +67,10 @@ const ServicesPage: React.FC<ServicesProps> = ({ onPageChange }) => {
       title: t('services.cfs.title'),
       description: t('services.cfs.description'),
       features: [
-        'Services douaniers complets',
-        'Stockage sous douane',
-        'Consolidation de fret',
-        'Documentation complète'
+        'Permis et conformité réglementaire',
+        'Emballage & chaîne du froid',
+        'Gestion des matières dangereuses',
+        'Procédures spécifiques de transport'
       ],
       image: 'https://images.pexels.com/photos/4481327/pexels-photo-4481327.jpeg?auto=compress&cs=tinysrgb&w=800',
       gradient: 'from-blue-900 to-sky-700'

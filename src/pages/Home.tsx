@@ -1,5 +1,5 @@
-import React from 'react';
-import { Play, Truck, Warehouse, Package, Home, Building2, ChevronRight } from 'lucide-react';
+import React, { useEffect, useRef, useState } from 'react';
+import { Truck, Warehouse, Package, Home, Building2, ChevronRight } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 
 interface HomeProps {
@@ -8,6 +8,61 @@ interface HomeProps {
 
 const HomePage: React.FC<HomeProps> = ({ onPageChange }) => {
   const { t } = useLanguage();
+
+  const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
+  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const videoContainerRef = useRef<HTMLDivElement | null>(null);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+
+  useEffect(() => {
+    if (typeof window === 'undefined' || !window.matchMedia) return;
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const updatePreference = () => setPrefersReducedMotion(mediaQuery.matches);
+    updatePreference();
+    mediaQuery.addEventListener?.('change', updatePreference);
+    return () => mediaQuery.removeEventListener?.('change', updatePreference);
+  }, []);
+
+  useEffect(() => {
+    if (prefersReducedMotion) return;
+    const element = videoContainerRef.current;
+    if (!element || typeof IntersectionObserver === 'undefined') {
+      setShouldLoadVideo(true);
+      return;
+    }
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setShouldLoadVideo(true);
+            observer.disconnect();
+          }
+        });
+      },
+      { root: null, threshold: 0.2 }
+    );
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, [prefersReducedMotion]);
+
+  useEffect(() => {
+    if (!shouldLoadVideo || !videoRef.current) return;
+    const video = videoRef.current;
+    const tryPlay = () => {
+      video.play().catch(() => {});
+    };
+    if (typeof document !== 'undefined') {
+      if (document.visibilityState === 'visible') {
+        tryPlay();
+      }
+      const onVisibility = () => {
+        if (document.visibilityState === 'visible') tryPlay();
+      };
+      document.addEventListener('visibilitychange', onVisibility);
+      return () => document.removeEventListener('visibilitychange', onVisibility);
+    }
+  }, [shouldLoadVideo]);
 
   const services = [
     {
@@ -38,10 +93,10 @@ const HomePage: React.FC<HomeProps> = ({ onPageChange }) => {
   ];
 
   const stats = [
-    { number: '500+', label: 'Clients Satisfaits' },
-    { number: '10k+', label: 'Livraisons Réussies' },
-    { number: '24/7', label: 'Support Client' },
-    { number: '98%', label: 'Taux de Satisfaction' }
+    { number: '29', label: "Années d'expérience" },
+    { number: '8+', label: 'Services offerts' },
+    { number: '3', label: 'Pays de présence' },
+    { number: '24/7', label: 'Assistance dédiée' }
   ];
 
   return (
@@ -49,19 +104,26 @@ const HomePage: React.FC<HomeProps> = ({ onPageChange }) => {
       {/* Hero Section with Video */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         {/* Background Video */}
-        <div className="absolute inset-0 z-0">
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            className="w-full h-full object-cover"
-          >
-            <source src="https://cdn.coverr.co/videos/coverr-cargo-ship-in-port-9943/1080p.mp4" type="video/mp4" />
-            {/* Fallback image */}
-            <div className="w-full h-full bg-gradient-to-br from-blue-900 via-blue-800 to-sky-600"></div>
-          </video>
-          <div className="absolute inset-0 bg-blue-900 bg-opacity-60"></div>
+        <div className="absolute inset-0 z-0" ref={videoContainerRef}>
+          {shouldLoadVideo && !prefersReducedMotion ? (
+            <video
+              ref={videoRef}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="none"
+              poster="/worldlink.png"
+              aria-hidden="true"
+              className={`w-full h-full object-cover transition-opacity duration-700 ${isVideoLoaded ? 'opacity-100' : 'opacity-0'}`}
+              onLoadedData={() => setIsVideoLoaded(true)}
+            >
+              <source src="/hero.mp4" type="video/mp4" />
+            </video>
+          ) : (
+            <img src="/worldlink.png" alt="" aria-hidden="true" className="w-full h-full object-cover" />
+          )}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/25 to-black/40"></div>
         </div>
 
         {/* Hero Content */}
@@ -83,13 +145,6 @@ const HomePage: React.FC<HomeProps> = ({ onPageChange }) => {
             >
               <span>{t('hero.cta')}</span>
               <ChevronRight className="h-5 w-5" />
-            </button>
-            
-            <button className="flex items-center space-x-3 text-white hover:text-sky-200 transition-colors duration-300">
-              <div className="bg-white bg-opacity-20 p-3 rounded-full">
-                <Play className="h-6 w-6" />
-              </div>
-              <span className="text-lg">{t('hero.video')}</span>
             </button>
           </div>
         </div>

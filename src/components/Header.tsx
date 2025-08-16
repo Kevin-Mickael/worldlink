@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Menu, X, Truck, ChevronDown } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { Menu, X, ChevronDown } from 'lucide-react';
 import { useLanguage, languages } from '../contexts/LanguageContext';
 
 interface HeaderProps {
@@ -10,7 +10,25 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ currentPage, onPageChange }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLanguageOpen, setIsLanguageOpen] = useState(false);
+  const [isServicesOpen, setIsServicesOpen] = useState(false);
+  const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
   const { currentLanguage, changeLanguage, t } = useLanguage();
+  const servicesRef = useRef<HTMLDivElement | null>(null);
+  const servicesCloseTimeoutRef = useRef<number | null>(null);
+
+  const clearServicesCloseTimeout = () => {
+    if (servicesCloseTimeoutRef.current !== null) {
+      window.clearTimeout(servicesCloseTimeoutRef.current);
+      servicesCloseTimeoutRef.current = null;
+    }
+  };
+
+  const scheduleServicesClose = () => {
+    clearServicesCloseTimeout();
+    servicesCloseTimeoutRef.current = window.setTimeout(() => {
+      setIsServicesOpen(false);
+    }, 180);
+  };
 
   const navigation = [
     { id: 'home', label: t('nav.home') },
@@ -20,31 +38,120 @@ const Header: React.FC<HeaderProps> = ({ currentPage, onPageChange }) => {
     { id: 'faq', label: t('nav.faq') }
   ];
 
+  const isHome = currentPage === 'home';
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Close services dropdown on outside click or Escape
+  useEffect(() => {
+    if (!isServicesOpen) return;
+
+    const handleClickOutside = (event: MouseEvent | TouchEvent) => {
+      if (servicesRef.current && !servicesRef.current.contains(event.target as Node)) {
+        setIsServicesOpen(false);
+      }
+    };
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setIsServicesOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('touchstart', handleClickOutside, { passive: true });
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('touchstart', handleClickOutside);
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isServicesOpen]);
+
+  const homeTop = isHome && !isScrolled;
+  const homeBorderClass = '';
+
+  const serviceOptions = [
+    { id: 'air', label: t('services.shipping.title') },
+    { id: 'warehousing', label: t('services.warehousing.title') },
+    { id: 'customs', label: t('services.inventory.title') },
+    { id: 'projects', label: t('services.delivery.title') },
+    { id: 'perishables', label: t('services.cfs.title') }
+  ];
+
   return (
-    <header className="bg-white shadow-lg sticky top-0 z-50">
+    <header className={`${homeTop ? 'absolute top-0 left-0 w-full bg-black/40 backdrop-blur-[1px]' : 'bg-white/80 backdrop-blur-[2px] shadow-sm sticky top-0'} ${homeBorderClass} z-50`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center py-4">
+        <div className={`flex justify-between items-center ${isScrolled ? 'py-3' : 'py-4'}`}>
           {/* Logo */}
           <div className="flex items-center cursor-pointer" onClick={() => onPageChange('home')}>
-            <Truck className="h-8 w-8 text-blue-900 mr-2" />
-            <span className="text-2xl font-bold text-blue-900">LogiFlow</span>
+            <img src="/worldlink.png" alt="WorldLink" className={`${isScrolled ? 'h-10' : 'h-12'} w-auto`} />
           </div>
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-8">
-            {navigation.map((item) => (
-              <button
-                key={item.id}
-                onClick={() => onPageChange(item.id)}
-                className={`text-lg font-medium transition-colors duration-200 ${
-                  currentPage === item.id
-                    ? 'text-blue-900 border-b-2 border-blue-900 pb-1'
-                    : 'text-gray-700 hover:text-blue-900'
-                }`}
-              >
-                {item.label}
-              </button>
-            ))}
+            {navigation.map((item) => {
+              if (item.id !== 'services') {
+                return (
+                  <button
+                    key={item.id}
+                    onClick={() => onPageChange(item.id)}
+                    className={`text-lg font-medium ${homeTop ? 'text-white' : 'text-gray-900'}`}
+                  >
+                    {item.label}
+                  </button>
+                );
+              }
+              return (
+                <div
+                  key={item.id}
+                  ref={servicesRef}
+                  className="relative group"
+                  onMouseEnter={() => {
+                    clearServicesCloseTimeout();
+                    setIsServicesOpen(true);
+                  }}
+                  onMouseLeave={scheduleServicesClose}
+                >
+                  <button
+                    onClick={() => setIsServicesOpen(!isServicesOpen)}
+                    className={`flex items-center space-x-1 text-lg font-medium ${homeTop ? 'text-white' : 'text-gray-900'}`}
+                  >
+                    <span>{item.label}</span>
+                    <ChevronDown className={`h-4 w-4 transition-transform duration-200 ease-out ${homeTop ? 'text-white' : 'text-gray-900'} ${isServicesOpen ? 'rotate-180' : ''} group-hover:rotate-180`} />
+                  </button>
+                  {isServicesOpen && (
+                    <div
+                      className="absolute left-0 top-full mt-2 w-64 bg-white/95 backdrop-blur rounded-xl shadow-2xl border border-gray-100/80 ring-1 ring-black/5 p-2 z-50 origin-top transform transition duration-150 ease-out"
+                      onMouseEnter={clearServicesCloseTimeout}
+                      onMouseLeave={scheduleServicesClose}
+                    >
+                      {serviceOptions.map(option => (
+                        <button
+                          key={option.id}
+                          onClick={() => {
+                            onPageChange('services');
+                            setIsServicesOpen(false);
+                          }}
+                          className="group w-full text-left px-4 py-2 rounded-lg text-gray-700 hover:text-sky-800 hover:bg-gradient-to-r hover:from-sky-50 hover:to-blue-50 transition-all duration-200"
+                        >
+                          <span className="text-sm font-medium">{option.label}</span>
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
           </nav>
 
           {/* Language Selector & Mobile Menu */}
@@ -53,11 +160,10 @@ const Header: React.FC<HeaderProps> = ({ currentPage, onPageChange }) => {
             <div className="relative">
               <button
                 onClick={() => setIsLanguageOpen(!isLanguageOpen)}
-                className="flex items-center space-x-2 px-3 py-2 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors duration-200"
+                className={`flex items-center space-x-1 px-1 py-1 ${homeTop ? 'text-white' : 'text-gray-900'}`}
               >
-                <span>{currentLanguage.flag}</span>
-                <span className="text-sm font-medium">{currentLanguage.code.toUpperCase()}</span>
-                <ChevronDown className="h-4 w-4" />
+                <span className={`text-sm font-medium ${homeTop ? 'text-white' : 'text-gray-900'}`}>{currentLanguage.name}</span>
+                <ChevronDown className={`h-4 w-4 ${homeTop ? 'text-white' : 'text-gray-900'}`} />
               </button>
               
               {isLanguageOpen && (
@@ -69,9 +175,8 @@ const Header: React.FC<HeaderProps> = ({ currentPage, onPageChange }) => {
                         changeLanguage(lang);
                         setIsLanguageOpen(false);
                       }}
-                      className="flex items-center space-x-2 w-full px-4 py-2 text-left hover:bg-gray-50"
+                      className="flex items-center space-x-2 w-full px-4 py-2 text-left"
                     >
-                      <span>{lang.flag}</span>
                       <span className="text-sm">{lang.name}</span>
                     </button>
                   ))}
@@ -82,7 +187,7 @@ const Header: React.FC<HeaderProps> = ({ currentPage, onPageChange }) => {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="lg:hidden p-2 rounded-lg bg-blue-900 text-white"
+              className={`lg:hidden p-2 rounded-lg ${homeTop ? 'text-white' : 'text-gray-900'}`}
             >
               {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </button>
@@ -91,24 +196,52 @@ const Header: React.FC<HeaderProps> = ({ currentPage, onPageChange }) => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="lg:hidden pb-4">
+          <div className={`lg:hidden pb-4 ${isHome ? 'bg-white/90 backdrop-blur rounded-xl p-2 mt-2' : ''}`}>
             <nav className="flex flex-col space-y-2">
-              {navigation.map((item) => (
-                <button
-                  key={item.id}
-                  onClick={() => {
-                    onPageChange(item.id);
-                    setIsMenuOpen(false);
-                  }}
-                  className={`text-left py-3 px-4 rounded-lg transition-colors duration-200 ${
-                    currentPage === item.id
-                      ? 'bg-blue-900 text-white'
-                      : 'text-gray-700 hover:bg-gray-50'
-                  }`}
-                >
-                  {item.label}
-                </button>
-              ))}
+              {navigation.map((item) => {
+                if (item.id !== 'services') {
+                  return (
+                    <button
+                      key={item.id}
+                      onClick={() => {
+                        onPageChange(item.id);
+                        setIsMenuOpen(false);
+                      }}
+                      className={`text-left py-3 px-4 rounded-lg ${homeTop ? 'text-gray-100' : 'text-gray-900'}`}
+                    >
+                      {item.label}
+                    </button>
+                  );
+                }
+                return (
+                  <div key={item.id} className="px-2">
+                    <button
+                      onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)}
+                      className={`w-full flex items-center justify-between py-3 px-2 rounded-lg ${homeTop ? 'text-gray-100' : 'text-gray-900'}`}
+                    >
+                      <span>{item.label}</span>
+                      <ChevronDown className={`h-4 w-4 ${isMobileServicesOpen ? 'transform rotate-180' : ''}`} />
+                    </button>
+                    {isMobileServicesOpen && (
+                      <div className="mt-1 space-y-1 pl-3 pr-2">
+                        {serviceOptions.map(option => (
+                          <button
+                            key={option.id}
+                            onClick={() => {
+                              onPageChange('services');
+                              setIsMenuOpen(false);
+                              setIsMobileServicesOpen(false);
+                            }}
+                            className="w-full text-left py-2 px-3 rounded-md text-gray-700 hover:bg-sky-50 hover:text-sky-800 transition-colors"
+                          >
+                            <span className="text-sm">{option.label}</span>
+                          </button>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
             </nav>
           </div>
         )}
