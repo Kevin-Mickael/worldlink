@@ -18,6 +18,40 @@
     line-height: 1.6;
     color: #374151;
   }
+  
+  /* Optimisations avancées pour la vidéo */
+  video {
+    will-change: opacity;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* Amélioration des performances de rendu */
+  .hero-video-container {
+    contain: layout style paint;
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+  
+  /* Optimisation des transitions - plus fluide */
+  .video-fade {
+    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  /* Optimisation du rendu vidéo */
+  .video-optimized {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    filter: contrast(1.1) brightness(1.05);
+  }
 }
 
 @layer utilities {
@@ -41,5 +75,227 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+  }
+  
+  /* Animation de chargement vidéo optimisée */
+  .video-loading {
+    animation: videoPulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  
+  @keyframes videoPulse {
+    0%, 100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.7;
+      transform: scale(1.05);
+    }
+  }
+  
+  /* Optimisation des gradients avec meilleure performance */
+  .hero-gradient {
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.5) 0%,
+      rgba(0, 0, 0, 0.3) 50%,
+      rgba(0, 0, 0, 0.5) 100%
+    );
+    backdrop-filter: blur(0.5px);
+    will-change: opacity;
+  }
+  
+  /* Optimisation pour la fluidité vidéo */
+  .video-smooth {
+    transition: opacity 0.2s ease-out;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+  
+  /* Animation du carrousel de services */
+  .animate-scroll-left {
+    animation: scrollLeft 30s linear infinite;
+  }
+  
+  @keyframes scrollLeft {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+  
+  /* Pause au survol pour une meilleure UX */
+  .animate-scroll-left:hover {
+    animation-play-state: paused;
+  }
+  
+  /* Styles spécifiques pour la section parallax */
+  .section-parallax {
+    position: relative;
+    background-color: transparent;
+    background-size: cover;
+    background-image: url(/themes/custom/ftl/css/../assets/Mask%20Group%202.jpg);
+    background-repeat: no-repeat;
+    background-position: 100% 200%;
+    background-attachment: fixed;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+  
+  /* Variables CSS pour les couleurs */
+  :root {
+    --color-darkblue: #00142E;
+    --color-yellow: #F39200;
+  }
+  
+  /* Flèche polygon décorative */
+  .section-parallax::after,
+  .section-parallax::before {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -2rem);
+    transition: transform ease-in-out 700ms;
+    z-index: 3;
+    width: 4rem;
+    height: 4rem;
+    background: url(/themes/custom/ftl/css/../assets/polygon.svg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    content: "";
+  }
+  
+  .section-parallax::before {
+    top: 4rem;
+  }
+  
+  .section-parallax::after {
+    bottom: -2rem;
+  }
+  
+  /* Responsive */
+  @media only screen and (max-width: 1024px) {
+    .section-parallax {
+      padding-top: 5rem;
+    }
+    
+    .section-parallax::after {
+      top: 3rem;
+    }
+  }
+  
+  /* Flèche de navigation personnalisée */
+  .custom-nav-arrow {
+    position: absolute;
+    right: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3rem;
+    height: 3rem;
+    background: var(--color-darkblue);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 20;
+    box-shadow: 0 4px 12px rgba(0, 20, 46, 0.3);
+  }
+  
+  .custom-nav-arrow:hover {
+    background: var(--color-yellow);
+    transform: translateY(-50%) scale(1.1);
+  }
+  
+  .custom-nav-arrow svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    color: white;
+  }
+  
+  /* Masquer la scrollbar pour un look plus propre */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Amélioration du scroll horizontal */
+  .overflow-x-auto {
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  
+  /* Styles pour la section de contact */
+  .section-contact {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  /* Styles pour les champs du formulaire */
+  .form-item {
+    margin-bottom: 0;
+  }
+  
+  .form-item input,
+  .form-item select,
+  .form-item textarea {
+    width: 100%;
+    padding: 1rem 1.25rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 0.75rem;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background-color: white;
+    color: #374151;
+    font-family: inherit;
+  }
+  
+  .form-item input:focus,
+  .form-item select:focus,
+  .form-item textarea:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    transform: translateY(-2px);
+  }
+  
+  .form-item input::placeholder,
+  .form-item textarea::placeholder {
+    color: #9ca3af;
+  }
+  
+  .form-item textarea {
+    resize: vertical;
+    min-height: 120px;
+    line-height: 1.5;
+  }
+  
+  .form-item select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right 1rem center;
+    background-repeat: no-repeat;
+    background-size: 1.25rem;
+    padding-right: 3rem;
+  }
+  
+  /* Responsive pour la section de contact */
+  @media only screen and (max-width: 768px) {
+    .form-item input,
+    .form-item select,
+    .form-item textarea {
+      padding: 0.875rem 1rem;
+      font-size: 0.95rem;
+    }
   }
 }

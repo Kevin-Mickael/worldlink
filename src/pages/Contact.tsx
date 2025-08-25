@@ -87,7 +87,7 @@ const ContactPage: React.FC = () => {
             {t('contact.subtitle')}
           </p>
           <p className="text-xl max-w-4xl mx-auto leading-relaxed">
-            Notre équipe est disponible pour répondre à toutes vos questions et vous accompagner dans vos projets logistiques.
+            {t('contact.description')}
           </p>
         </div>
       </section>
@@ -98,13 +98,13 @@ const ContactPage: React.FC = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             {/* Contact Form */}
             <div className="bg-white rounded-2xl shadow-xl p-8">
-              <h2 className="text-3xl font-bold text-blue-900 mb-8">Envoyez-nous un Message</h2>
+              <h2 className="text-3xl font-bold text-blue-900 mb-8">{t('contact.formTitle')}</h2>
               
               {isSubmitted ? (
                 <div className="text-center py-12">
                   <CheckCircle className="h-16 w-16 text-green-500 mx-auto mb-4" />
-                  <h3 className="text-2xl font-bold text-green-600 mb-2">Message Envoyé!</h3>
-                  <p className="text-gray-600">Nous vous répondrons dans les plus brefs délais.</p>
+                  <h3 className="text-2xl font-bold text-green-600 mb-2">{t('contact.successTitle')}</h3>
+                  <p className="text-gray-600">{t('contact.successMessage')}</p>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6">
@@ -165,7 +165,7 @@ const ContactPage: React.FC = () => {
                       onChange={handleInputChange}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent"
                     >
-                      <option value="">Sélectionner un service</option>
+                      <option value="">{t('contact.selectService')}</option>
                       {services.map((service, index) => (
                         <option key={index} value={service}>{service}</option>
                       ))}
@@ -194,7 +194,7 @@ const ContactPage: React.FC = () => {
                     {isSubmitting ? (
                       <>
                         <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
-                        <span>Envoi en cours...</span>
+                        <span>{t('contact.sending')}</span>
                       </>
                     ) : (
                       <>
@@ -209,7 +209,7 @@ const ContactPage: React.FC = () => {
 
             {/* Contact Info */}
             <div>
-              <h2 className="text-3xl font-bold text-blue-900 mb-8">Informations de Contact</h2>
+              <h2 className="text-3xl font-bold text-blue-900 mb-8">{t('contact.infoTitle')}</h2>
               
               <div className="space-y-6 mb-12">
                 {contactInfo.map((info, index) => (
@@ -227,11 +227,11 @@ const ContactPage: React.FC = () => {
 
               {/* Map Placeholder */}
               <div className="bg-white rounded-xl shadow-lg p-6">
-                <h3 className="text-xl font-semibold text-blue-900 mb-4">Notre Localisation</h3>
+                <h3 className="text-xl font-semibold text-blue-900 mb-4">{t('contact.locationTitle')}</h3>
                 <div className="bg-gray-200 h-64 rounded-lg flex items-center justify-center">
                   <div className="text-center text-gray-500">
                     <MapPin className="h-12 w-12 mx-auto mb-2" />
-                    <p>Carte Interactive</p>
+                    <p>{t('contact.mapPlaceholder')}</p>
                     <p className="text-sm">123 Port Avenue, Maritime City</p>
                   </div>
                 </div>
@@ -244,9 +244,9 @@ const ContactPage: React.FC = () => {
       {/* Quick Contact */}
       <section className="py-20 bg-blue-900 text-white">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-bold mb-6">Besoin d'une Réponse Rapide?</h2>
+          <h2 className="text-4xl font-bold mb-6">{t('contact.quickContactTitle')}</h2>
           <p className="text-xl text-sky-200 mb-10">
-            Notre équipe est disponible par téléphone pour répondre immédiatement à vos questions urgentes.
+            {t('contact.quickContactDescription')}
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
             <a
@@ -254,14 +254,14 @@ const ContactPage: React.FC = () => {
               className="bg-sky-500 hover:bg-sky-400 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 hover:scale-105 shadow-xl flex items-center space-x-2"
             >
               <Phone className="h-5 w-5" />
-              <span>Appelez Maintenant</span>
+              <span>{t('contact.callNow')}</span>
             </a>
             <a
               href="mailto:info@logiflow.com"
               className="bg-white bg-opacity-20 hover:bg-opacity-30 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 flex items-center space-x-2"
             >
               <Mail className="h-5 w-5" />
-              <span>Envoyez un Email</span>
+              <span>{t('contact.sendEmail')}</span>
             </a>
           </div>
         </div>

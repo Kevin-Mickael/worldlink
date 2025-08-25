@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Menu, X, ChevronDown } from 'lucide-react';
+import { Menu, X, ChevronDown, Plane, Warehouse, Package, Truck, Snowflake, Ship, FileText, ShoppingCart, MapPin } from 'lucide-react';
 import { useLanguage, languages } from '../contexts/LanguageContext';
+
+const publicAsset = (relativePath: string) => `${import.meta.env.BASE_URL}${relativePath.replace(/^\//, '')}`;
 
 interface HeaderProps {
   currentPage: string;
@@ -79,22 +81,43 @@ const Header: React.FC<HeaderProps> = ({ currentPage, onPageChange }) => {
 
   const homeTop = isHome && !isScrolled;
   const homeBorderClass = '';
+  
+  // Détection mobile pour ajuster le comportement du header
+  const [isMobile, setIsMobile] = useState(false);
+  
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 1024); // lg breakpoint
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const serviceOptions = [
-    { id: 'air', label: t('services.shipping.title') },
-    { id: 'warehousing', label: t('services.warehousing.title') },
-    { id: 'customs', label: t('services.inventory.title') },
-    { id: 'projects', label: t('services.delivery.title') },
-    { id: 'perishables', label: t('services.cfs.title') }
+    { id: 'freight', label: 'Freight Consolidation & Full Container Loads', icon: Ship },
+    { id: 'personal', label: 'Personal Effects & Project Shipments', icon: Package },
+    { id: 'refrigerated', label: 'Refrigerated Food Containers', icon: Snowflake },
+    { id: 'customs', label: 'Customs Clearing & Compliance', icon: FileText },
+    { id: 'airfreight', label: 'Airfreight Services', icon: Plane },
+    { id: 'sourcing', label: 'Product Sourcing & Procurement', icon: ShoppingCart },
+    { id: 'inland', label: 'Inland Transport & CFS Warehousing', icon: MapPin }
   ];
 
   return (
-    <header className={`${homeTop ? 'absolute top-0 left-0 w-full bg-black/40 backdrop-blur-[1px]' : 'bg-white/80 backdrop-blur-[2px] shadow-sm sticky top-0'} ${homeBorderClass} z-50`}>
+    <header className={`${
+      homeTop 
+        ? 'absolute top-0 left-0 w-full bg-black/40 backdrop-blur-[1px]' 
+        : isMobile 
+          ? 'relative bg-white/95 backdrop-blur-md shadow-lg' 
+          : 'sticky top-0 bg-white/95 backdrop-blur-md shadow-lg'
+    } ${homeBorderClass} z-40`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className={`flex justify-between items-center ${isScrolled ? 'py-3' : 'py-4'}`}>
           {/* Logo */}
           <div className="flex items-center cursor-pointer" onClick={() => onPageChange('home')}>
-            <img src="/worldlink.png" alt="WorldLink" className={`${isScrolled ? 'h-10' : 'h-12'} w-auto`} />
+            <img src={publicAsset('worldlink.png')} alt="WorldLink" className={`${isScrolled ? 'h-10' : 'h-12'} w-auto`} />
           </div>
 
           {/* Desktop Navigation */}
@@ -135,18 +158,24 @@ const Header: React.FC<HeaderProps> = ({ currentPage, onPageChange }) => {
                       onMouseEnter={clearServicesCloseTimeout}
                       onMouseLeave={scheduleServicesClose}
                     >
-                      {serviceOptions.map(option => (
-                        <button
-                          key={option.id}
-                          onClick={() => {
-                            onPageChange('services');
-                            setIsServicesOpen(false);
-                          }}
-                          className="group w-full text-left px-4 py-2 rounded-lg text-gray-700 hover:text-sky-800 hover:bg-gradient-to-r hover:from-sky-50 hover:to-blue-50 transition-all duration-200"
-                        >
-                          <span className="text-sm font-medium">{option.label}</span>
-                        </button>
-                      ))}
+                      {serviceOptions.map(option => {
+                        const IconComponent = option.icon;
+                        return (
+                          <button
+                            key={option.id}
+                            onClick={() => {
+                              onPageChange('services');
+                              setIsServicesOpen(false);
+                            }}
+                            className="group w-full text-left px-4 py-2 rounded-lg text-gray-700 hover:text-sky-800 hover:bg-gradient-to-r hover:from-sky-50 hover:to-blue-50 transition-all duration-200"
+                          >
+                            <div className="flex items-center space-x-3">
+                              <IconComponent className="h-4 w-4 text-gray-500 group-hover:text-sky-600 transition-colors" />
+                              <span className="text-sm font-medium">{option.label}</span>
+                            </div>
+                          </button>
+                        );
+                      })}
                     </div>
                   )}
                 </div>
@@ -160,14 +189,18 @@ const Header: React.FC<HeaderProps> = ({ currentPage, onPageChange }) => {
             <div className="relative">
               <button
                 onClick={() => setIsLanguageOpen(!isLanguageOpen)}
-                className={`flex items-center space-x-1 px-1 py-1 ${homeTop ? 'text-white' : 'text-gray-900'}`}
+                className={`flex items-center space-x-1 px-2 py-1 rounded-lg transition-all duration-200 ${
+                  homeTop 
+                    ? 'text-white hover:bg-white/20' 
+                    : 'text-gray-900 hover:bg-gray-100'
+                }`}
               >
                 <span className={`text-sm font-medium ${homeTop ? 'text-white' : 'text-gray-900'}`}>{currentLanguage.name}</span>
                 <ChevronDown className={`h-4 w-4 ${homeTop ? 'text-white' : 'text-gray-900'}`} />
               </button>
               
               {isLanguageOpen && (
-                <div className="absolute right-0 mt-2 py-2 w-40 bg-white rounded-lg shadow-xl border">
+                <div className="absolute right-0 mt-2 py-2 w-40 bg-white/95 backdrop-blur-md rounded-lg shadow-xl border border-gray-200/50 z-50">
                   {languages.map((lang) => (
                     <button
                       key={lang.code}
@@ -175,9 +208,9 @@ const Header: React.FC<HeaderProps> = ({ currentPage, onPageChange }) => {
                         changeLanguage(lang);
                         setIsLanguageOpen(false);
                       }}
-                      className="flex items-center space-x-2 w-full px-4 py-2 text-left"
+                      className="flex items-center space-x-2 w-full px-4 py-2 text-left hover:bg-sky-50 hover:text-sky-700 transition-colors rounded"
                     >
-                      <span className="text-sm">{lang.name}</span>
+                      <span className="text-sm font-medium">{lang.name}</span>
                     </button>
                   ))}
                 </div>
@@ -187,7 +220,12 @@ const Header: React.FC<HeaderProps> = ({ currentPage, onPageChange }) => {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className={`lg:hidden p-2 rounded-lg ${homeTop ? 'text-white' : 'text-gray-900'}`}
+              className={`lg:hidden p-2 rounded-lg transition-all duration-200 ${
+                homeTop 
+                  ? 'text-white hover:bg-white/20 hover:bg-opacity-20' 
+                  : 'text-gray-900 hover:bg-gray-100'
+              }`}
+              aria-label={isMenuOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
             >
               {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </button>
@@ -196,8 +234,8 @@ const Header: React.FC<HeaderProps> = ({ currentPage, onPageChange }) => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className={`lg:hidden pb-4 ${isHome ? 'bg-white/90 backdrop-blur rounded-xl p-2 mt-2' : ''}`}>
-            <nav className="flex flex-col space-y-2">
+          <div className="lg:hidden pb-4 bg-white/95 backdrop-blur-md rounded-xl p-4 mt-2 shadow-lg border border-gray-200/50">
+            <nav className="flex flex-col space-y-1">
               {navigation.map((item) => {
                 if (item.id !== 'services') {
                   return (
@@ -207,7 +245,7 @@ const Header: React.FC<HeaderProps> = ({ currentPage, onPageChange }) => {
                         onPageChange(item.id);
                         setIsMenuOpen(false);
                       }}
-                      className={`text-left py-3 px-4 rounded-lg ${homeTop ? 'text-gray-100' : 'text-gray-900'}`}
+                      className="text-left py-3 px-4 rounded-lg text-gray-800 hover:bg-sky-50 hover:text-sky-700 font-medium transition-all duration-200"
                     >
                       {item.label}
                     </button>
@@ -217,26 +255,32 @@ const Header: React.FC<HeaderProps> = ({ currentPage, onPageChange }) => {
                   <div key={item.id} className="px-2">
                     <button
                       onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)}
-                      className={`w-full flex items-center justify-between py-3 px-2 rounded-lg ${homeTop ? 'text-gray-100' : 'text-gray-900'}`}
+                      className="w-full flex items-center justify-between py-3 px-2 rounded-lg text-gray-800 hover:bg-sky-50 hover:text-sky-700 font-medium transition-all duration-200"
                     >
                       <span>{item.label}</span>
-                      <ChevronDown className={`h-4 w-4 ${isMobileServicesOpen ? 'transform rotate-180' : ''}`} />
+                      <ChevronDown className={`h-4 w-4 text-gray-600 transition-transform duration-200 ${isMobileServicesOpen ? 'transform rotate-180' : ''}`} />
                     </button>
                     {isMobileServicesOpen && (
-                      <div className="mt-1 space-y-1 pl-3 pr-2">
-                        {serviceOptions.map(option => (
-                          <button
-                            key={option.id}
-                            onClick={() => {
-                              onPageChange('services');
-                              setIsMenuOpen(false);
-                              setIsMobileServicesOpen(false);
-                            }}
-                            className="w-full text-left py-2 px-3 rounded-md text-gray-700 hover:bg-sky-50 hover:text-sky-800 transition-colors"
-                          >
-                            <span className="text-sm">{option.label}</span>
-                          </button>
-                        ))}
+                      <div className="mt-1 space-y-1 pl-3 pr-2 bg-gray-50/50 rounded-lg p-2">
+                        {serviceOptions.map(option => {
+                          const IconComponent = option.icon;
+                          return (
+                            <button
+                              key={option.id}
+                              onClick={() => {
+                                onPageChange('services');
+                                setIsMenuOpen(false);
+                                setIsMobileServicesOpen(false);
+                              }}
+                              className="w-full text-left py-2 px-3 rounded-md text-gray-700 hover:bg-sky-100 hover:text-sky-800 transition-colors font-medium"
+                            >
+                              <div className="flex items-center space-x-3">
+                                <IconComponent className="h-4 w-4 text-gray-500" />
+                                <span className="text-sm">{option.label}</span>
+                              </div>
+                            </button>
+                          );
+                        })}
                       </div>
                     )}
                   </div>

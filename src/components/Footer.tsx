@@ -1,6 +1,8 @@
 import React from 'react';
-import { Mail, Phone, MapPin, Clock } from 'lucide-react';
+import { Mail, Phone, MapPin, Building, Facebook } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
+
+const publicAsset = (relativePath: string) => `${import.meta.env.BASE_URL}${relativePath.replace(/^\//, '')}`;
 
 interface FooterProps {
   onPageChange: (page: string) => void;
@@ -13,7 +15,7 @@ const Footer: React.FC<FooterProps> = ({ onPageChange }) => {
     { id: 'home', label: t('nav.home') },
     { id: 'about', label: t('nav.about') },
     { id: 'services', label: t('nav.services') },
-    { id: 'contact', label: t('nav.contact') },
+    { id: 'contact', label: t('contact') },
     { id: 'faq', label: t('nav.faq') }
   ];
 
@@ -26,27 +28,48 @@ const Footer: React.FC<FooterProps> = ({ onPageChange }) => {
           {/* Company Info */}
             <div className="col-span-1 lg:col-span-2">
               <div className="flex items-center mb-4">
-                <img src="/worldlink.png" alt="WorldLink" className="h-10 w-auto" />
+                <img src={publicAsset('worldlink.png')} alt="WorldLink" className="h-10 w-auto" />
               </div>
               <p className="text-gray-300 mb-6 max-w-md">
                 {t('footer.description')}
               </p>
+              
+              {/* Business Information */}
+              <div className="space-y-3 text-gray-200 mb-6">
+                <div className="flex items-start space-x-3">
+                  <Building className="h-5 w-5 text-sky-400 mt-0.5 flex-shrink-0" />
+                  <div>
+                    <p className="font-semibold text-white">WORLDLINK LOGISTICS LTD</p>
+                    <p className="text-sm text-gray-400"> Business Registration Number : C14126723</p>
+                  </div>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <MapPin className="h-5 w-5 text-sky-400 mt-0.5 flex-shrink-0" />
+                  <div>
+                    <p>PLOT 30A BUSINESS & INDUSTRIAL PARK</p>
+                    <p>JIN FEI ZONE RICHE TERRE</p>
+                    <p className="text-sm text-gray-400">Mauritius</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Contact Information */}
               <div className="space-y-3 text-gray-200">
                 <div className="flex items-center space-x-3">
-                  <MapPin className="h-5 w-5 text-sky-400" />
-                  <span>123 Port Avenue, Maritime City</span>
+                  <Mail className="h-5 w-5 text-sky-400" />
+                  <div>
+                    <p>Neeraj@worldlink.mu</p>
+                    <p>christopher@worldlink.mu</p>
+                    <p>simtee@worldlink.mu</p>
+                  </div>
                 </div>
                 <div className="flex items-center space-x-3">
                   <Phone className="h-5 w-5 text-sky-400" />
-                  <span>+1 (555) 123-4567</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <Mail className="h-5 w-5 text-sky-400" />
-                  <span>info@logiflow.com</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <Clock className="h-5 w-5 text-sky-400" />
-                  <span>Mon - Fri: 8:00 AM - 6:00 PM</span>
+                  <div>
+                    <p>Neeraj: 52582275</p>
+                    <p>Simtee: 52549671</p>
+                    <p>Christopher: 55005465</p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -74,12 +97,29 @@ const Footer: React.FC<FooterProps> = ({ onPageChange }) => {
               <h3 className="text-xl font-semibold mb-2">{t('nav.services')}</h3>
               <div className="h-0.5 w-12 bg-orange-400 mb-6"></div>
               <ul className="space-y-3 text-gray-300">
-                <li>{t('services.shipping.title')}</li>
-                <li>{t('services.warehousing.title')}</li>
-                <li>{t('services.inventory.title')}</li>
-                <li>{t('services.delivery.title')}</li>
-                <li>{t('services.cfs.title')}</li>
+                <li>Freight Consolidation & Full Container Loads</li>
+                <li>Personal Effects & Project Shipments</li>
+                <li>Refrigerated Food Containers</li>
+                <li>Customs Clearing & Compliance</li>
+                <li>Airfreight Services</li>
+                <li>Product Sourcing & Procurement</li>
+                <li>Inland Transport & CFS Warehousing</li>
               </ul>
+              
+              {/* Social Media - Right side */}
+              <div className="mt-6 pt-6 border-t border-gray-600">
+                <div className="flex items-center space-x-3">
+                  <Facebook className="h-5 w-5 text-sky-400" />
+                  <a 
+                    href="https://www.facebook.com/worldlinklogisticsltd" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-gray-300 hover:text-white transition-colors duration-200"
+                  >
+                    Follow us on Facebook
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -88,7 +128,16 @@ const Footer: React.FC<FooterProps> = ({ onPageChange }) => {
       {/* Bottom light bar */}
       <div className="bg-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <p className="text-center text-gray-600 text-sm">© 2025 WorldLink. {t('footer.rights')}</p>
+          <div className="flex justify-center items-center space-x-2 text-sm">
+            <span className="text-black">© 2025 WorldLink. {t('footer.rights')}</span>
+            <span className="text-gray-400">-</span>
+            <button
+              onClick={() => onPageChange('legal')}
+              className="text-blue-600 hover:text-blue-800 transition-colors duration-200"
+            >
+              Legal & Compliance
+            </button>
+          </div>
         </div>
       </div>
     </footer>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Truck, Warehouse, Package, Home, Building2, CheckCircle, Clock, Shield, Globe } from 'lucide-react';
+import { Truck, Warehouse, Package, Home, Building2, CheckCircle, Clock, Shield, Globe, Container, Plane, ShoppingCart, Ship, Snowflake, FileText } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 
 interface ServicesProps {
@@ -11,69 +11,95 @@ const ServicesPage: React.FC<ServicesProps> = ({ onPageChange }) => {
 
   const services = [
     {
-      icon: <Truck className="h-16 w-16 text-white" />,
-      title: t('services.shipping.title'),
-      description: t('services.shipping.description'),
+      icon: <Container className="h-16 w-16 text-white" />,
+      title: 'Freight Consolidation & Full Container Loads',
+      description: 'Optimisez vos coûts de transport avec notre service de consolidation de fret et de chargement de conteneurs complets. Nous regroupons vos marchandises pour maximiser l\'efficacité et réduire les dépenses.',
       features: [
-        'Capacités express et prioritaire',
-        'Suivi proactif porte-à-porte',
-        'Gestion des aéroports majeurs',
-        'Assurance marchandise et conformité'
+        'Consolidation de fret pour optimiser les coûts',
+        'Chargement de conteneurs complets (FCL)',
+        'Gestion des délais et planification',
+        'Suivi en temps réel de vos expéditions'
       ],
-      image: 'https://images.pexels.com/photos/4481327/pexels-photo-4481327.jpeg?auto=compress&cs=tinysrgb&w=800',
+      image: 'https://images.pexels.com/photos/4484078/pexels-photo-4484078.jpeg?auto=compress&cs=tinysrgb&w=800',
       gradient: 'from-blue-900 to-blue-700'
     },
     {
-      icon: <Warehouse className="h-16 w-16 text-white" />,
-      title: t('services.warehousing.title'),
-      description: t('services.warehousing.description'),
+      icon: <Package className="h-16 w-16 text-white" />,
+      title: 'Personal Effects & Project Shipments',
+      description: 'Transport spécialisé pour vos effets personnels et projets. Nous assurons un traitement délicat et sécurisé pour tous types de biens personnels et équipements de projet.',
       features: [
-        'Sites sécurisés et climatisés',
-        'WMS et préparation de commandes',
-        'Fenêtres d’accès 24/7',
-        'Capacité modulable et scalable'
+        'Transport d\'effets personnels sécurisé',
+        'Gestion des projets complexes',
+        'Emballage et protection spécialisée',
+        'Assurance et suivi personnalisé'
       ],
       image: 'https://images.pexels.com/photos/4481327/pexels-photo-4481327.jpeg?auto=compress&cs=tinysrgb&w=800',
       gradient: 'from-sky-600 to-sky-800'
     },
     {
-      icon: <Package className="h-16 w-16 text-white" />,
-      title: t('services.inventory.title'),
-      description: t('services.inventory.description'),
+      icon: <Snowflake className="h-16 w-16 text-white" />,
+      title: 'Refrigerated Food Containers',
+      description: 'Conteneurs frigorifiques spécialisés pour le transport de denrées alimentaires. Maintenez la qualité et la fraîcheur de vos produits avec notre chaîne du froid contrôlée.',
       features: [
-        'Classement tarifaire et conformité',
-        'Procédures d’import/export',
-        'Optimisation des délais de mainlevée',
-        'Gestion documentaire complète'
+        'Conteneurs frigorifiques certifiés',
+        'Contrôle de température en temps réel',
+        'Conformité aux normes alimentaires',
+        'Gestion de la chaîne du froid'
       ],
-      image: 'https://images.pexels.com/photos/4481327/pexels-photo-4481327.jpeg?auto=compress&cs=tinysrgb&w=800',
+      image: 'https://images.pexels.com/photos/4484078/pexels-photo-4484078.jpeg?auto=compress&cs=tinysrgb&w=800',
       gradient: 'from-blue-800 to-sky-600'
     },
     {
-      icon: <Home className="h-16 w-16 text-white" />,
-      title: t('services.delivery.title'),
-      description: t('services.delivery.description'),
+      icon: <FileText className="h-16 w-16 text-white" />,
+      title: 'Customs Clearing & Compliance',
+      description: 'Services de dédouanement et de conformité réglementaire. Nous gérons tous les aspects administratifs et légaux pour assurer le passage en douane de vos marchandises.',
       features: [
-        'Ingénierie et plan de levage',
-        'Équipements spécialisés',
-        'Escortes et autorisations',
-        'Coordination bout en bout'
+        'Dédouanement complet des marchandises',
+        'Conformité réglementaire internationale',
+        'Gestion documentaire et procédures',
+        'Optimisation des délais de mainlevée'
       ],
       image: 'https://images.pexels.com/photos/4481327/pexels-photo-4481327.jpeg?auto=compress&cs=tinysrgb&w=800',
       gradient: 'from-sky-700 to-blue-800'
     },
     {
-      icon: <Building2 className="h-16 w-16 text-white" />,
-      title: t('services.cfs.title'),
-      description: t('services.cfs.description'),
+      icon: <Plane className="h-16 w-16 text-white" />,
+      title: 'Airfreight Services',
+      description: 'Transport aérien rapide et fiable pour vos envois urgents. Bénéficiez de notre réseau de partenaires aériens pour des délais optimaux et une flexibilité maximale.',
       features: [
-        'Permis et conformité réglementaire',
-        'Emballage & chaîne du froid',
-        'Gestion des matières dangereuses',
-        'Procédures spécifiques de transport'
+        'Transport aérien express et standard',
+        'Réseau de partenaires internationaux',
+        'Gestion des aéroports majeurs',
+        'Suivi proactif porte-à-porte'
+      ],
+      image: 'https://images.pexels.com/photos/4484078/pexels-photo-4484078.jpeg?auto=compress&cs=tinysrgb&w=800',
+      gradient: 'from-blue-900 to-sky-700'
+    },
+    {
+      icon: <ShoppingCart className="h-16 w-16 text-white" />,
+      title: 'Product Sourcing & Procurement',
+      description: 'Sourcing et approvisionnement de produits à l\'international. Nous vous aidons à identifier et sélectionner les meilleurs fournisseurs pour vos besoins spécifiques.',
+      features: [
+        'Identification de fournisseurs qualifiés',
+        'Négociation et gestion des contrats',
+        'Contrôle qualité et assurance',
+        'Gestion des relations fournisseurs'
       ],
       image: 'https://images.pexels.com/photos/4481327/pexels-photo-4481327.jpeg?auto=compress&cs=tinysrgb&w=800',
-      gradient: 'from-blue-900 to-sky-700'
+      gradient: 'from-sky-600 to-blue-800'
+    },
+    {
+      icon: <Truck className="h-16 w-16 text-white" />,
+      title: 'Inland Transport & CFS Warehousing',
+      description: 'Transport terrestre et entreposage CFS (Container Freight Station). Solutions complètes pour la gestion de vos conteneurs et le transport intérieur.',
+      features: [
+        'Transport terrestre multimodal',
+        'Entreposage CFS sécurisé',
+        'Gestion des conteneurs vides',
+        'Services de groupage et dégroupage'
+      ],
+      image: 'https://images.pexels.com/photos/4484078/pexels-photo-4484078.jpeg?auto=compress&cs=tinysrgb&w=800',
+      gradient: 'from-blue-800 to-sky-600'
     }
   ];
 

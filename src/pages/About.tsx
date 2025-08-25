@@ -8,45 +8,45 @@ const AboutPage: React.FC = () => {
   const values = [
     {
       icon: <Shield className="h-8 w-8 text-sky-500" />,
-      title: 'Fiabilité',
-      description: 'Nous nous engageons à fournir des services fiables et sécurisés à tous nos clients.'
+      title: t('values.reliability.title'),
+      description: t('values.reliability.description')
     },
     {
       icon: <Users className="h-8 w-8 text-sky-500" />,
-      title: 'Service Client',
-      description: 'Notre équipe dédiée est disponible 24/7 pour répondre à tous vos besoins.'
+      title: t('values.customerService.title'),
+      description: t('values.customerService.description')
     },
     {
       icon: <Globe className="h-8 w-8 text-sky-500" />,
-      title: 'Réseau Global',
-      description: 'Un réseau mondial de partenaires pour des solutions logistiques complètes.'
+      title: t('values.globalNetwork.title'),
+      description: t('values.globalNetwork.description')
     },
     {
       icon: <Award className="h-8 w-8 text-sky-500" />,
-      title: 'Excellence',
-      description: 'Nous visons l\'excellence dans chaque aspect de nos services logistiques.'
+      title: t('values.excellence.title'),
+      description: t('values.excellence.description')
     }
   ];
 
   const team = [
     {
       name: 'Jean Dubois',
-      role: 'Directeur Général',
+      role: t('team.ceo'),
       image: 'https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg?auto=compress&cs=tinysrgb&w=300'
     },
     {
       name: 'Marie Martin',
-      role: 'Directrice des Opérations',
+      role: t('team.operations'),
       image: 'https://images.pexels.com/photos/3785077/pexels-photo-3785077.jpeg?auto=compress&cs=tinysrgb&w=300'
     },
     {
       name: 'Pierre Leroy',
-      role: 'Responsable Logistique',
+      role: t('team.logistics'),
       image: 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=300'
     },
     {
       name: 'Sophie Bernard',
-      role: 'Service Client',
+      role: t('team.customerSupport'),
       image: 'https://images.pexels.com/photos/3756679/pexels-photo-3756679.jpeg?auto=compress&cs=tinysrgb&w=300'
     }
   ];
@@ -106,9 +106,9 @@ const AboutPage: React.FC = () => {
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-blue-900 mb-4">Nos Valeurs</h2>
+            <h2 className="text-4xl font-bold text-blue-900 mb-4">{t('values.title')}</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Les valeurs qui guident notre travail quotidien et nos relations avec nos clients.
+              {t('values.subtitle')}
             </p>
           </div>
 
@@ -130,9 +130,9 @@ const AboutPage: React.FC = () => {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-blue-900 mb-4">Notre Équipe</h2>
+            <h2 className="text-4xl font-bold text-blue-900 mb-4">{t('team.title')}</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Rencontrez les experts dédiés qui rendent nos services logistiques exceptionnels.
+              {t('team.subtitle')}
             </p>
           </div>
 
@@ -159,24 +159,24 @@ const AboutPage: React.FC = () => {
       <section className="py-20 bg-gradient-to-br from-blue-900 to-sky-600 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">Nos Réalisations</h2>
+            <h2 className="text-4xl font-bold mb-4">{t('achievements.title')}</h2>
             <p className="text-xl text-sky-200">
-              Des chiffres qui témoignent de notre expertise et de votre confiance.
+              {t('achievements.subtitle')}
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center p-8">
               <div className="text-5xl font-bold text-sky-300 mb-2">15+</div>
-              <div className="text-xl">Années d'Expérience</div>
+              <div className="text-xl">{t('achievements.experience')}</div>
             </div>
             <div className="text-center p-8">
               <div className="text-5xl font-bold text-sky-300 mb-2">50+</div>
-              <div className="text-xl">Pays Desservis</div>
+              <div className="text-xl">{t('achievements.countries')}</div>
             </div>
             <div className="text-center p-8">
               <div className="text-5xl font-bold text-sky-300 mb-2">1M+</div>
-              <div className="text-xl">Colis Expédiés</div>
+              <div className="text-xl">{t('achievements.packages')}</div>
             </div>
           </div>
         </div>

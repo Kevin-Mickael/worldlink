@@ -10,63 +10,63 @@ const FAQPage: React.FC = () => {
   const faqs = [
     {
       id: 1,
-      question: 'Quels sont vos délais de livraison?',
-      answer: 'Nos délais de livraison varient selon la destination et le type de service choisi. Pour les livraisons nationales, comptez 24-48h en express et 3-5 jours en standard. Pour l\'international, les délais sont de 3-7 jours selon la destination.',
-      category: 'Livraison'
+      question: t('faqItems.delivery.question'),
+      answer: t('faqItems.delivery.answer'),
+      category: t('faqItems.delivery.category')
     },
     {
       id: 2,
-      question: 'Comment puis-je suivre mon envoi?',
-      answer: 'Vous recevrez un numéro de suivi par email ou SMS dès l\'expédition de votre colis. Vous pouvez le saisir sur notre site web ou notre application mobile pour suivre votre envoi en temps réel.',
-      category: 'Suivi'
+      question: t('faqItems.tracking.question'),
+      answer: t('faqItems.tracking.answer'),
+      category: t('faqItems.tracking.category')
     },
     {
       id: 3,
-      question: 'Proposez-vous des services d\'entreposage?',
-      answer: 'Oui, nous disposons d\'entrepôts sécurisés et climatisés. Nous offrons des solutions de stockage court et long terme avec système de gestion d\'inventaire avancé et accès 24/7.',
-      category: 'Entreposage'
+      question: t('faqItems.warehousing.question'),
+      answer: t('faqItems.warehousing.answer'),
+      category: t('faqItems.warehousing.category')
     },
     {
       id: 4,
-      question: 'Quels types de marchandises acceptez-vous?',
-      answer: 'Nous acceptons la plupart des marchandises légales, à l\'exception des matières dangereuses, produits périssables sans emballage approprié, et articles interdits par la réglementation internationale.',
-      category: 'Marchandises'
+      question: t('faqItems.goods.question'),
+      answer: t('faqItems.goods.answer'),
+      category: t('faqItems.goods.category')
     },
     {
       id: 5,
-      question: 'Comment sont calculés vos tarifs?',
-      answer: 'Nos tarifs sont basés sur plusieurs facteurs : poids, dimensions, distance, type de service, et valeur déclarée. Nous offrons des tarifs préférentiels pour les clients réguliers et les gros volumes.',
-      category: 'Tarification'
+      question: t('faqItems.pricing.question'),
+      answer: t('faqItems.pricing.answer'),
+      category: t('faqItems.pricing.category')
     },
     {
       id: 6,
-      question: 'Offrez-vous une assurance pour les envois?',
-      answer: 'Oui, tous nos envois incluent une assurance de base. Vous pouvez souscrire une assurance complémentaire pour les marchandises de grande valeur. Notre équipe vous conseillera sur la meilleure option.',
-      category: 'Assurance'
+      question: t('faqItems.insurance.question'),
+      answer: t('faqItems.insurance.answer'),
+      category: t('faqItems.insurance.category')
     },
     {
       id: 7,
-      question: 'Que faire en cas de dommage ou de perte?',
-      answer: 'En cas de dommage ou perte, contactez-nous immédiatement. Nous traiterons votre réclamation dans les 48h. Notre assurance couvrira les dommages selon les conditions générales.',
-      category: 'Réclamations'
+      question: t('faqItems.claims.question'),
+      answer: t('faqItems.claims.answer'),
+      category: t('faqItems.claims.category')
     },
     {
       id: 8,
-      question: 'Proposez-vous des services CFS?',
-      answer: 'Oui, nous disposons d\'installations CFS (Container Freight Station) et d\'entrepôts sous douane. Nous gérons tous les aspects douaniers et documentaires pour vos imports/exports.',
-      category: 'Services CFS'
+      question: t('faqItems.cfs.question'),
+      answer: t('faqItems.cfs.answer'),
+      category: t('faqItems.cfs.category')
     },
     {
       id: 9,
-      question: 'Comment contacter le service client?',
-      answer: 'Notre service client est disponible par téléphone au +1 (555) 123-4567, par email à info@logiflow.com, ou via notre chat en ligne. Nos horaires sont du lundi au vendredi de 8h à 18h.',
-      category: 'Support'
+      question: t('faqItems.support.question'),
+      answer: t('faqItems.support.answer'),
+      category: t('faqItems.support.category')
     },
     {
       id: 10,
-      question: 'Proposez-vous des solutions personnalisées?',
-      answer: 'Absolument! Nous développons des solutions logistiques sur mesure selon vos besoins spécifiques. Contactez notre équipe commerciale pour discuter de vos exigences particulières.',
-      category: 'Solutions'
+      question: t('faqItems.solutions.question'),
+      answer: t('faqItems.solutions.answer'),
+      category: t('faqItems.solutions.category')
     }
   ];
 
@@ -92,7 +92,7 @@ const FAQPage: React.FC = () => {
             {t('faq.subtitle')}
           </p>
           <p className="text-xl max-w-4xl mx-auto leading-relaxed">
-            Consultez les réponses aux questions les plus courantes ou contactez-nous pour une assistance personnalisée.
+            {t('faq.description')}
           </p>
         </div>
       </section>
@@ -104,7 +104,7 @@ const FAQPage: React.FC = () => {
             <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-6 w-6 text-gray-400" />
             <input
               type="text"
-              placeholder="Rechercher une question..."
+              placeholder={t('faq.searchPlaceholder')}
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="w-full pl-12 pr-4 py-4 text-lg border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent shadow-lg"
@@ -124,9 +124,9 @@ const FAQPage: React.FC = () => {
                   ? 'bg-blue-900 text-white' 
                   : 'bg-white text-blue-900 hover:bg-blue-50'
               }`}
-            >
-              Toutes
-            </button>
+                          >
+                {t('faq.allCategories')}
+              </button>
             {categories.map((category) => (
               <button
                 key={category}
@@ -187,10 +187,10 @@ const FAQPage: React.FC = () => {
             <div className="text-center py-16">
               <HelpCircle className="h-16 w-16 text-gray-400 mx-auto mb-4" />
               <h3 className="text-2xl font-semibold text-gray-600 mb-2">
-                Aucune question trouvée
+                {t('faq.noResultsTitle')}
               </h3>
               <p className="text-gray-500">
-                Essayez avec d'autres mots-clés ou contactez-nous directement.
+                {t('faq.noResultsMessage')}
               </p>
             </div>
           )}
@@ -202,24 +202,24 @@ const FAQPage: React.FC = () => {
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <HelpCircle className="h-16 w-16 text-sky-400 mx-auto mb-6" />
           <h2 className="text-4xl font-bold mb-6">
-            Vous n'avez pas trouvé votre réponse?
+            {t('faq.ctaTitle')}
           </h2>
           <p className="text-xl text-sky-200 mb-10">
-            Notre équipe d'experts est là pour répondre à toutes vos questions spécifiques.
+            {t('faq.ctaDescription')}
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
             <a
               href="tel:+15551234567"
               className="bg-sky-500 hover:bg-sky-400 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 hover:scale-105 shadow-xl"
-            >
-              Nous Appeler
-            </a>
+                          >
+                {t('faq.callUs')}
+              </a>
             <a
               href="mailto:info@logiflow.com"
               className="bg-white bg-opacity-20 hover:bg-opacity-30 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300"
-            >
-              Envoyer un Email
-            </a>
+                          >
+                {t('faq.sendEmail')}
+              </a>
           </div>
         </div>
       </section>
