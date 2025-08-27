@@ -578,7 +578,6 @@ const translations: Record<string, Translation> = {
           address: 'Jin Fei Business Park',
           city: 'Riche Terre, Maurice',
           responseTime: 'Réponse sous 24h',
-          businessHours: 'Lun-Ven: 8h-18h'
         }
       },
       productSourcing: {
