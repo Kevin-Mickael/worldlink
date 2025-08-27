@@ -95,6 +95,20 @@ const Header: React.FC<HeaderProps> = ({ currentPage, onPageChange }) => {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
+  // Fonction helper pour mapper les IDs des services vers les routes
+  const getServiceRoute = (serviceId: string) => {
+    const routeMap: { [key: string]: string } = {
+      'freight': 'freight-consolidation',
+      'personal': 'personal-effects',
+      'refrigerated': 'refrigerated-containers',
+      'customs': 'customs-clearing',
+      'airfreight': 'airfreight',
+      'sourcing': 'product-sourcing',
+      'inland': 'inland-transport'
+    };
+    return routeMap[serviceId] || 'services';
+  };
+
   const serviceOptions = [
     { id: 'freight', label: 'Freight Consolidation & Full Container Loads', icon: Ship },
     { id: 'personal', label: 'Personal Effects & Project Shipments', icon: Package },
@@ -164,7 +178,7 @@ const Header: React.FC<HeaderProps> = ({ currentPage, onPageChange }) => {
                           <button
                             key={option.id}
                             onClick={() => {
-                              onPageChange('services');
+                              onPageChange(getServiceRoute(option.id));
                               setIsServicesOpen(false);
                             }}
                             className="group w-full text-left px-4 py-2 rounded-lg text-gray-700 hover:text-sky-800 hover:bg-gradient-to-r hover:from-sky-50 hover:to-blue-50 transition-all duration-200"
@@ -268,7 +282,7 @@ const Header: React.FC<HeaderProps> = ({ currentPage, onPageChange }) => {
                             <button
                               key={option.id}
                               onClick={() => {
-                                onPageChange('services');
+                                onPageChange(getServiceRoute(option.id));
                                 setIsMenuOpen(false);
                                 setIsMobileServicesOpen(false);
                               }}

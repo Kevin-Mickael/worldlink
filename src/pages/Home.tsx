@@ -252,7 +252,13 @@ const HomePage: React.FC<HomeProps> = ({ onPageChange }) => {
                       {/* CTA Section */}
                       <div className="freight-content-cta flex items-center justify-between">
                         <button
-                          onClick={() => onPageChange('services')}
+                          onClick={() => onPageChange(index === 0 ? 'freight-consolidation' : 
+                                                   index === 1 ? 'personal-effects' : 
+                                                   index === 2 ? 'refrigerated-containers' : 
+                                                   index === 3 ? 'customs-clearing' : 
+                                                   index === 4 ? 'airfreight' : 
+                                                   index === 5 ? 'product-sourcing' : 
+                                                   'inland-transport')}
                           className="freight-cta main__btn bg-gradient-to-r from-[var(--color-darkblue)] to-sky-600 hover:from-[var(--color-darkblue)] hover:to-sky-500 text-white px-6 py-3 rounded-full text-sm font-semibold transition-all duration-300 hover:scale-105 shadow-lg flex items-center space-x-2 group"
                         >
                           <span className="text-lg font-bold group-hover:rotate-90 transition-transform duration-300">+</span>

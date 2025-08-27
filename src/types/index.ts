@@ -5,7 +5,7 @@ export interface Language {
 }
 
 export interface Translation {
-  [key: string]: string | Translation;
+  [key: string]: string | Translation | string[] | Array<{ title: string; description: string }> | Array<{ range: string; title: string; description: string }> | Array<{ title: string; description: string }>;
 }
 
 export interface Service {

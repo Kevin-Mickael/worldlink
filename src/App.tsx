@@ -9,6 +9,13 @@ import ServicesPage from './pages/Services';
 import ContactPage from './pages/Contact';
 import FAQPage from './pages/FAQ';
 import LegalPage from './pages/Legal';
+import FreightConsolidationPage from './pages/FreightConsolidation';
+import PersonalEffectsPage from './pages/PersonalEffects';
+import RefrigeratedContainersPage from './pages/RefrigeratedContainers';
+import CustomsClearingPage from './pages/CustomsClearing';
+import AirfreightPage from './pages/Airfreight';
+import ProductSourcingPage from './pages/ProductSourcing';
+import InlandTransportPage from './pages/InlandTransport';
 
 function App() {
   const [currentPage, setCurrentPage] = useState('home');
@@ -31,6 +38,20 @@ function App() {
         return <FAQPage />;
       case 'legal':
         return <LegalPage />;
+      case 'freight-consolidation':
+        return <FreightConsolidationPage onPageChange={handlePageChange} />;
+      case 'personal-effects':
+        return <PersonalEffectsPage onPageChange={handlePageChange} />;
+      case 'refrigerated-containers':
+        return <RefrigeratedContainersPage onPageChange={handlePageChange} />;
+      case 'customs-clearing':
+        return <CustomsClearingPage onPageChange={handlePageChange} />;
+      case 'airfreight':
+        return <AirfreightPage onPageChange={handlePageChange} />;
+      case 'product-sourcing':
+        return <ProductSourcingPage onPageChange={handlePageChange} />;
+      case 'inland-transport':
+        return <InlandTransportPage onPageChange={handlePageChange} />;
       default:
         return <HomePage onPageChange={handlePageChange} />;
     }
