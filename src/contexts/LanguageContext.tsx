@@ -107,55 +107,145 @@ const translations: Record<string, Translation> = {
       sendEmail: 'Envoyer un Email'
     },
     faqItems: {
-      delivery: {
-        question: 'Quels sont vos délais de livraison?',
-        answer: 'Nos délais de livraison varient selon la destination et le type de service choisi. Pour les livraisons nationales, comptez 24-48h en express et 3-5 jours en standard. Pour l\'international, les délais sont de 3-7 jours selon la destination.',
-        category: 'Livraison'
+      // FREIGHT CONSOLIDATION & FCL
+      freightConsolidation: {
+        question: 'Qu\'est-ce que la consolidation de fret et comment peut-elle réduire mes coûts ?',
+        answer: 'La consolidation de fret consiste à regrouper plusieurs envois de différents clients dans un même conteneur. Cela permet de partager les coûts de transport et de réduire significativement vos frais d\'expédition. Nous optimisons l\'espace et négocions des tarifs avantageux grâce aux volumes consolidés.',
+        category: 'Consolidation de Fret'
+      },
+      lclFcl: {
+        question: 'Quelle est la différence entre LCL et FCL ?',
+        answer: 'LCL (Less than Container Load) : pour des volumes inférieurs à un conteneur complet. FCL (Full Container Load) : pour des volumes nécessitant un conteneur entier. Nous proposons les deux options avec des tarifs optimisés selon vos besoins.',
+        category: 'Consolidation de Fret'
+      },
+      consolidationTime: {
+        question: 'Combien de temps dure généralement une consolidation ?',
+        answer: 'Le délai de consolidation varie selon la destination et la fréquence des départs. En général, nous consolidons les envois dans un délai de 3-7 jours pour optimiser les coûts tout en respectant vos contraintes de temps.',
+        category: 'Consolidation de Fret'
+      },
+
+      // PERSONAL EFFECTS & PROJECT SHIPMENTS
+      personalEffects: {
+        question: 'Pouvez-vous transporter des effets personnels de déménagement ?',
+        answer: 'Absolument ! Nous spécialisons dans le transport d\'effets personnels avec un traitement délicat. Nous proposons un emballage professionnel, une assurance complète et un suivi personnalisé pour vos biens les plus précieux.',
+        category: 'Effets Personnels'
+      },
+      fragileItems: {
+        question: 'Comment protégez-vous les objets fragiles ?',
+        answer: 'Nous utilisons des matériaux d\'emballage professionnels (papier de soie, mousse, cartons renforcés) et des caisses en bois sur mesure si nécessaire. Chaque objet fragile est emballé individuellement et marqué clairement.',
+        category: 'Effets Personnels'
+      },
+      unpackingService: {
+        question: 'Proposez-vous des services de déballage à destination ?',
+        answer: 'Oui, nous pouvons organiser le déballage et l\'installation à destination. Nos équipes locales s\'occupent de tout, du déchargement à la mise en place de vos meubles et objets.',
+        category: 'Effets Personnels'
+      },
+
+      // REFRIGERATED CONTAINERS
+      temperatureRange: {
+        question: 'Quelles températures pouvez-vous maintenir dans vos conteneurs frigorifiques ?',
+        answer: 'Nos conteneurs frigorifiques maintiennent des températures de -30°C à +30°C selon vos besoins. Nous surveillons la température en temps réel et vous alertons immédiatement en cas de variation.',
+        category: 'Conteneurs Frigorifiques'
+      },
+      foodStandards: {
+        question: 'Vos conteneurs sont-ils conformes aux normes alimentaires internationales ?',
+        answer: 'Oui, tous nos conteneurs frigorifiques sont certifiés HACCP et respectent les normes internationales de sécurité alimentaire. Ils sont régulièrement inspectés et nettoyés selon les protocoles sanitaires.',
+        category: 'Conteneurs Frigorifiques'
+      },
+      coolingFailure: {
+        question: 'Que se passe-t-il en cas de panne de froid ?',
+        answer: 'Nos conteneurs sont équipés de systèmes de secours et d\'alertes en temps réel. En cas de problème, nos équipes techniques interviennent immédiatement et nous vous tenons informés de la situation.',
+        category: 'Conteneurs Frigorifiques'
+      },
+
+      // CUSTOMS CLEARING
+      customsDocuments: {
+        question: 'Quels documents sont nécessaires pour le dédouanement ?',
+        answer: 'Les documents requis varient selon le type de marchandise : facture commerciale, liste de colisage, certificat d\'origine, licences d\'importation si nécessaire. Nous vous fournissons une liste complète adaptée à votre situation.',
+        category: 'Dédouanement'
+      },
+      clearingTime: {
+        question: 'Combien de temps dure généralement le dédouanement ?',
+        answer: 'Le dédouanement standard prend 1-3 jours ouvrables. Les délais peuvent varier selon la complexité des marchandises et les exigences douanières spécifiques. Nous optimisons chaque étape pour minimiser les délais.',
+        category: 'Dédouanement'
+      },
+      customsTaxes: {
+        question: 'Pouvez-vous gérer les taxes et droits de douane ?',
+        answer: 'Oui, nous calculons et payons tous les droits et taxes en votre nom. Nous vous fournissons un devis détaillé à l\'avance et vous facturons exactement le montant payé aux autorités douanières.',
+        category: 'Dédouanement'
+      },
+
+      // AIRFREIGHT SERVICES
+      airDeliveryTime: {
+        question: 'Quels sont vos délais de livraison aérienne ?',
+        answer: 'Nos services aériens couvrent tous les délais : Express (1-2 jours), Standard (3-5 jours) et Économique (5-7 jours). Nous choisissons la solution optimale selon vos contraintes de temps et de budget.',
+        category: 'Transport Aérien'
+      },
+      doorToDoor: {
+        question: 'Pouvez-vous organiser le transport porte-à-porte ?',
+        answer: 'Absolument ! Nous gérons l\'ensemble de la chaîne logistique : collecte chez vous, transport aérien, dédouanement et livraison à destination. Un service complet avec un seul interlocuteur.',
+        category: 'Transport Aérien'
+      },
+      airCargoTypes: {
+        question: 'Quels types de marchandises pouvez-vous transporter par avion ?',
+        answer: 'Nous transportons tous types de marchandises : documents, échantillons, pièces détachées, équipements industriels, produits pharmaceutiques, etc. Certaines marchandises dangereuses nécessitent des autorisations spéciales.',
+        category: 'Transport Aérien'
+      },
+
+      // PRODUCT SOURCING
+      supplierIdentification: {
+        question: 'Comment identifiez-vous les meilleurs fournisseurs ?',
+        answer: 'Notre réseau international et nos années d\'expérience nous permettent d\'identifier des fournisseurs fiables et qualifiés. Nous évaluons la qualité, la fiabilité, les certifications et les références avant toute recommandation.',
+        category: 'Sourcing & Approvisionnement'
+      },
+      priceNegotiation: {
+        question: 'Pouvez-vous négocier les prix avec les fournisseurs ?',
+        answer: 'Oui, nous négocions activement les prix, les conditions de paiement et les délais de livraison. Notre expertise et nos volumes nous permettent d\'obtenir des conditions avantageuses pour nos clients.',
+        category: 'Sourcing & Approvisionnement'
+      },
+      qualityControl: {
+        question: 'Proposez-vous un contrôle qualité des produits ?',
+        answer: 'Nous proposons un contrôle qualité complet : inspection des marchandises, vérification des spécifications, tests de conformité et suivi de la production. Nous vous tenons informés à chaque étape.',
+        category: 'Sourcing & Approvisionnement'
+      },
+
+      // INLAND TRANSPORT & CFS
+      cfsFacility: {
+        question: 'Qu\'est-ce que votre installation CFS et quels sont ses avantages ?',
+        answer: 'Notre CFS (Container Freight Station) à Jin Fei Business Park est une installation d\'entreposage et de groupage de conteneurs. Avantages : contrôle total de la chaîne logistique, délais optimisés, coûts réduits et sécurité maximale.',
+        category: 'Transport Terrestre & CFS'
+      },
+      inlandCoverage: {
+        question: 'Pouvez-vous organiser le transport depuis votre CFS vers n\'importe quelle destination ?',
+        answer: 'Oui, nous organisons le transport terrestre vers toutes les destinations à Maurice et dans la région. Nous utilisons notre flotte de camions et notre réseau de transporteurs partenaires pour une couverture complète.',
+        category: 'Transport Terrestre & CFS'
+      },
+      cfsStorage: {
+        question: 'Quels sont vos délais de stockage CFS ?',
+        answer: 'Nous proposons des solutions de stockage flexibles : court terme (1-7 jours), moyen terme (1-4 semaines) et long terme (1-12 mois). Chaque solution est adaptée à vos besoins spécifiques.',
+        category: 'Transport Terrestre & CFS'
+      },
+
+      // GENERAL SERVICES
+      insurance: {
+        question: 'Proposez-vous une assurance pour mes marchandises ?',
+        answer: 'Oui, nous proposons une assurance complète couvrant tous les risques de transport : perte, vol, dommages, retards. Nous adaptons la couverture à la valeur et à la nature de vos marchandises.',
+        category: 'Services Généraux'
       },
       tracking: {
-        question: 'Comment puis-je suivre mon envoi?',
-        answer: 'Vous recevrez un numéro de suivi par email ou SMS dès l\'expédition de votre colis. Vous pouvez le saisir sur notre site web ou notre application mobile pour suivre votre envoi en temps réel.',
-        category: 'Suivi'
+        question: 'Comment suivez-vous mes expéditions ?',
+        answer: 'Nous utilisons un système de suivi en temps réel accessible 24h/24. Vous recevez des notifications automatiques à chaque étape et pouvez consulter le statut de vos expéditions sur notre plateforme en ligne.',
+        category: 'Services Généraux'
       },
-      warehousing: {
-        question: 'Proposez-vous des services d\'entreposage?',
-        answer: 'Oui, nous disposons d\'entrepôts sécurisés et climatisés. Nous offrons des solutions de stockage court et long terme avec système de gestion d\'inventaire avancé et accès 24/7.',
-        category: 'Entreposage'
+      quoteResponse: {
+        question: 'Quels sont vos délais de réponse pour les devis ?',
+        answer: 'Nous fournissons des devis détaillés sous 24-48h pour la plupart des services. Pour les projets complexes, nous organisons une consultation pour comprendre vos besoins et proposer la solution optimale.',
+        category: 'Services Généraux'
       },
-      goods: {
-        question: 'Quels types de marchandises acceptez-vous?',
-        answer: 'Nous acceptons la plupart des marchandises légales, à l\'exception des matières dangereuses, produits périssables sans emballage approprié, et articles interdits par la réglementation internationale.',
-        category: 'Marchandises'
-      },
-      pricing: {
-        question: 'Comment sont calculés vos tarifs?',
-        answer: 'Nos tarifs sont basés sur plusieurs facteurs : poids, dimensions, distance, type de service, et valeur déclarée. Nous offrons des tarifs préférentiels pour les clients réguliers et les gros volumes.',
-        category: 'Tarification'
-      },
-      insurance: {
-        question: 'Offrez-vous une assurance pour les envois?',
-        answer: 'Oui, tous nos envois incluent une assurance de base. Vous pouvez souscrire une assurance complémentaire pour les marchandises de grande valeur. Notre équipe vous conseillera sur la meilleure option.',
-        category: 'Assurance'
-      },
-      claims: {
-        question: 'Que faire en cas de dommage ou de perte?',
-        answer: 'En cas de dommage ou perte, contactez-nous immédiatement. Nous traiterons votre réclamation dans les 48h. Notre assurance couvrira les dommages selon les conditions générales.',
-        category: 'Réclamations'
-      },
-      cfs: {
-        question: 'Proposez-vous des services CFS?',
-        answer: 'Oui, nous disposons d\'installations CFS (Container Freight Station) et d\'entrepôts sous douane. Nous gérons tous les aspects douaniers et documentaires pour vos imports/exports.',
-        category: 'Services CFS'
-      },
-      support: {
-        question: 'Comment contacter le service client?',
-        answer: 'Notre service client est disponible par téléphone au +1 (555) 123-4567, par email à info@logiflow.com, ou via notre chat en ligne. Nos horaires sont du lundi au vendredi de 8h à 18h.',
-        category: 'Support'
-      },
-      solutions: {
-        question: 'Proposez-vous des solutions personnalisées?',
-        answer: 'Absolument! Nous développons des solutions logistiques sur mesure selon vos besoins spécifiques. Contactez notre équipe commerciale pour discuter de vos exigences particulières.',
-        category: 'Solutions'
+      complexProjects: {
+        question: 'Pouvez-vous gérer des projets logistiques complexes ?',
+        answer: 'Absolument ! Notre équipe de 30+ professionnels expérimentés gère des projets logistiques complexes : déménagements internationaux, projets industriels, événements spéciaux. Nous coordonnons tous les aspects pour un résultat optimal.',
+        category: 'Services Généraux'
       }
     },
     footer: {
@@ -645,6 +735,72 @@ const translations: Record<string, Translation> = {
           responseTime: 'Réponse sous 24h',
           businessHours: 'Lun-Ven: 8h-18h'
         }
+      },
+      inlandTransport: {
+        hero: {
+          title: 'Inland Transport & CFS Warehousing',
+          subtitle: 'Inland transport and CFS (Container Freight Station) warehousing with complete solutions for container management',
+          description: 'Complete solutions for container management and inland transport, with our own CFS warehousing facilities.'
+        },
+        overview: {
+          title: 'Excellence in Inland Transport & Warehousing',
+          description1: 'Our inland transport and CFS warehousing service is designed to provide complete and integrated solutions. With our own facilities at Jin Fei Business Park, we guarantee total control over your logistics operations.',
+          description2: 'Whether you need container transport, temporary storage or consolidation/deconsolidation services, our infrastructure offers you maximum flexibility.',
+          feature: 'Dedicated CFS infrastructure'
+        },
+        services: {
+          title: 'Our Inland Services',
+          subtitle: 'Discover our complete range of transport and warehousing services',
+          items: [
+            { title: 'Inland Transport', description: 'Road and multimodal transport solutions' },
+            { title: 'CFS Warehousing', description: 'Container management and secure warehousing' },
+            { title: 'Consolidation/Deconsolidation', description: 'Consolidation and deconsolidation services' },
+            { title: 'Distribution', description: 'Final delivery and urban logistics' }
+          ]
+        },
+        features: {
+          title: 'Service Features',
+          subtitle: 'All the benefits of our inland transport and warehousing service',
+          items: [
+            'Multimodal inland transport',
+            'Secure CFS warehousing',
+            'Empty container management',
+            'Consolidation and deconsolidation services',
+            'Container transport',
+            'Warehouse management',
+            'Distribution services',
+            'Urban and regional logistics'
+          ]
+        },
+        benefits: {
+          title: 'Why Choose Us?',
+          subtitle: 'The advantages that make us your trusted inland partner',
+          items: [
+            { title: 'Flexibility', description: 'Solutions adapted to your needs' },
+            { title: 'Security', description: 'Secure and monitored infrastructure' },
+            { title: 'Local Coverage', description: 'Extended network across the territory' },
+            { title: 'Efficiency', description: 'Optimized and automated processes' }
+          ]
+        },
+        cta: {
+          title: 'Need Inland Solutions?',
+          description: 'Contact us today to discuss your needs and get a personalized quote for our inland transport and warehousing services.',
+          primaryButton: 'Request a Quote',
+          secondaryButton: 'View All Our Services'
+        },
+        contact: {
+          title: 'Need Help?',
+          subtitle: 'Our team of inland transport experts is here to support you',
+          callUs: 'Call Us',
+          writeUs: 'Write to Us',
+          visitUs: 'Visit Us',
+          phone: '+230 123 4567',
+          email: 'info@worldlink.mu',
+          address: 'Jin Fei Business Park',
+          city: 'Riche Terre, Mauritius',
+          responseTime: 'Response within 24h',
+          businessHours: 'Mon-Fri: 8am-6pm'
+        }
       }
     },
     cookieBanner: {
@@ -788,55 +944,145 @@ const translations: Record<string, Translation> = {
       sendEmail: 'Send Email'
     },
     faqItems: {
-      delivery: {
-        question: 'What are your delivery times?',
-        answer: 'Our delivery times vary depending on the destination and type of service chosen. For domestic deliveries, count 24-48h for express and 3-5 days for standard. For international, delivery times are 3-7 days depending on the destination.',
-        category: 'Delivery'
+      // FREIGHT CONSOLIDATION & FCL
+      freightConsolidation: {
+        question: 'What is Freight Consolidation and how can it reduce my costs?',
+        answer: 'Freight consolidation involves grouping several shipments from different clients in the same container. This allows sharing transport costs and significantly reducing your shipping expenses. We optimize space and negotiate advantageous rates through consolidated volumes.',
+        category: 'Freight Consolidation'
+      },
+      lclFcl: {
+        question: 'What is the difference between LCL and FCL?',
+        answer: 'LCL (Less than Container Load): for volumes less than a full container. FCL (Full Container Load): for volumes requiring a full container. We offer both options with optimized rates based on your needs.',
+        category: 'Freight Consolidation'
+      },
+      consolidationTime: {
+        question: 'How long does a consolidation generally take?',
+        answer: 'The consolidation time varies depending on the destination and frequency of departures. Generally, we consolidate shipments within 3-7 days to optimize costs while respecting your time constraints.',
+        category: 'Freight Consolidation'
+      },
+
+      // PERSONAL EFFECTS & PROJECT SHIPMENTS
+      personalEffects: {
+        question: 'Can you transport personal effects from a move?',
+        answer: 'Absolutely! We specialize in transporting personal effects with delicate handling. We offer professional packaging, complete insurance, and personalized tracking for your most precious belongings.',
+        category: 'Personal Effects'
+      },
+      fragileItems: {
+        question: 'How do you protect fragile items?',
+        answer: 'We use professional packaging materials (silk paper, foam, reinforced cartons) and custom-made wooden crates if necessary. Each fragile item is individually packaged and clearly marked.',
+        category: 'Personal Effects'
+      },
+      unpackingService: {
+        question: 'Do you offer unpacking services at destination?',
+        answer: 'Yes, we can organize unpacking and installation at your new location. Our local teams handle everything from unloading to setting up your furniture and belongings.',
+        category: 'Personal Effects'
+      },
+
+      // REFRIGERATED CONTAINERS
+      temperatureRange: {
+        question: 'What temperatures can you maintain in your refrigerated containers?',
+        answer: 'Our refrigerated containers can maintain temperatures from -30°C to +30°C based on your needs. We monitor temperature in real-time and alert you immediately in case of any changes.',
+        category: 'Refrigerated Containers'
+      },
+      foodStandards: {
+        question: 'Are your containers compliant with international food safety standards?',
+        answer: 'Yes, all our refrigerated containers are certified HACCP and meet international food safety standards. They are regularly inspected and cleaned according to sanitary protocols.',
+        category: 'Refrigerated Containers'
+      },
+      coolingFailure: {
+        question: 'What happens if there is a cooling failure?',
+        answer: 'Our containers are equipped with backup systems and real-time alerts. In case of an issue, our technical teams intervene immediately and keep you informed about the situation.',
+        category: 'Refrigerated Containers'
+      },
+
+      // CUSTOMS CLEARING
+      customsDocuments: {
+        question: 'What documents are needed for customs clearance?',
+        answer: 'The required documents vary depending on the type of cargo: commercial invoice, packing list, origin certificate, import licenses if necessary. We provide a complete list tailored to your situation.',
+        category: 'Customs Clearance'
+      },
+      clearingTime: {
+        question: 'How long does customs clearance generally take?',
+        answer: 'Standard customs clearance takes 1-3 business days. The processing time may vary depending on the complexity of the cargo and specific customs requirements. We optimize each step to minimize delays.',
+        category: 'Customs Clearance'
+      },
+      customsTaxes: {
+        question: 'Can you handle customs duties and taxes?',
+        answer: 'Yes, we calculate and pay all duties and taxes on your behalf. We provide a detailed quote in advance and invoice you exactly for the amount paid to customs authorities.',
+        category: 'Customs Clearance'
+      },
+
+      // AIRFREIGHT SERVICES
+      airDeliveryTime: {
+        question: 'What are your air delivery times?',
+        answer: 'Our air services cover all delivery times: Express (1-2 days), Standard (3-5 days), and Economy (5-7 days). We choose the optimal solution based on your time and budget constraints.',
+        category: 'Air Freight'
+      },
+      doorToDoor: {
+        question: 'Can you organize door-to-door service?',
+        answer: 'Absolutely! We manage the entire logistics chain: pickup at your location, air freight, customs clearance, and delivery to your destination. A complete service with a single point of contact.',
+        category: 'Air Freight'
+      },
+      airCargoTypes: {
+        question: 'What types of cargo can you transport by air?',
+        answer: 'We transport all types of cargo: documents, samples, parts, industrial equipment, pharmaceutical products, etc. Certain dangerous goods require special authorizations.',
+        category: 'Air Freight'
+      },
+
+      // PRODUCT SOURCING
+      supplierIdentification: {
+        question: 'How do you identify the best suppliers?',
+        answer: 'Our international network and years of experience allow us to identify reliable and qualified suppliers. We evaluate quality, reliability, certifications, and references before making any recommendations.',
+        category: 'Product Sourcing'
+      },
+      priceNegotiation: {
+        question: 'Can you negotiate prices with suppliers?',
+        answer: 'Yes, we actively negotiate prices, payment terms, and delivery times. Our expertise and volumes allow us to obtain favorable conditions for our clients.',
+        category: 'Product Sourcing'
+      },
+      qualityControl: {
+        question: 'Do you offer quality control for products?',
+        answer: 'We offer complete quality control: inspection of the cargo, verification of specifications, conformity tests, and production follow-up. We keep you informed at every step.',
+        category: 'Product Sourcing'
+      },
+
+      // INLAND TRANSPORT & CFS
+      cfsFacility: {
+        question: 'What is your CFS facility and what are its advantages?',
+        answer: 'Our CFS (Container Freight Station) at Jin Fei Business Park is a warehousing and container consolidation facility. Advantages: total control over the logistics chain, optimized lead times, reduced costs, and maximum security.',
+        category: 'Inland Transport & CFS'
+      },
+      inlandCoverage: {
+        question: 'Can you organize transport from your CFS to any destination?',
+        answer: 'Yes, we organize land transport to all destinations in Mauritius and the region. We use our truck fleet and our network of partner transport companies for complete coverage.',
+        category: 'Inland Transport & CFS'
+      },
+      cfsStorage: {
+        question: 'What are your CFS storage lead times?',
+        answer: 'We offer flexible storage solutions: short-term (1-7 days), medium-term (1-4 weeks), and long-term (1-12 months). Each solution is tailored to your specific needs.',
+        category: 'Inland Transport & CFS'
+      },
+
+      // GENERAL SERVICES
+      insurance: {
+        question: 'Do you offer insurance for my cargo?',
+        answer: 'Yes, we offer comprehensive insurance covering all risks of transport: loss, theft, damage, delays. We tailor the coverage to the value and nature of your cargo.',
+        category: 'General Services'
       },
       tracking: {
-        question: 'How can I track my shipment?',
-        answer: 'You will receive a tracking number by email or SMS as soon as your package is shipped. You can enter it on our website or mobile app to track your shipment in real time.',
-        category: 'Tracking'
+        question: 'How do you track your shipments?',
+        answer: 'We use a 24/7 real-time tracking system. You receive automatic notifications at each step and can check the status of your shipments on our online platform.',
+        category: 'General Services'
       },
-      warehousing: {
-        question: 'Do you offer warehousing services?',
-        answer: 'Yes, we have secure and climate-controlled warehouses. We offer short and long-term storage solutions with advanced inventory management system and 24/7 access.',
-        category: 'Warehousing'
+      quoteResponse: {
+        question: 'What are your response times for quotes?',
+        answer: 'We provide detailed quotes within 24-48 hours for most services. For complex projects, we organize a consultation to understand your needs and propose the optimal solution.',
+        category: 'General Services'
       },
-      goods: {
-        question: 'What types of goods do you accept?',
-        answer: 'We accept most legal goods, except dangerous materials, perishable products without appropriate packaging, and items prohibited by international regulations.',
-        category: 'Goods'
-      },
-      pricing: {
-        question: 'How are your rates calculated?',
-        answer: 'Our rates are based on several factors: weight, dimensions, distance, type of service, and declared value. We offer preferential rates for regular customers and large volumes.',
-        category: 'Pricing'
-      },
-      insurance: {
-        question: 'Do you offer insurance for shipments?',
-        answer: 'Yes, all our shipments include basic insurance. You can subscribe to additional insurance for high-value goods. Our team will advise you on the best option.',
-        category: 'Insurance'
-      },
-      claims: {
-        question: 'What to do in case of damage or loss?',
-        answer: 'In case of damage or loss, contact us immediately. We will process your claim within 48 hours. Our insurance will cover damages according to general conditions.',
-        category: 'Claims'
-      },
-      cfs: {
-        question: 'Do you offer CFS services?',
-        answer: 'Yes, we have CFS (Container Freight Station) facilities and customs warehouses. We handle all customs and documentary aspects for your imports/exports.',
-        category: 'CFS Services'
-      },
-      support: {
-        question: 'How to contact customer service?',
-        answer: 'Our customer service is available by phone at +1 (555) 123-4567, by email at info@logiflow.com, or via our online chat. Our hours are Monday to Friday from 8am to 6pm.',
-        category: 'Support'
-      },
-      solutions: {
-        question: 'Do you offer customized solutions?',
-        answer: 'Absolutely! We develop custom logistics solutions according to your specific needs. Contact our sales team to discuss your particular requirements.',
-        category: 'Solutions'
+      complexProjects: {
+        question: 'Can you handle complex logistics projects?',
+        answer: 'Absolutely! Our team of 30+ experienced professionals handles complex logistics projects: international moves, industrial projects, special events. We coordinate all aspects for optimal results.',
+        category: 'General Services'
       }
     },
     footer: {
