@@ -56,7 +56,7 @@ const translations: Record<string, Translation> = {
     about: {
       title: 'À Propos de Nous',
       subtitle: 'Partenaire logistique fiable et réactif',
-      description: 'Depuis 1994, nous aidons les entreprises à chaque étape de leur chaîne logistique: fret aérien et maritime, formalités douanières, entreposage et solutions projets. Présence active à Maurice, Madagascar et en Afrique du Sud.',
+      description: 'Depuis 2014, nous aidons les entreprises à chaque étape de leur chaîne logistique: fret aérien et maritime, formalités douanières, entreposage et solutions projets. Présence active à Maurice avec nos propres installations CFS au Jin Fei Business Park.',
       mission: 'Notre Mission',
       missionText: 'Simplifier la logistique avec des solutions fiables, transparentes et performantes.',
       vision: 'Notre Vision',
@@ -173,9 +173,9 @@ const translations: Record<string, Translation> = {
       offline: 'Nos agents sont actuellement hors ligne. Laissez un message et nous vous répondrons bientôt.'
     },
     stats: {
-      years: "Années d'expérience",
+      years: "11+ Années d'expérience",
       services: 'Services offerts',
-      countries: 'Pays de présence',
+      countries: 'Présence à Maurice',
       support: 'Assistance dédiée'
     },
     cta: {
@@ -646,6 +646,53 @@ const translations: Record<string, Translation> = {
           businessHours: 'Lun-Ven: 8h-18h'
         }
       }
+    },
+    cookieBanner: {
+      title: 'Nous utilisons des cookies pour améliorer votre expérience',
+      description: 'En continuant à naviguer, vous acceptez notre utilisation des cookies.',
+      necessary: 'Nécessaires uniquement',
+      customize: 'Personnaliser',
+      acceptAll: 'Tout accepter',
+      modal: {
+        title: 'Personnaliser vos préférences de cookies',
+        description: 'Choisissez quels types de cookies vous souhaitez autoriser. Les cookies nécessaires sont toujours activés pour le bon fonctionnement du site.',
+        necessary: {
+          title: 'Cookies nécessaires',
+          description: 'Essentiels au fonctionnement du site web. Ne peuvent pas être désactivés.'
+        },
+        analytics: {
+          title: 'Cookies analytiques',
+          description: 'Nous aident à comprendre comment vous utilisez le site et à l\'améliorer.'
+        },
+        marketing: {
+          title: 'Cookies marketing',
+          description: 'Utilisés pour afficher des publicités pertinentes et mesurer l\'efficacité des campagnes.'
+        },
+        functional: {
+          title: 'Cookies fonctionnels',
+          description: 'Améliorent l\'expérience utilisateur en mémorisant vos préférences et paramètres.'
+        },
+        cancel: 'Annuler',
+        save: 'Enregistrer les préférences',
+        compliance: {
+          title: 'Conformité Légale & Protection des Données',
+          rgpd: 'RGPD (Règlement Général sur la Protection des Données) : Nous respectons scrupuleusement le RGPD et les lois de protection des données en vigueur.',
+          consent: 'Consentement Explicite : Aucun cookie non essentiel n\'est installé sans votre consentement préalable et explicite.',
+          withdrawal: 'Droit de Retrait : Vous pouvez modifier ou retirer votre consentement à tout moment via cette interface.',
+          transparency: 'Transparence : Nous vous informons clairement de l\'utilisation de chaque type de cookie et de leur finalité.'
+        },
+        technical: {
+          title: 'Informations Techniques sur les Cookies',
+          duration: 'Durée de Conservation : Les cookies sont conservés selon leur type : session (supprimés à la fermeture du navigateur) ou persistants (jusqu\'à 1 an maximum).',
+          transfer: 'Transfert de Données : Aucune donnée personnelle n\'est transférée vers des tiers sans votre consentement explicite.',
+          security: 'Sécurité : Tous nos cookies utilisent des connexions sécurisées (HTTPS) et respectent les standards de sécurité.'
+        },
+        legal: {
+          privacy: 'Politique de Confidentialité',
+          legal: 'Mentions Légales',
+          terms: 'Conditions d\'Utilisation'
+        }
+      }
     }
   },
   en: {
@@ -690,7 +737,7 @@ const translations: Record<string, Translation> = {
     about: {
       title: 'About Us',
       subtitle: 'Reliable and responsive logistics partner',
-      description: 'Established in 1994, we support businesses across the supply chain: air and ocean freight, customs formalities, warehousing and project solutions. Active presence in Mauritius, Madagascar and South Africa.',
+      description: 'Established in 2014, we support businesses across the supply chain: air and ocean freight, customs formalities, warehousing and project solutions. Active presence in Mauritius with our own CFS facilities at Jin Fei Business Park.',
       mission: 'Our Mission',
       missionText: 'Simplify logistics through reliable, transparent and high-performance solutions.',
       vision: 'Our Vision',
@@ -807,9 +854,9 @@ const translations: Record<string, Translation> = {
       offline: 'Our agents are currently offline. Leave a message and we\'ll get back to you soon.'
     },
     stats: {
-      years: 'Years of Experience',
+      years: '11+ Years of Experience',
       services: 'Services Offered',
-      countries: 'Countries of Presence',
+      countries: 'Presence in Mauritius',
       support: 'Dedicated Support'
     },
     cta: {
@@ -1345,6 +1392,53 @@ const translations: Record<string, Translation> = {
           city: 'Riche Terre, Mauritius',
           responseTime: 'Response within 24h',
           businessHours: 'Mon-Fri: 8am-6pm'
+        }
+      }
+    },
+    cookieBanner: {
+      title: 'We use cookies to improve your experience',
+      description: 'By continuing to browse, you accept our use of cookies.',
+      necessary: 'Necessary only',
+      customize: 'Customize',
+      acceptAll: 'Accept all',
+      modal: {
+        title: 'Customize your cookie preferences',
+        description: 'Choose which types of cookies you want to allow. Necessary cookies are always enabled for the proper functioning of the website.',
+        necessary: {
+          title: 'Necessary cookies',
+          description: 'Essential for the functioning of the website. Cannot be disabled.'
+        },
+        analytics: {
+          title: 'Analytics cookies',
+          description: 'Help us understand how you use the site and improve it.'
+        },
+        marketing: {
+          title: 'Marketing cookies',
+          description: 'Used to display relevant advertisements and measure campaign effectiveness.'
+        },
+        functional: {
+          title: 'Functional cookies',
+          description: 'Improve user experience by remembering your preferences and settings.'
+        },
+        cancel: 'Cancel',
+        save: 'Save preferences',
+        compliance: {
+          title: 'Legal Compliance & Data Protection',
+          rgpd: 'GDPR (General Data Protection Regulation): We strictly comply with GDPR and applicable data protection laws.',
+          consent: 'Explicit Consent: No non-essential cookies are installed without your prior and explicit consent.',
+          withdrawal: 'Right of Withdrawal: You can modify or withdraw your consent at any time through this interface.',
+          transparency: 'Transparency: We clearly inform you about the use of each type of cookie and their purpose.'
+        },
+        technical: {
+          title: 'Technical Information about Cookies',
+          duration: 'Retention Period: Cookies are retained according to their type: session (deleted when browser closes) or persistent (up to 1 year maximum).',
+          transfer: 'Data Transfer: No personal data is transferred to third parties without your explicit consent.',
+          security: 'Security: All our cookies use secure connections (HTTPS) and comply with security standards.'
+        },
+        legal: {
+          privacy: 'Privacy Policy',
+          legal: 'Legal Notice',
+          terms: 'Terms of Use'
         }
       }
     }

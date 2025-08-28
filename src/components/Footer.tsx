@@ -77,7 +77,7 @@ const Footer: React.FC<FooterProps> = ({ onPageChange }) => {
             {/* Quick Links */}
             <div>
               <h3 className="text-xl font-semibold mb-2">{t('footer.links')}</h3>
-              <div className="h-0.5 w-12 bg-orange-400 mb-6"></div>
+              <div className="h-0.5 w-12 bg-white mb-6"></div>
               <ul className="space-y-3">
                 {quickLinks.map((link) => (
                   <li key={link.id}>
@@ -95,7 +95,7 @@ const Footer: React.FC<FooterProps> = ({ onPageChange }) => {
             {/* Services */}
             <div>
               <h3 className="text-xl font-semibold mb-2">{t('nav.services')}</h3>
-              <div className="h-0.5 w-12 bg-orange-400 mb-6"></div>
+              <div className="h-0.5 w-12 bg-white mb-6"></div>
               <ul className="space-y-3 text-gray-300">
                 <li>Freight Consolidation & Full Container Loads</li>
                 <li>Personal Effects & Project Shipments</li>

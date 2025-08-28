@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
-import { MapPin, Phone, Mail, Clock, Send, CheckCircle, Building } from 'lucide-react';
+import { MapPin, Phone, Mail, Send, CheckCircle, Building } from 'lucide-react';
 import { ContactForm } from '../types';
+import { usePageTitle } from '../hooks/usePageTitle';
 
 const ContactPage: React.FC = () => {
+  usePageTitle('Contact - WorldLink Logistics');
+  
   const [formData, setFormData] = useState<ContactForm>({
     name: '',
     email: '',
@@ -43,11 +46,12 @@ const ContactPage: React.FC = () => {
       icon: <Mail className="h-6 w-6 text-sky-500" />,
       title: 'Email Addresses',
       content: 'Neeraj@worldlink.mu | christopher@worldlink.mu | simtee@worldlink.mu'
-    },
-
+    }
   ];
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
@@ -88,7 +92,8 @@ const ContactPage: React.FC = () => {
             Get in touch with WorldLink Logistics
           </p>
           <p className="text-xl max-w-4xl mx-auto leading-relaxed">
-            Ready to streamline your logistics operations? Contact our expert team for personalized solutions and exceptional service.
+            Ready to streamline your logistics operations? Contact our expert team for personalized
+            solutions and exceptional service.
           </p>
         </div>
       </section>
@@ -100,17 +105,24 @@ const ContactPage: React.FC = () => {
             {/* Contact Form */}
             <div className="bg-white rounded-2xl shadow-xl p-10">
               <h2 className="text-3xl font-bold text-blue-900 mb-10 text-center">Send us a Message</h2>
-              
+
               {isSubmitted ? (
                 <div className="text-center py-16">
                   <CheckCircle className="h-20 w-20 text-green-500 mx-auto mb-6" />
-                  <h3 className="text-3xl font-bold text-green-600 mb-4">Message Sent Successfully!</h3>
-                  <p className="text-gray-600 text-lg">Thank you for contacting us. We'll get back to you soon.</p>
+                  <h3 className="text-3xl font-bold text-green-600 mb-4">
+                    Message Sent Successfully!
+                  </h3>
+                  <p className="text-gray-600 text-lg">
+                    Thank you for contacting us. We'll get back to you soon.
+                  </p>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-8">
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-3">
+                    <label
+                      htmlFor="name"
+                      className="block text-sm font-medium text-gray-700 mb-3"
+                    >
                       Name *
                     </label>
                     <input
@@ -125,7 +137,10 @@ const ContactPage: React.FC = () => {
                   </div>
 
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-3">
+                    <label
+                      htmlFor="email"
+                      className="block text-sm font-medium text-gray-700 mb-3"
+                    >
                       Email *
                     </label>
                     <input
@@ -140,7 +155,10 @@ const ContactPage: React.FC = () => {
                   </div>
 
                   <div>
-                    <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-3">
+                    <label
+                      htmlFor="phone"
+                      className="block text-sm font-medium text-gray-700 mb-3"
+                    >
                       Phone *
                     </label>
                     <input
@@ -155,7 +173,10 @@ const ContactPage: React.FC = () => {
                   </div>
 
                   <div>
-                    <label htmlFor="service" className="block text-sm font-medium text-gray-700 mb-3">
+                    <label
+                      htmlFor="service"
+                      className="block text-sm font-medium text-gray-700 mb-3"
+                    >
                       Service *
                     </label>
                     <select
@@ -168,13 +189,18 @@ const ContactPage: React.FC = () => {
                     >
                       <option value="">Select a Service</option>
                       {services.map((service, index) => (
-                        <option key={index} value={service}>{service}</option>
+                        <option key={index} value={service}>
+                          {service}
+                        </option>
                       ))}
                     </select>
                   </div>
 
                   <div>
-                    <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-3">
+                    <label
+                      htmlFor="message"
+                      className="block text-sm font-medium text-gray-700 mb-3"
+                    >
                       Message
                     </label>
                     <textarea
@@ -208,16 +234,17 @@ const ContactPage: React.FC = () => {
               )}
             </div>
 
-            {/* Contact Info */}
+            {/* Contact Info + Map */}
             <div>
               <h2 className="text-3xl font-bold text-blue-900 mb-8">Contact Information</h2>
-              
+
               <div className="space-y-6 mb-12">
                 {contactInfo.map((info, index) => (
-                  <div key={index} className="flex items-start space-x-4 p-6 bg-white rounded-xl shadow-lg">
-                    <div className="bg-sky-100 p-3 rounded-full">
-                      {info.icon}
-                    </div>
+                  <div
+                    key={index}
+                    className="flex items-start space-x-4 p-6 bg-white rounded-xl shadow-lg"
+                  >
+                    <div className="bg-sky-100 p-3 rounded-full">{info.icon}</div>
                     <div>
                       <h3 className="text-xl font-semibold text-blue-900 mb-2">{info.title}</h3>
                       <p className="text-gray-600 text-lg">{info.content}</p>
@@ -226,18 +253,17 @@ const ContactPage: React.FC = () => {
                 ))}
               </div>
 
-              {/* Map Section */}
+              {/* OpenStreetMap Section */}
               <div className="bg-white rounded-xl shadow-lg p-6">
                 <h3 className="text-xl font-semibold text-blue-900 mb-4">Our Location</h3>
                 <div className="bg-gray-200 h-64 rounded-lg overflow-hidden">
                   <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14958.123456789!2d57.123456789!3d-20.123456789!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjDCsDA3JzM0LjQiUyA1N8KwMDcnMzQuNCJF!5e0!3m2!1sen!2smu!4v1234567890123"
+                    src="https://www.openstreetmap.org/export/embed.html?bbox=57.51524%2C-20.12682%2C57.53524%2C-20.10682&layer=mapnik&marker=-20.11682,57.52524"
                     width="100%"
                     height="100%"
                     style={{ border: 0 }}
                     allowFullScreen
                     loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
                     title="WorldLink Logistics Location - Jin Fei Zone Riche Terre, Mauritius"
                   ></iframe>
                 </div>
@@ -245,6 +271,14 @@ const ContactPage: React.FC = () => {
                   <p className="font-semibold">JIN FEI ZONE RICHE TERRE</p>
                   <p className="text-sm">Mauritius</p>
                   <p className="text-xs text-gray-500 mt-1">PLOT 30A BUSINESS & INDUSTRIAL PARK</p>
+                  <a
+                    href="https://www.openstreetmap.org/?mlat=-20.11682&mlon=57.52524#map=16/-20.11682/57.52524"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sky-600 hover:underline text-sm mt-2 inline-block"
+                  >
+                    View on OpenStreetMap
+                  </a>
                 </div>
               </div>
             </div>

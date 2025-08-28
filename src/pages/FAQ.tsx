@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { ChevronDown, ChevronUp, Search, HelpCircle } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
+import { usePageTitle } from '../hooks/usePageTitle';
 
 const FAQPage: React.FC = () => {
+  usePageTitle('FAQ - WorldLink Logistics');
   const { t } = useLanguage();
   const [openFAQ, setOpenFAQ] = useState<number | null>(null);
   const [searchTerm, setSearchTerm] = useState('');

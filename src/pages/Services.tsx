@@ -1,12 +1,14 @@
 import React from 'react';
 import { Truck, Warehouse, Package, Home, Building2, CheckCircle, Clock, Shield, Globe, Container, Plane, ShoppingCart, Ship, Snowflake, FileText } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
+import { usePageTitle } from '../hooks/usePageTitle';
 
 interface ServicesProps {
   onPageChange: (page: string) => void;
 }
 
 const ServicesPage: React.FC<ServicesProps> = ({ onPageChange }) => {
+  usePageTitle('Services - WorldLink Logistics');
   const { t } = useLanguage();
 
   const services = [

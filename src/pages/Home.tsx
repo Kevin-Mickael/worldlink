@@ -3,6 +3,7 @@ import { Truck, Warehouse, Package, Snowflake, FileText, Plane, ShoppingCart } f
 import { useLanguage } from '../contexts/LanguageContext';
 import VideoHero from '../components/VideoHero';
 import LogisticsSeparator from '../components/LogisticsSeparator';
+import { usePageTitle } from '../hooks/usePageTitle';
 
 
 interface HomeProps {
@@ -10,6 +11,7 @@ interface HomeProps {
 }
 
 const HomePage: React.FC<HomeProps> = ({ onPageChange }) => {
+  usePageTitle('WorldLink Logistics - Trusted Logistics Worldwide');
   const { t } = useLanguage();
   const [experienceCount, setExperienceCount] = useState(0);
 

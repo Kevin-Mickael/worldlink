@@ -1,12 +1,14 @@
 import React from 'react';
 import { Container, CheckCircle, Clock, Shield, Globe, Truck, Package, MapPin, Phone, Mail } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
+import { usePageTitle } from '../hooks/usePageTitle';
 
 interface FreightConsolidationProps {
   onPageChange: (page: string) => void;
 }
 
 const FreightConsolidationPage: React.FC<FreightConsolidationProps> = ({ onPageChange }) => {
+  usePageTitle('Freight Consolidation - WorldLink Logistics');
   const { t } = useLanguage();
 
   const features = [

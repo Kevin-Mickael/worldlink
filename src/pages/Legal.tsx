@@ -1,8 +1,10 @@
 import React from 'react';
 import { Shield, FileText, Lock, Truck, AlertTriangle } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
+import { usePageTitle } from '../hooks/usePageTitle';
 
 const Legal: React.FC = () => {
+  usePageTitle('Legal & Compliance - WorldLink Logistics');
   const { t } = useLanguage();
 
   return (
