@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Menu, X, ChevronDown, Plane, Warehouse, Package, Truck, Snowflake, Ship, FileText, ShoppingCart, MapPin } from 'lucide-react';
+import { Menu, X, ChevronDown, Plane, Package, Snowflake, Ship, FileText, ShoppingCart, MapPin } from 'lucide-react';
 import { useLanguage, languages } from '../contexts/LanguageContext';
 
 const publicAsset = (relativePath: string) => `${import.meta.env.BASE_URL}${relativePath.replace(/^\//, '')}`;
@@ -82,18 +82,7 @@ const Header: React.FC<HeaderProps> = ({ currentPage, onPageChange }) => {
   const homeTop = isHome && !isScrolled;
   const homeBorderClass = '';
   
-  // Détection mobile pour ajuster le comportement du header
-  const [isMobile, setIsMobile] = useState(false);
-  
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 1024); // lg breakpoint
-    };
-    
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
+
 
   // Fonction helper pour mapper les IDs des services vers les routes
   const getServiceRoute = (serviceId: string) => {
@@ -123,9 +112,7 @@ const Header: React.FC<HeaderProps> = ({ currentPage, onPageChange }) => {
     <header className={`${
       homeTop 
         ? 'absolute top-0 left-0 w-full bg-black/40 backdrop-blur-[1px]' 
-        : isMobile 
-          ? 'relative bg-white/95 backdrop-blur-md shadow-lg' 
-          : 'sticky top-0 bg-white/95 backdrop-blur-md shadow-lg'
+        : 'sticky top-0 bg-white/95 backdrop-blur-md shadow-lg'
     } ${homeBorderClass} z-40`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className={`flex justify-between items-center ${isScrolled ? 'py-3' : 'py-4'}`}>

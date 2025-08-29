@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Analytics & Search Console Setup - Worldlink Logistics Mauritius</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .code-block {
+            background-color: #f4f4f4;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: monospace;
+            margin: 10px 0;
+            overflow-x: auto;
+        }
+        .important {
+            background-color: #fff3cd;
+            border: 1px solid #ffeaa7;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        .warning {
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Configuration SEO pour Worldlink Logistics Mauritius</h1>
+    
+    <h2>1. Google Search Console</h2>
+    <p>Pour configurer Google Search Console :</p>
+    <ol>
+        <li>Allez sur <a href="https://search.google.com/search-console" target="_blank">Google Search Console</a></li>
+        <li>Ajoutez votre propriété : <strong>https://worldlink.mu</strong></li>
+        <li>Choisissez la méthode de vérification par fichier HTML</li>
+        <li>Téléchargez le fichier de vérification fourni par Google</li>
+        <li>Placez-le dans le dossier <code>public/</code> de votre projet</li>
+    </ol>
+
+    <h2>2. Google Analytics 4</h2>
+    <p>Pour configurer Google Analytics :</p>
+    <ol>
+        <li>Allez sur <a href="https://analytics.google.com/" target="_blank">Google Analytics</a></li>
+        <li>Créez une nouvelle propriété pour <strong>worldlink.mu</strong></li>
+        <li>Obtenez votre ID de mesure (format : G-XXXXXXXXXX)</li>
+        <li>Ajoutez le code de suivi dans votre composant SEO</li>
+    </ol>
+
+    <div class="code-block">
+        // Exemple de code Google Analytics à ajouter dans le composant SEO
+        &lt;script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"&gt;&lt;/script&gt;
+        &lt;script&gt;
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-XXXXXXXXXX');
+        &lt;/script&gt;
+    </div>
+
+    <h2>3. Mots-clés SEO Optimisés</h2>
+    <p>Vos mots-clés principaux sont déjà intégrés dans le système SEO :</p>
+    <div class="code-block">
+        - Worldlink Logistics Mauritius
+        - Freight Forwarder Mauritius
+        - Freight Company Mauritius
+        - Shipping Company Mauritius
+        - Customs Clearing Mauritius
+        - Airfreight Mauritius
+        - Sea Freight Mauritius
+        - Cargo Services Mauritius
+        - Freight Consolidation Mauritius
+        - Container Shipping Mauritius
+    </div>
+
+    <h2>4. Structure des URLs</h2>
+    <p>Votre site utilise une structure d'URLs optimisée pour le SEO :</p>
+    <div class="code-block">
+        / - Page d'accueil
+        /about - À propos
+        /services - Services
+        /freight-consolidation - Consolidation de fret
+        /personal-effects - Effets personnels
+        /refrigerated-containers - Conteneurs frigorifiques
+        /customs-clearing - Dédouanement
+        /airfreight - Fret aérien
+        /product-sourcing - Sourcing de produits
+        /inland-transport - Transport terrestre
+        /contact - Contact
+        /faq - FAQ
+        /legal - Mentions légales
+    </div>
+
+    <h2>5. Métadonnées Optimisées</h2>
+    <p>Chaque page a des métadonnées SEO optimisées :</p>
+    <ul>
+        <li>Titres optimisés avec mots-clés</li>
+        <li>Descriptions uniques et engageantes</li>
+        <li>Mots-clés ciblés</li>
+        <li>Données structurées JSON-LD</li>
+        <li>Balises Open Graph et Twitter Card</li>
+        <li>URLs canoniques</li>
+        <li>Balises hreflang pour le multilingue</li>
+    </ul>
+
+    <h2>6. Sitemap et Robots.txt</h2>
+    <p>Fichiers créés pour optimiser l'indexation :</p>
+    <ul>
+        <li><strong>sitemap.xml</strong> - Toutes les pages avec priorités</li>
+        <li><strong>robots.txt</strong> - Directives pour les moteurs de recherche</li>
+    </ul>
+
+    <div class="important">
+        <strong>Important :</strong> N'oubliez pas de :
+        <ul>
+            <li>Remplacer G-XXXXXXXXXX par votre vrai ID Google Analytics</li>
+            <li>Soumettre votre sitemap dans Google Search Console</li>
+            <li>Vérifier que toutes les pages sont indexées</li>
+            <li>Surveiller vos performances dans Google Analytics</li>
+        </ul>
+    </div>
+
+    <h2>7. Optimisations Techniques</h2>
+    <p>Votre site est optimisé avec :</p>
+    <ul>
+        <li>Balises meta géographiques pour Maurice</li>
+        <li>Données structurées Schema.org</li>
+        <li>Optimisation mobile</li>
+        <li>Chargement rapide des ressources</li>
+        <li>Navigation claire et logique</li>
+        <li>Contenu multilingue (EN/FR)</li>
+    </ul>
+
+    <div class="warning">
+        <strong>Note :</strong> Ce fichier est à supprimer après la configuration de Google Search Console et Analytics.
+    </div>
+</body>
+</html>

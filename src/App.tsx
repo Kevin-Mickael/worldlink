@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { LanguageProvider } from './contexts/LanguageContext';
+import { LanguageProvider, useLanguage } from './contexts/LanguageContext';
+import SEO from './components/SEO';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import ChatBot from './components/ChatBot';
 import CookieBanner from './components/CookieBanner';
 import HomePage from './pages/Home';
 import AboutPage from './pages/About';
@@ -17,9 +17,12 @@ import CustomsClearingPage from './pages/CustomsClearing';
 import AirfreightPage from './pages/Airfreight';
 import ProductSourcingPage from './pages/ProductSourcing';
 import InlandTransportPage from './pages/InlandTransport';
+import { getLocalizedSEOMetadata } from './config/seo';
 
-function App() {
+// Composant interne qui utilise le contexte de langue
+const AppContent: React.FC = () => {
   const [currentPage, setCurrentPage] = useState('home');
+  const { t, currentLanguage } = useLanguage();
 
   const handlePageChange = (page: string) => {
     setCurrentPage(page);
@@ -59,16 +62,24 @@ function App() {
   };
 
   return (
+    <div className="min-h-screen bg-white">
+      <SEO 
+        {...getLocalizedSEOMetadata(currentPage, t, currentLanguage.code)}
+      />
+      <Header currentPage={currentPage} onPageChange={handlePageChange} />
+      <main>
+        {renderPage()}
+      </main>
+      <Footer onPageChange={handlePageChange} />
+      <CookieBanner onPageChange={handlePageChange} />
+    </div>
+  );
+};
+
+function App() {
+  return (
     <LanguageProvider>
-      <div className="min-h-screen bg-white">
-        <Header currentPage={currentPage} onPageChange={handlePageChange} />
-        <main>
-          {renderPage()}
-        </main>
-        <Footer onPageChange={handlePageChange} />
-        <ChatBot />
-        <CookieBanner onPageChange={handlePageChange} />
-      </div>
+      <AppContent />
     </LanguageProvider>
   );
 }

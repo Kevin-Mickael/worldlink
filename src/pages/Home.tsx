@@ -41,38 +41,38 @@ const HomePage: React.FC<HomeProps> = ({ onPageChange }) => {
   const services = [
     {
       icon: <Truck className="h-12 w-12 text-white" />,
-      title: 'Freight Consolidation & Full Container Loads',
-      description: 'Optimisez vos coûts de transport avec notre service de consolidation de fret et de chargement de conteneurs complets.'
+      title: t('services.homeServices.freight.title'),
+      description: t('services.homeServices.freight.description')
     },
     {
       icon: <Package className="h-12 w-12 text-white" />,
-      title: 'Personal Effects & Project Shipments',
-      description: 'Transport spécialisé pour vos effets personnels et projets avec traitement délicat et sécurisé.'
+      title: t('services.homeServices.personal.title'),
+      description: t('services.homeServices.personal.description')
     },
     {
       icon: <Snowflake className="h-12 w-12 text-white" />,
-      title: 'Refrigerated Food Containers',
-      description: 'Conteneurs frigorifiques spécialisés pour le transport de denrées alimentaires avec chaîne du froid contrôlée.'
+      title: t('services.homeServices.refrigerated.title'),
+      description: t('services.homeServices.refrigerated.description')
     },
     {
       icon: <FileText className="h-12 w-12 text-white" />,
-      title: 'Customs Clearing & Compliance',
-      description: 'Services de dédouanement et de conformité réglementaire pour assurer le passage en douane de vos marchandises.'
+      title: t('services.homeServices.customs.title'),
+      description: t('services.homeServices.customs.description')
     },
     {
       icon: <Plane className="h-12 w-12 text-white" />,
-      title: 'Airfreight Services',
-      description: 'Transport aérien rapide et fiable pour vos envois urgents avec réseau de partenaires internationaux.'
+      title: t('services.homeServices.airfreight.title'),
+      description: t('services.homeServices.airfreight.description')
     },
     {
       icon: <ShoppingCart className="h-12 w-12 text-white" />,
-      title: 'Product Sourcing & Procurement',
-      description: 'Sourcing et approvisionnement de produits à l\'international avec identification des meilleurs fournisseurs.'
+      title: t('services.homeServices.sourcing.title'),
+      description: t('services.homeServices.sourcing.description')
     },
     {
       icon: <Warehouse className="h-12 w-12 text-white" />,
-      title: 'Inland Transport & CFS Warehousing',
-      description: 'Transport terrestre et entreposage CFS avec solutions complètes pour la gestion de vos conteneurs.'
+      title: t('services.homeServices.inland.title'),
+      description: t('services.homeServices.inland.description')
     }
   ];
 
@@ -98,8 +98,8 @@ const HomePage: React.FC<HomeProps> = ({ onPageChange }) => {
         {/* Hero Content */}
         <div className="absolute z-10 text-white bottom-0 left-0 p-8">
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tight leading-tight font-serif">
-            <span className="block">Trusted Logistics.</span>
-            <span className="block mt-2">Worldwide Connections.</span>
+            <span className="block">{t('hero.mainTitle')}</span>
+            <span className="block mt-2">{t('hero.subTitle')}</span>
           </h1>
         </div>
 
@@ -114,20 +114,14 @@ const HomePage: React.FC<HomeProps> = ({ onPageChange }) => {
             <div className="space-y-8">
               <div className="space-y-4">
                 <h2 className="text-5xl font-black text-blue-900 leading-tight font-serif tracking-wide">
-                  About Worldlink
+                  {t('about.homeAbout.title')}
                 </h2>
                 <div className="w-20 h-1 bg-gradient-to-r from-sky-500 to-blue-600 rounded-full"></div>
               </div>
               
               <div className="space-y-6 text-black leading-relaxed">
-                <p className="text-lg">
-                  Founded in 2014 by Director <strong>Mr. Neeraj Goreeba</strong>, Worldlink Logistics Ltd has rapidly grown from a
-                  two-person team to a leading logistics provider in Mauritius, employing over 30 professionals today.
-                </p>
-                <p className="text-lg mb-12">
-                  With its own CFS warehousing facility at <strong>Jin Fei Business & Industrial Park, Riche Terre</strong>, the
-                  company offers a comprehensive suite of freight and logistics solutions.
-                </p>
+                <p className="text-lg" dangerouslySetInnerHTML={{ __html: t('about.homeAbout.description1') }} />
+                <p className="text-lg mb-12" dangerouslySetInnerHTML={{ __html: t('about.homeAbout.description2') }} />
                 
                 {/* Experience Stat */}
                 <div className="stat flex items-end mt-32">
@@ -135,8 +129,8 @@ const HomePage: React.FC<HomeProps> = ({ onPageChange }) => {
                     <span className="stat-total-1">+{experienceCount}</span>
                   </span>
                   <div className="caption ml-5 text-base text-gray-600 flex flex-col">
-                    <span>years</span>
-                    <span>experience</span>
+                    <span>{t('about.homeAbout.experience')}</span>
+                    <span>{t('about.homeAbout.experienceLabel')}</span>
                   </div>
                 </div>
               </div>
@@ -264,7 +258,7 @@ const HomePage: React.FC<HomeProps> = ({ onPageChange }) => {
                           className="freight-cta main__btn bg-gradient-to-r from-[var(--color-darkblue)] to-sky-600 hover:from-[var(--color-darkblue)] hover:to-sky-500 text-white px-6 py-3 rounded-full text-sm font-semibold transition-all duration-300 hover:scale-105 shadow-lg flex items-center space-x-2 group"
                         >
                           <span className="text-lg font-bold group-hover:rotate-90 transition-transform duration-300">+</span>
-                          <span>See service details</span>
+                          <span>{t('services.homeServices.seeDetails')}</span>
                         </button>
                         
                         {/* Small circles decoration */}
@@ -316,10 +310,10 @@ const HomePage: React.FC<HomeProps> = ({ onPageChange }) => {
               {/* Section Header dans la carte */}
               <div className="text-center mb-12">
                 <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
-                  Let's get down to business
+                  {t('contact.homeContact.title')}
                 </h2>
                 <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-                  Get in touch with our logistics experts and get a customized quote for your shipping needs
+                  {t('contact.homeContact.subtitle')}
                 </p>
               </div>
               
@@ -327,13 +321,13 @@ const HomePage: React.FC<HomeProps> = ({ onPageChange }) => {
                 {/* Full Name */}
                 <div className="form-item md:col-span-2">
                   <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-                    Full Name *
+                    {t('contact.homeContact.form.name')}
                   </label>
                   <input 
                     type="text" 
                     id="name" 
                     name="name" 
-                    placeholder="Enter your full name" 
+                    placeholder={t('contact.homeContact.form.namePlaceholder')} 
                     className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-blue-600 focus:outline-none transition-all duration-300"
                     required
                   />
@@ -342,13 +336,13 @@ const HomePage: React.FC<HomeProps> = ({ onPageChange }) => {
                 {/* Email Address */}
                 <div className="form-item">
                   <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                    Email Address *
+                    {t('contact.homeContact.form.email')}
                   </label>
                   <input 
                     type="email" 
                     id="email" 
                     name="email" 
-                    placeholder="Enter your email" 
+                    placeholder={t('contact.homeContact.form.emailPlaceholder')} 
                     className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-blue-600 focus:outline-none transition-all duration-300"
                     required
                   />
@@ -357,13 +351,13 @@ const HomePage: React.FC<HomeProps> = ({ onPageChange }) => {
                 {/* Phone Number */}
                 <div className="form-item">
                   <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
-                    Phone Number
+                    {t('contact.homeContact.form.phone')}
                   </label>
                   <input 
                     type="tel" 
                     id="phone" 
                     name="phone_number" 
-                    placeholder="Enter your phone number" 
+                    placeholder={t('contact.homeContact.form.phonePlaceholder')} 
                     className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-blue-600 focus:outline-none transition-all duration-300"
                   />
                 </div>
@@ -371,10 +365,10 @@ const HomePage: React.FC<HomeProps> = ({ onPageChange }) => {
                 {/* Country */}
                 <div className="form-item">
                   <label htmlFor="country" className="block text-sm font-medium text-gray-700 mb-2">
-                    Country
+                    {t('contact.homeContact.form.country')}
                   </label>
                   <select id="country" name="country" className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-blue-600 focus:outline-none transition-all duration-300 bg-white">
-                    <option value="">Select your country</option>
+                    <option value="">{t('contact.homeContact.form.countryPlaceholder')}</option>
                     <option value="Afghanistan">Afghanistan</option>
                     <option value="Albania">Albania</option>
                     <option value="Algeria">Algeria</option>
@@ -639,10 +633,10 @@ const HomePage: React.FC<HomeProps> = ({ onPageChange }) => {
                 {/* Services */}
                 <div className="form-item">
                   <label htmlFor="services" className="block text-sm font-medium text-gray-700 mb-2">
-                    Services *
+                    {t('contact.homeContact.form.services')}
                   </label>
                   <select id="services" name="services" required className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-blue-600 focus:outline-none transition-all duration-300 bg-white">
-                    <option value="">Select a service</option>
+                    <option value="">{t('contact.homeContact.form.servicesPlaceholder')}</option>
                     <option value="Air Freight">Air Freight</option>
                     <option value="Sea Freight">Sea Freight</option>
                     <option value="Clearing Services">Clearing Services</option>
@@ -656,13 +650,13 @@ const HomePage: React.FC<HomeProps> = ({ onPageChange }) => {
                 {/* Message */}
                 <div className="form-item md:col-span-2">
                   <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                    Message *
+                    {t('contact.homeContact.form.message')}
                   </label>
                   <textarea 
                     id="message" 
                     name="message" 
                     rows={5} 
-                    placeholder="Tell us about your shipping needs..." 
+                    placeholder={t('contact.homeContact.form.messagePlaceholder')} 
                     className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-blue-600 focus:outline-none transition-all duration-300 resize-vertical"
                     required
                   ></textarea>
@@ -674,7 +668,7 @@ const HomePage: React.FC<HomeProps> = ({ onPageChange }) => {
                     type="submit" 
                     className="w-full bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 text-white font-semibold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
                   >
-                    Get a quote
+                    {t('contact.homeContact.form.submit')}
                   </button>
                 </div>
               </form>

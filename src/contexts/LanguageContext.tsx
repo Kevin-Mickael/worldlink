@@ -27,7 +27,9 @@ const translations: Record<string, Translation> = {
       subtitle: 'Fret aérien, fret maritime, douane et entreposage',
       description: 'Depuis près de 30 ans, nous orchestrons vos flux de bout en bout: transport, dédouanement, projets hors gabarit, périssables et dangereux, et solutions d\'entreposage.',
       cta: 'Nos Services',
-      video: 'Regarder la Vidéo'
+      video: 'Regarder la Vidéo',
+      mainTitle: 'Logistique de Confiance.',
+      subTitle: 'Connexions Mondiales.'
     },
     services: {
       title: 'Nos Services',
@@ -51,6 +53,37 @@ const translations: Record<string, Translation> = {
       cfs: {
         title: 'Périssables & Dangereux',
         description: 'Permis, emballage, chaîne du froid et conditions de transport adaptées'
+      },
+      homeServices: {
+        freight: {
+          title: 'Freight Consolidation & Full Container Loads',
+          description: 'Optimisez vos coûts de transport avec notre service de consolidation de fret et de chargement de conteneurs complets.'
+        },
+        personal: {
+          title: 'Personal Effects & Project Shipments',
+          description: 'Transport spécialisé pour vos effets personnels et projets avec traitement délicat et sécurisé.'
+        },
+        refrigerated: {
+          title: 'Refrigerated Food Containers',
+          description: 'Conteneurs frigorifiques spécialisés pour le transport de denrées alimentaires avec chaîne du froid contrôlée.'
+        },
+        customs: {
+          title: 'Customs Clearing & Compliance',
+          description: 'Services de dédouanement et de conformité réglementaire pour assurer le passage en douane de vos marchandises.'
+        },
+        airfreight: {
+          title: 'Airfreight Services',
+          description: 'Transport aérien rapide et fiable pour vos envois urgents avec réseau de partenaires internationaux.'
+        },
+        sourcing: {
+          title: 'Product Sourcing & Procurement',
+          description: 'Sourcing et approvisionnement de produits à l\'international avec identification des meilleurs fournisseurs.'
+        },
+        inland: {
+          title: 'Inland Transport & CFS Warehousing',
+          description: 'Transport terrestre et entreposage CFS avec solutions complètes pour la gestion de vos conteneurs.'
+        },
+        seeDetails: 'See service details'
       }
     },
     about: {
@@ -60,7 +93,14 @@ const translations: Record<string, Translation> = {
       mission: 'Notre Mission',
       missionText: 'Simplifier la logistique avec des solutions fiables, transparentes et performantes.',
       vision: 'Notre Vision',
-      visionText: 'Relier durablement les marchés d\'Afrique, d\'Asie et d\'Europe grâce à des services intégrés.'
+      visionText: 'Relier durablement les marchés d\'Afrique, d\'Asie et d\'Europe grâce à des services intégrés.',
+      homeAbout: {
+        title: 'À Propos de Worldlink',
+        description1: 'Fondée en 2014 par le Directeur <strong>M. Neeraj Goreeba</strong>, Worldlink Logistics Ltd a rapidement évolué d\'une équipe de deux personnes vers un fournisseur logistique de premier plan à Maurice, employant aujourd\'hui plus de 30 professionnels.',
+        description2: 'Avec ses propres installations d\'entreposage CFS au <strong>Jin Fei Business & Industrial Park, Riche Terre</strong>, l\'entreprise propose une gamme complète de solutions de fret et de logistique.',
+        experience: 'années',
+        experienceLabel: 'd\'expérience'
+      }
     },
     contact: {
       title: 'Contactez-Nous',
@@ -91,7 +131,26 @@ const translations: Record<string, Translation> = {
       quickContactTitle: 'Besoin d\'une Réponse Rapide?',
       quickContactDescription: 'Notre équipe est disponible par téléphone pour répondre immédiatement à vos questions urgentes.',
       callNow: 'Appelez Maintenant',
-      sendEmail: 'Envoyez un Email'
+      sendEmail: 'Envoyez un Email',
+      homeContact: {
+        title: 'Passons aux choses sérieuses',
+        subtitle: 'Contactez nos experts logistiques et obtenez un devis personnalisé pour vos besoins d\'expédition',
+        form: {
+          name: 'Nom complet *',
+          email: 'Adresse email *',
+          phone: 'Numéro de téléphone',
+          country: 'Pays',
+          services: 'Services *',
+          message: 'Message *',
+          submit: 'Obtenir un devis',
+          namePlaceholder: 'Entrez votre nom complet',
+          emailPlaceholder: 'Entrez votre email',
+          phonePlaceholder: 'Entrez votre numéro de téléphone',
+          countryPlaceholder: 'Sélectionnez votre pays',
+          servicesPlaceholder: 'Sélectionnez un service',
+          messagePlaceholder: 'Parlez-nous de vos besoins d\'expédition...'
+        }
+      }
     },
     faq: {
       title: 'Questions Fréquentes',
@@ -864,7 +923,9 @@ const translations: Record<string, Translation> = {
       subtitle: 'Air freight, ocean freight, customs and warehousing',
       description: 'For nearly three decades, we orchestrate end-to-end flows: transport, customs clearance, project cargo, perishables and dangerous goods, and flexible warehousing.',
       cta: 'Our Services',
-      video: 'Watch Video'
+      video: 'Watch Video',
+      mainTitle: 'Trusted Logistics.',
+      subTitle: 'Worldwide Connections.'
     },
     services: {
       title: 'Our Services',
@@ -888,6 +949,37 @@ const translations: Record<string, Translation> = {
       cfs: {
         title: 'Perishables & Dangerous Goods',
         description: 'Permits, packaging, cold chain and special freight conditions'
+      },
+      homeServices: {
+        freight: {
+          title: 'Freight Consolidation & Full Container Loads',
+          description: 'Optimize your transport costs with our freight consolidation service and full container loading.'
+        },
+        personal: {
+          title: 'Personal Effects & Project Shipments',
+          description: 'Specialized transport for your personal effects and projects with delicate and secure handling.'
+        },
+        refrigerated: {
+          title: 'Refrigerated Food Containers',
+          description: 'Specialized refrigerated containers for food transport with controlled cold chain.'
+        },
+        customs: {
+          title: 'Customs Clearing & Compliance',
+          description: 'Customs clearing and regulatory compliance services to ensure smooth customs passage of your goods.'
+        },
+        airfreight: {
+          title: 'Airfreight Services',
+          description: 'Fast and reliable air freight for urgent shipments with international network of partners.'
+        },
+        sourcing: {
+          title: 'Product Sourcing & Procurement',
+          description: 'International product sourcing and procurement with identification of the best suppliers.'
+        },
+        inland: {
+          title: 'Inland Transport & CFS Warehousing',
+          description: 'Inland transport and CFS warehousing with complete solutions for container management.'
+        },
+        seeDetails: 'See service details'
       }
     },
     about: {
@@ -897,7 +989,14 @@ const translations: Record<string, Translation> = {
       mission: 'Our Mission',
       missionText: 'Simplify logistics through reliable, transparent and high-performance solutions.',
       vision: 'Our Vision',
-      visionText: 'Sustainably connect African, Asian and European markets with integrated services.'
+      visionText: 'Sustainably connect African, Asian and European markets with integrated services.',
+      homeAbout: {
+        title: 'About Worldlink',
+        description1: 'Founded in 2014 by Director <strong>Mr. Neeraj Goreeba</strong>, Worldlink Logistics Ltd has rapidly grown from a two-person team to a leading logistics provider in Mauritius, employing over 30 professionals today.',
+        description2: 'With its own CFS warehousing facility at <strong>Jin Fei Business & Industrial Park, Riche Terre</strong>, the company offers a comprehensive suite of freight and logistics solutions.',
+        experience: 'years',
+        experienceLabel: 'experience'
+      }
     },
     contact: {
       title: 'Contact Us',
@@ -928,7 +1027,26 @@ const translations: Record<string, Translation> = {
       quickContactTitle: 'Need a Quick Response?',
       quickContactDescription: 'Our team is available by phone to immediately answer your urgent questions.',
       callNow: 'Call Now',
-      sendEmail: 'Send Email'
+      sendEmail: 'Send Email',
+      homeContact: {
+        title: 'Let\'s get down to business',
+        subtitle: 'Get in touch with our logistics experts and get a customized quote for your shipping needs',
+        form: {
+          name: 'Full Name *',
+          email: 'Email Address *',
+          phone: 'Phone Number',
+          country: 'Country',
+          services: 'Services *',
+          message: 'Message *',
+          submit: 'Get a quote',
+          namePlaceholder: 'Enter your full name',
+          emailPlaceholder: 'Enter your email',
+          phonePlaceholder: 'Enter your phone number',
+          countryPlaceholder: 'Select your country',
+          servicesPlaceholder: 'Select a service',
+          messagePlaceholder: 'Tell us about your shipping needs...'
+        }
+      }
     },
     faq: {
       title: 'Frequently Asked Questions',
