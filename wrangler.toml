@@ -3,9 +3,3 @@ compatibility_date = "2024-01-01"
 
 # Configuration pour Cloudflare Pages
 pages_build_output_dir = "dist"
-
-# Redirection pour SPA
-[[redirects]]
-from = "/*"
-to = "/index.html"
-status = 200
