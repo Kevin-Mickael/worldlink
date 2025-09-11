@@ -5,6 +5,7 @@ interface ContactForm {
   phone: string;
   service: string;
   message?: string;
+  language?: 'fr' | 'en';
 }
 
 // Type pour les fonctions Cloudflare Pages
@@ -141,6 +142,10 @@ export const onRequestPost: PagesFunction = async (context) => {
       );
     }
 
+    // Détecter la langue (par défaut français)
+    const language = formData.language || 'fr';
+    console.log('🌐 Language detected:', language);
+
     // Préparer les données pour Brevo
     const emailData: BrevoEmailData = {
       sender: {
@@ -153,9 +158,11 @@ export const onRequestPost: PagesFunction = async (context) => {
           name: 'Kevin Andriatsilavo'
         }
       ],
-      subject: `Nouveau message de contact - ${formData.service}`,
-      htmlContent: generateHtmlEmail(formData),
-      textContent: generateTextEmail(formData),
+      subject: language === 'en' 
+        ? `New contact message - ${formData.service}`
+        : `Nouveau message de contact - ${formData.service}`,
+      htmlContent: generateHtmlEmail(formData, language),
+      textContent: generateTextEmail(formData, language),
     };
 
     // Envoyer l'email via l'API Brevo
@@ -227,13 +234,35 @@ export const onRequestPost: PagesFunction = async (context) => {
 };
 
 // Générer le contenu HTML de l'email
-function generateHtmlEmail(formData: ContactForm): string {
+function generateHtmlEmail(formData: ContactForm, language: 'fr' | 'en' = 'fr'): string {
+  const texts = language === 'en' ? {
+    title: 'New Contact Message',
+    subtitle: 'WorldLink Logistics - Contact Form',
+    fullName: 'Full Name:',
+    email: 'Email:',
+    phone: 'Phone:',
+    service: 'Requested Service:',
+    message: 'Message:',
+    footer: 'This message was sent from the WorldLink Logistics contact form',
+    date: 'Date:'
+  } : {
+    title: 'Nouveau message de contact',
+    subtitle: 'WorldLink Logistics - Formulaire de contact',
+    fullName: 'Nom complet:',
+    email: 'Email:',
+    phone: 'Téléphone:',
+    service: 'Service demandé:',
+    message: 'Message:',
+    footer: 'Ce message a été envoyé depuis le formulaire de contact de WorldLink Logistics',
+    date: 'Date:'
+  };
+
   return `
     <!DOCTYPE html>
     <html>
     <head>
       <meta charset="utf-8">
-      <title>Nouveau message de contact - WorldLink Logistics</title>
+      <title>${texts.title} - WorldLink Logistics</title>
       <style>
         body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
         .container { max-width: 600px; margin: 0 auto; padding: 20px; }
@@ -249,40 +278,40 @@ function generateHtmlEmail(formData: ContactForm): string {
     <body>
       <div class="container">
         <div class="header">
-          <h1>Nouveau message de contact</h1>
-          <p>WorldLink Logistics - Formulaire de contact</p>
+          <h1>${texts.title}</h1>
+          <p>${texts.subtitle}</p>
         </div>
         <div class="content">
           <div class="field">
-            <span class="label">Nom complet:</span>
+            <span class="label">${texts.fullName}</span>
             <div class="value">${formData.name}</div>
           </div>
           
           <div class="field">
-            <span class="label">Email:</span>
+            <span class="label">${texts.email}</span>
             <div class="value">${formData.email}</div>
           </div>
           
           <div class="field">
-            <span class="label">Téléphone:</span>
+            <span class="label">${texts.phone}</span>
             <div class="value">${formData.phone}</div>
           </div>
           
           <div class="field">
-            <span class="label">Service demandé:</span>
+            <span class="label">${texts.service}</span>
             <div class="value">${formData.service}</div>
           </div>
           
           ${formData.message ? `
           <div class="field">
-            <span class="label">Message:</span>
+            <span class="label">${texts.message}</span>
             <div class="message">${formData.message.replace(/\n/g, '<br>')}</div>
           </div>
           ` : ''}
         </div>
         <div class="footer">
-          <p>Ce message a été envoyé depuis le formulaire de contact de WorldLink Logistics</p>
-          <p>Date: ${new Date().toLocaleString('fr-FR', { timeZone: 'Indian/Mauritius' })}</p>
+          <p>${texts.footer}</p>
+          <p>${texts.date} ${new Date().toLocaleString(language === 'en' ? 'en-US' : 'fr-FR', { timeZone: 'Indian/Mauritius' })}</p>
         </div>
       </div>
     </body>
@@ -291,19 +320,39 @@ function generateHtmlEmail(formData: ContactForm): string {
 }
 
 // Générer le contenu texte de l'email
-function generateTextEmail(formData: ContactForm): string {
+function generateTextEmail(formData: ContactForm, language: 'fr' | 'en' = 'fr'): string {
+  const texts = language === 'en' ? {
+    title: 'NEW CONTACT MESSAGE - WORLDLINK LOGISTICS',
+    fullName: 'Full Name:',
+    email: 'Email:',
+    phone: 'Phone:',
+    service: 'Requested Service:',
+    message: 'Message:',
+    footer: 'This message was sent from the WorldLink Logistics contact form',
+    date: 'Date:'
+  } : {
+    title: 'NOUVEAU MESSAGE DE CONTACT - WORLDLINK LOGISTICS',
+    fullName: 'Nom complet:',
+    email: 'Email:',
+    phone: 'Téléphone:',
+    service: 'Service demandé:',
+    message: 'Message:',
+    footer: 'Ce message a été envoyé depuis le formulaire de contact de WorldLink Logistics',
+    date: 'Date:'
+  };
+
   return `
-NOUVEAU MESSAGE DE CONTACT - WORLDLINK LOGISTICS
+${texts.title}
 
-Nom complet: ${formData.name}
-Email: ${formData.email}
-Téléphone: ${formData.phone}
-Service demandé: ${formData.service}
+${texts.fullName} ${formData.name}
+${texts.email} ${formData.email}
+${texts.phone} ${formData.phone}
+${texts.service} ${formData.service}
 
-${formData.message ? `Message:\n${formData.message}\n` : ''}
+${formData.message ? `${texts.message}\n${formData.message}\n` : ''}
 
 ---
-Ce message a été envoyé depuis le formulaire de contact de WorldLink Logistics
-Date: ${new Date().toLocaleString('fr-FR', { timeZone: 'Indian/Mauritius' })}
+${texts.footer}
+${texts.date} ${new Date().toLocaleString(language === 'en' ? 'en-US' : 'fr-FR', { timeZone: 'Indian/Mauritius' })}
   `.trim();
 }

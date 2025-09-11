@@ -2,16 +2,19 @@ import React, { useState } from 'react';
 import { MapPin, Phone, Mail, Send, CheckCircle, Building } from 'lucide-react';
 import { ContactForm } from '../types';
 import { usePageTitle } from '../hooks/usePageTitle';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const ContactPage: React.FC = () => {
   usePageTitle('Contact - WorldLink Logistics');
+  const { currentLanguage } = useLanguage();
   
   const [formData, setFormData] = useState<ContactForm>({
     name: '',
     email: '',
     phone: '',
     service: '',
-    message: ''
+    message: '',
+    language: currentLanguage.code
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -64,12 +67,18 @@ const ContactPage: React.FC = () => {
     setIsSubmitting(true);
 
     try {
+      // Inclure la langue actuelle dans les données
+      const dataToSend = {
+        ...formData,
+        language: currentLanguage.code
+      };
+
       const response = await fetch('/api/send-email', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(dataToSend),
       });
 
       // Vérifier si la réponse est OK
@@ -95,7 +104,8 @@ const ContactPage: React.FC = () => {
             email: '',
             phone: '',
             service: '',
-            message: ''
+            message: '',
+            language: currentLanguage.code
           });
         }, 3000);
       } else {

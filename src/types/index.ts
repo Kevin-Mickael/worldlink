@@ -21,6 +21,7 @@ export interface ContactForm {
   phone: string;
   service: string;
   message?: string;
+  language?: 'fr' | 'en';
 }
 
 export interface FAQ {
