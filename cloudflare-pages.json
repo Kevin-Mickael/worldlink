@@ -1,0 +1,30 @@
+{
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@cloudflare/next-on-pages",
+      "config": {
+        "distDir": "dist"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/worldlink/(.*)",
+      "dest": "/worldlink/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/worldlink/$1"
+    }
+  ],
+  "headers": {
+    "source": "/worldlink/assets/(.*)",
+    "headers": [
+      {
+        "key": "Cache-Control",
+        "value": "public, max-age=31536000, immutable"
+      }
+    ]
+  }
+}
