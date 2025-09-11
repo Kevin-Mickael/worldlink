@@ -14,6 +14,19 @@ const HomePage: React.FC<HomeProps> = ({ onPageChange }) => {
   usePageTitle('WorldLink Logistics - Trusted Logistics Worldwide');
   const { t } = useLanguage();
   const [experienceCount, setExperienceCount] = useState(0);
+  
+  // États pour le formulaire
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone_number: '',
+    country: '',
+    services: '',
+    message: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [submitMessage, setSubmitMessage] = useState('');
 
   const publicAsset = (relativePath: string) => `${import.meta.env.BASE_URL}${relativePath.replace(/^\//, '')}`;
 
@@ -36,7 +49,71 @@ const HomePage: React.FC<HomeProps> = ({ onPageChange }) => {
     return () => clearInterval(timer);
   }, []);
 
+  // Fonction pour gérer les changements dans les champs du formulaire
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
 
+  // Fonction pour soumettre le formulaire
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+    setSubmitMessage('');
+
+    try {
+      // Préparer les données pour l'API (mapping des champs)
+      const apiData = {
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone_number,
+        service: formData.services,
+        message: formData.message,
+        country: formData.country,
+        language: t('language') === 'English' ? 'en' : 'fr'
+      };
+
+      console.log('📤 Sending form data:', apiData);
+
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(apiData),
+      });
+
+      const result = await response.json();
+      console.log('📧 Email response:', result);
+
+      if (result.success) {
+        setSubmitStatus('success');
+        setSubmitMessage(t('contact.homeContact.successMessage'));
+        // Réinitialiser le formulaire
+        setFormData({
+          name: '',
+          email: '',
+          phone_number: '',
+          country: '',
+          services: '',
+          message: ''
+        });
+      } else {
+        setSubmitStatus('error');
+        setSubmitMessage(result.message || t('contact.homeContact.errorMessage'));
+      }
+    } catch (error) {
+      console.error('❌ Error submitting form:', error);
+      setSubmitStatus('error');
+      setSubmitMessage(t('contact.homeContact.errorMessage'));
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   const services = [
     {
@@ -317,7 +394,7 @@ const HomePage: React.FC<HomeProps> = ({ onPageChange }) => {
                 </p>
               </div>
               
-              <form className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {/* Full Name */}
                 <div className="form-item md:col-span-2">
                   <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
@@ -327,6 +404,8 @@ const HomePage: React.FC<HomeProps> = ({ onPageChange }) => {
                     type="text" 
                     id="name" 
                     name="name" 
+                    value={formData.name}
+                    onChange={handleInputChange}
                     placeholder={t('contact.homeContact.form.namePlaceholder')} 
                     className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-blue-600 focus:outline-none transition-all duration-300"
                     required
@@ -342,6 +421,8 @@ const HomePage: React.FC<HomeProps> = ({ onPageChange }) => {
                     type="email" 
                     id="email" 
                     name="email" 
+                    value={formData.email}
+                    onChange={handleInputChange}
                     placeholder={t('contact.homeContact.form.emailPlaceholder')} 
                     className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-blue-600 focus:outline-none transition-all duration-300"
                     required
@@ -357,6 +438,8 @@ const HomePage: React.FC<HomeProps> = ({ onPageChange }) => {
                     type="tel" 
                     id="phone" 
                     name="phone_number" 
+                    value={formData.phone_number}
+                    onChange={handleInputChange}
                     placeholder={t('contact.homeContact.form.phonePlaceholder')} 
                     className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-blue-600 focus:outline-none transition-all duration-300"
                   />
@@ -367,7 +450,13 @@ const HomePage: React.FC<HomeProps> = ({ onPageChange }) => {
                   <label htmlFor="country" className="block text-sm font-medium text-gray-700 mb-2">
                     {t('contact.homeContact.form.country')}
                   </label>
-                  <select id="country" name="country" className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-blue-600 focus:outline-none transition-all duration-300 bg-white">
+                  <select 
+                    id="country" 
+                    name="country" 
+                    value={formData.country}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-blue-600 focus:outline-none transition-all duration-300 bg-white"
+                  >
                     <option value="">{t('contact.homeContact.form.countryPlaceholder')}</option>
                     <option value="Afghanistan">Afghanistan</option>
                     <option value="Albania">Albania</option>
@@ -635,7 +724,14 @@ const HomePage: React.FC<HomeProps> = ({ onPageChange }) => {
                   <label htmlFor="services" className="block text-sm font-medium text-gray-700 mb-2">
                     {t('contact.homeContact.form.services')}
                   </label>
-                  <select id="services" name="services" required className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-blue-600 focus:outline-none transition-all duration-300 bg-white">
+                  <select 
+                    id="services" 
+                    name="services" 
+                    value={formData.services}
+                    onChange={handleInputChange}
+                    required 
+                    className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-blue-600 focus:outline-none transition-all duration-300 bg-white"
+                  >
                     <option value="">{t('contact.homeContact.form.servicesPlaceholder')}</option>
                     <option value="Air Freight">Air Freight</option>
                     <option value="Sea Freight">Sea Freight</option>
@@ -655,6 +751,8 @@ const HomePage: React.FC<HomeProps> = ({ onPageChange }) => {
                   <textarea 
                     id="message" 
                     name="message" 
+                    value={formData.message}
+                    onChange={handleInputChange}
                     rows={5} 
                     placeholder={t('contact.homeContact.form.messagePlaceholder')} 
                     className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-blue-600 focus:outline-none transition-all duration-300 resize-vertical"
@@ -666,11 +764,35 @@ const HomePage: React.FC<HomeProps> = ({ onPageChange }) => {
                 <div className="form-item md:col-span-2">
                   <button 
                     type="submit" 
-                    className="w-full bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 text-white font-semibold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+                    disabled={isSubmitting}
+                    className="w-full bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 disabled:from-gray-400 disabled:to-gray-500 disabled:cursor-not-allowed text-white font-semibold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
                   >
-                    {t('contact.homeContact.form.submit')}
+                    {isSubmitting ? (
+                      <span className="flex items-center justify-center">
+                        <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        {t('contact.homeContact.form.submitting')}
+                      </span>
+                    ) : (
+                      t('contact.homeContact.form.submit')
+                    )}
                   </button>
                 </div>
+
+                {/* Status Message */}
+                {submitStatus !== 'idle' && (
+                  <div className="form-item md:col-span-2">
+                    <div className={`p-4 rounded-lg ${
+                      submitStatus === 'success' 
+                        ? 'bg-green-100 border border-green-400 text-green-700' 
+                        : 'bg-red-100 border border-red-400 text-red-700'
+                    }`}>
+                      {submitMessage}
+                    </div>
+                  </div>
+                )}
               </form>
             </div>
           </div>

@@ -5,6 +5,7 @@ interface ContactForm {
   phone: string;
   service: string;
   message?: string;
+  country?: string;
   language?: 'fr' | 'en';
 }
 
@@ -241,6 +242,7 @@ function generateHtmlEmail(formData: ContactForm, language: 'fr' | 'en' = 'fr'):
     fullName: 'Full Name:',
     email: 'Email:',
     phone: 'Phone:',
+    country: 'Country:',
     service: 'Requested Service:',
     message: 'Message:',
     footer: 'This message was sent from the WorldLink Logistics contact form',
@@ -251,6 +253,7 @@ function generateHtmlEmail(formData: ContactForm, language: 'fr' | 'en' = 'fr'):
     fullName: 'Nom complet:',
     email: 'Email:',
     phone: 'Téléphone:',
+    country: 'Pays:',
     service: 'Service demandé:',
     message: 'Message:',
     footer: 'Ce message a été envoyé depuis le formulaire de contact de WorldLink Logistics',
@@ -297,6 +300,13 @@ function generateHtmlEmail(formData: ContactForm, language: 'fr' | 'en' = 'fr'):
             <div class="value">${formData.phone}</div>
           </div>
           
+          ${formData.country ? `
+          <div class="field">
+            <span class="label">${texts.country}</span>
+            <div class="value">${formData.country}</div>
+          </div>
+          ` : ''}
+          
           <div class="field">
             <span class="label">${texts.service}</span>
             <div class="value">${formData.service}</div>
@@ -326,6 +336,7 @@ function generateTextEmail(formData: ContactForm, language: 'fr' | 'en' = 'fr'):
     fullName: 'Full Name:',
     email: 'Email:',
     phone: 'Phone:',
+    country: 'Country:',
     service: 'Requested Service:',
     message: 'Message:',
     footer: 'This message was sent from the WorldLink Logistics contact form',
@@ -335,6 +346,7 @@ function generateTextEmail(formData: ContactForm, language: 'fr' | 'en' = 'fr'):
     fullName: 'Nom complet:',
     email: 'Email:',
     phone: 'Téléphone:',
+    country: 'Pays:',
     service: 'Service demandé:',
     message: 'Message:',
     footer: 'Ce message a été envoyé depuis le formulaire de contact de WorldLink Logistics',
@@ -347,6 +359,7 @@ ${texts.title}
 ${texts.fullName} ${formData.name}
 ${texts.email} ${formData.email}
 ${texts.phone} ${formData.phone}
+${formData.country ? `${texts.country} ${formData.country}` : ''}
 ${texts.service} ${formData.service}
 
 ${formData.message ? `${texts.message}\n${formData.message}\n` : ''}
