@@ -145,7 +145,7 @@ export const onRequestPost: PagesFunction = async (context) => {
     const emailData: BrevoEmailData = {
       sender: {
         name: 'WorldLink Logistics',
-        email: 'noreply@worldlink.mu', // Email d'expéditeur (doit être vérifié dans Brevo)
+        email: 'Andriatsilavokevin@gmail.com', // Utiliser un email vérifié pour les tests
       },
       to: [
         {
@@ -172,21 +172,31 @@ export const onRequestPost: PagesFunction = async (context) => {
     });
 
     console.log('📊 Brevo response status:', brevoResponse.status);
+    console.log('📋 Brevo response headers:', Object.fromEntries(brevoResponse.headers.entries()));
+    
     const brevoResult = await brevoResponse.json();
-    console.log('📋 Brevo response:', brevoResult);
+    console.log('📋 Brevo response body:', JSON.stringify(brevoResult, null, 2));
 
     if (!brevoResponse.ok) {
       console.error('❌ Brevo API error:', brevoResult);
       return new Response(
         JSON.stringify({ 
           success: false, 
-          message: `Failed to send email: ${brevoResult.message || 'Unknown error'}` 
+          message: `Failed to send email: ${brevoResult.message || 'Unknown error'}`,
+          details: brevoResult
         }),
         {
           status: 500,
           headers: { ...corsHeaders, 'Content-Type': 'application/json' },
         }
       );
+    }
+
+    // Vérifier si l'email a été accepté par Brevo
+    if (!brevoResult.messageId) {
+      console.warn('⚠️ No messageId returned by Brevo, email might not be sent');
+    } else {
+      console.log('✅ Email accepted by Brevo with messageId:', brevoResult.messageId);
     }
 
     // Succès
