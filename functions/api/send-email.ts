@@ -145,7 +145,7 @@ export const onRequestPost: PagesFunction = async (context) => {
     const emailData: BrevoEmailData = {
       sender: {
         name: 'WorldLink Logistics',
-        email: 'Andriatsilavokevin@gmail.com', // Utiliser un email vérifié pour les tests
+        email: 'logisticsltdworldlink@gmail.com', // Utiliser un email vérifié pour les tests
       },
       to: [
         {
