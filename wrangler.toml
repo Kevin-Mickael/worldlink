@@ -1,5 +1,9 @@
-name = "worldlink-logistics"
+name = "worldlink"
 compatibility_date = "2024-01-01"
 
 # Configuration pour Cloudflare Pages
 pages_build_output_dir = "dist"
+
+# Variables d'environnement (seront configurées dans Cloudflare Dashboard)
+[vars]
+# BREVO_API_KEY sera configurée dans les variables d'environnement de Cloudflare Pages

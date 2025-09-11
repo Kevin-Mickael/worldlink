@@ -63,23 +63,61 @@ const ContactPage: React.FC = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000));
-
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-
-    // Reset form after 3 seconds
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        service: '',
-        message: ''
+    try {
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
       });
-    }, 3000);
+
+      // Vérifier si la réponse est OK
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      // Vérifier le type de contenu
+      const contentType = response.headers.get('content-type');
+      if (!contentType || !contentType.includes('application/json')) {
+        throw new Error('La réponse du serveur n\'est pas au format JSON');
+      }
+
+      const result = await response.json();
+
+      if (result.success) {
+        setIsSubmitted(true);
+        // Reset form after 3 seconds
+        setTimeout(() => {
+          setIsSubmitted(false);
+          setFormData({
+            name: '',
+            email: '',
+            phone: '',
+            service: '',
+            message: ''
+          });
+        }, 3000);
+      } else {
+        // Afficher une erreur à l'utilisateur
+        alert(`Erreur: ${result.message}`);
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      if (error instanceof Error) {
+        if (error.message.includes('404')) {
+          alert('Erreur: La fonction d\'envoi d\'email n\'est pas disponible. Veuillez contacter l\'administrateur.');
+        } else if (error.message.includes('JSON')) {
+          alert('Erreur: Problème de communication avec le serveur. Veuillez réessayer.');
+        } else {
+          alert(`Erreur: ${error.message}`);
+        }
+      } else {
+        alert('Une erreur est survenue lors de l\'envoi du message. Veuillez réessayer.');
+      }
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
