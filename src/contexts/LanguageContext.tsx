@@ -148,7 +148,10 @@ const translations: Record<string, Translation> = {
           phonePlaceholder: 'Entrez votre numéro de téléphone',
           countryPlaceholder: 'Sélectionnez votre pays',
           servicesPlaceholder: 'Sélectionnez un service',
-          messagePlaceholder: 'Parlez-nous de vos besoins d\'expédition...'
+          messagePlaceholder: 'Parlez-nous de vos besoins d\'expédition...',
+          submitting: 'Envoi en cours...',
+          successMessage: 'Message envoyé avec succès ! Nous vous répondrons dans les plus brefs délais.',
+          errorMessage: 'Une erreur est survenue. Veuillez réessayer.'
         }
       }
     },
@@ -1044,7 +1047,10 @@ const translations: Record<string, Translation> = {
           phonePlaceholder: 'Enter your phone number',
           countryPlaceholder: 'Select your country',
           servicesPlaceholder: 'Select a service',
-          messagePlaceholder: 'Tell us about your shipping needs...'
+          messagePlaceholder: 'Tell us about your shipping needs...',
+          submitting: 'Sending...',
+          successMessage: 'Message sent successfully! We will get back to you as soon as possible.',
+          errorMessage: 'An error occurred. Please try again.'
         }
       }
     },

@@ -15,19 +15,30 @@ const testData = {
   language: "fr"
 };
 
-console.log('🧪 Test du formulaire de la page d\'accueil');
-console.log('📧 Données de test:', JSON.stringify(testData, null, 2));
+const testDataEn = {
+  name: "John Smith",
+  email: "john.smith@example.com",
+  phone: "+1 555 123 4567",
+  service: "Sea Freight",
+  message: "Hello,\n\nI would like to get information about your sea freight services for a shipment to Mauritius.\n\nThank you for your response.\n\nBest regards,\nJohn Smith",
+  country: "United States",
+  language: "en"
+};
 
-async function testHomeForm() {
+console.log('🧪 Test du formulaire de la page d\'accueil');
+console.log('📧 Données de test FR:', JSON.stringify(testData, null, 2));
+console.log('📧 Données de test EN:', JSON.stringify(testDataEn, null, 2));
+
+async function testHomeForm(data, language) {
   try {
-    console.log('\n📤 Envoi de la requête vers /api/send-email...');
+    console.log(`\n📤 Envoi de la requête vers /api/send-email (${language.toUpperCase()})...`);
     
     const response = await fetch('http://localhost:8787/api/send-email', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(testData),
+      body: JSON.stringify(data),
     });
 
     console.log('📊 Statut de la réponse:', response.status);
@@ -37,21 +48,36 @@ async function testHomeForm() {
     console.log('📋 Réponse complète:', JSON.stringify(result, null, 2));
 
     if (result.success) {
-      console.log('✅ Test réussi ! Email envoyé avec succès');
+      console.log(`✅ Test réussi (${language.toUpperCase()}) ! Email envoyé avec succès`);
       console.log('📧 Message ID:', result.messageId);
     } else {
-      console.log('❌ Test échoué ! Erreur:', result.message);
+      console.log(`❌ Test échoué (${language.toUpperCase()}) ! Erreur:`, result.message);
       if (result.details) {
         console.log('🔍 Détails de l\'erreur:', result.details);
       }
     }
 
   } catch (error) {
-    console.error('❌ Erreur lors du test:', error.message);
+    console.error(`❌ Erreur lors du test (${language.toUpperCase()}):`, error.message);
     console.error('💡 Assurez-vous que le serveur de développement est démarré sur le port 8787');
     console.error('💡 Utilisez: npm run dev ou wrangler dev');
   }
 }
 
-// Exécuter le test
-testHomeForm();
+// Exécuter les tests
+async function runTests() {
+  console.log('🧪 Démarrage des tests multilingues...\n');
+  
+  // Test en français
+  await testHomeForm(testData, 'fr');
+  
+  // Attendre un peu entre les tests
+  await new Promise(resolve => setTimeout(resolve, 1000));
+  
+  // Test en anglais
+  await testHomeForm(testDataEn, 'en');
+  
+  console.log('\n✅ Tests terminés !');
+}
+
+runTests();

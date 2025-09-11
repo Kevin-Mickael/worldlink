@@ -12,7 +12,7 @@ interface HomeProps {
 
 const HomePage: React.FC<HomeProps> = ({ onPageChange }) => {
   usePageTitle('WorldLink Logistics - Trusted Logistics Worldwide');
-  const { t } = useLanguage();
+  const { t, currentLanguage } = useLanguage();
   const [experienceCount, setExperienceCount] = useState(0);
   
   // États pour le formulaire
@@ -74,7 +74,7 @@ const HomePage: React.FC<HomeProps> = ({ onPageChange }) => {
         service: formData.services,
         message: formData.message,
         country: formData.country,
-        language: t('language') === 'English' ? 'en' : 'fr'
+        language: currentLanguage.code
       };
 
       console.log('📤 Sending form data:', apiData);
@@ -92,7 +92,7 @@ const HomePage: React.FC<HomeProps> = ({ onPageChange }) => {
 
       if (result.success) {
         setSubmitStatus('success');
-        setSubmitMessage(t('contact.homeContact.successMessage'));
+        setSubmitMessage(t('contact.successMessage'));
         // Réinitialiser le formulaire
         setFormData({
           name: '',
@@ -104,12 +104,12 @@ const HomePage: React.FC<HomeProps> = ({ onPageChange }) => {
         });
       } else {
         setSubmitStatus('error');
-        setSubmitMessage(result.message || t('contact.homeContact.errorMessage'));
+        setSubmitMessage(result.message || t('contact.homeContact.form.errorMessage'));
       }
     } catch (error) {
       console.error('❌ Error submitting form:', error);
       setSubmitStatus('error');
-      setSubmitMessage(t('contact.homeContact.errorMessage'));
+      setSubmitMessage(t('contact.homeContact.form.errorMessage'));
     } finally {
       setIsSubmitting(false);
     }
