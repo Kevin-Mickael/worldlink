@@ -121,41 +121,41 @@ const CookieBanner: React.FC<CookieBannerProps> = ({ onPageChange }) => {
       {/* Banner principal */}
       <div className="fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-gray-200 shadow-lg">
         <div className="max-w-7xl mx-auto px-4 py-4">
-          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+          <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
             {/* Logo et texte à gauche */}
-            <div className="flex items-center gap-4">
+            <div className="flex items-start gap-3 w-full lg:w-auto">
               <img 
                 src={publicAsset('worldlink.png')} 
                 alt="WorldLink Logistics" 
-                className="h-12 w-auto"
+                className="h-10 w-auto flex-shrink-0 mt-1"
               />
-              <div className="text-sm text-gray-700">
+              <div className="text-sm text-gray-700 flex-1 min-w-0">
                 <p className="font-medium">
                   {t('cookieBanner.title')}
                 </p>
-                <p className="text-gray-600 mt-1">
+                <p className="text-gray-600 mt-1 text-xs sm:text-sm">
                   {t('cookieBanner.description')}
                 </p>
               </div>
             </div>
 
             {/* Boutons d'action à droite */}
-            <div className="flex flex-col sm:flex-row gap-2">
+            <div className="flex flex-col sm:flex-row gap-2 w-full lg:w-auto">
               <button
                 onClick={handleAcceptNecessary}
-                className="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors"
+                className="px-3 py-2 text-xs sm:text-sm font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors whitespace-nowrap"
               >
                 {t('cookieBanner.necessary')}
               </button>
               <button
                 onClick={handleCustomize}
-                className="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors"
+                className="px-3 py-2 text-xs sm:text-sm font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors whitespace-nowrap"
               >
                 {t('cookieBanner.customize')}
               </button>
               <button
                 onClick={handleAcceptAll}
-                className="px-4 py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors"
+                className="px-3 py-2 text-xs sm:text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors whitespace-nowrap"
               >
                 {t('cookieBanner.acceptAll')}
               </button>

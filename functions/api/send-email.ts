@@ -155,8 +155,12 @@ export const onRequestPost: PagesFunction = async (context) => {
       },
       to: [
         {
-          email: 'Andriatsilavokevin@gmail.com', // Email de test comme demandé
-          name: 'Kevin Andriatsilavo'
+          email: 'Christopher@worldlink.mu',
+          name: 'Christopher'
+        },
+        {
+          email: 'Neeraj@worldlink.mu',
+          name: 'Neeraj Goreeba'
         }
       ],
       subject: language === 'en' 

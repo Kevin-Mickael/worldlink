@@ -32,20 +32,6 @@ const AboutPage: React.FC = () => {
     }
   ];
 
-  const team = [
-    {
-      name: 'Mr. Neeraj Goreeba',
-      role: 'Chief Executive Officer & Founder',
-      image: 'https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg?auto=compress&cs=tinysrgb&w=300',
-      description: 'Founder of WorldLink Logistics in 2014, Mr. Goreeba has transformed a two-person team into a leading logistics company in Mauritius.'
-    },
-    {
-      name: 'Operational Team',
-      role: 'Qualified Professionals',
-      image: 'https://images.pexels.com/photos/3785077/pexels-photo-3785077.jpeg?auto=compress&cs=tinysrgb&w=300',
-      description: 'Over 30 professionals dedicated to logistics excellence and customer service.'
-    }
-  ];
 
   return (
     <div className="min-h-screen">
@@ -119,13 +105,12 @@ const AboutPage: React.FC = () => {
               </div>
             </div>
 
-            <div className="relative">
+            <div>
               <img 
-                src="https://images.pexels.com/photos/4484078/pexels-photo-4484078.jpeg?auto=compress&cs=tinysrgb&w=800"
-                alt="CFS Warehousing Facility"
-                className="w-full h-96 object-cover rounded-xl shadow-2xl"
+                src="https://core-docs.s3.amazonaws.com/central_public_schools_ar/article/image/large_2364f5a7-9c2f-4acf-b6e6-ced27397fcd8.png"
+                alt="Mission & Vision"
+                className="w-full h-96 object-contain"
               />
-              <div className="absolute inset-0 bg-gradient-to-tr from-blue-900 bg-opacity-20 rounded-xl"></div>
             </div>
           </div>
         </div>
@@ -155,35 +140,6 @@ const AboutPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Team */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-blue-900 mb-4">{t('team.title')}</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              {t('team.subtitle')}
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            {team.map((member, index) => (
-              <div key={index} className="text-center group">
-                <div className="relative mb-6">
-                  <img 
-                    src={member.image}
-                    alt={member.name}
-                    className="w-48 h-48 object-cover rounded-full mx-auto shadow-xl group-hover:scale-105 transition-transform duration-300"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-tr from-blue-900 bg-opacity-0 group-hover:bg-opacity-20 rounded-full transition-all duration-300"></div>
-                </div>
-                <h3 className="text-xl font-bold text-blue-900 mb-2">{member.name}</h3>
-                <p className="text-sky-600 font-medium mb-3">{member.role}</p>
-                <p className="text-gray-600 leading-relaxed max-w-sm mx-auto">{member.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Stats */}
       <section className="py-20 bg-gradient-to-br from-blue-900 to-sky-600 text-white">
