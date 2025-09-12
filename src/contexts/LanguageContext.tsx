@@ -310,6 +310,37 @@ const translations: Record<string, Translation> = {
         category: 'Services Généraux'
       }
     },
+    legal: {
+      title: 'Mentions Légales & Conformité',
+      subtitle: 'Informations légales complètes et détails de conformité pour Worldlink Logistics Ltd',
+      terms: {
+        title: 'Conditions Générales',
+        items: 'Tous les devis sont sujets à modification sans préavis., Les taux de change sont sujets à fluctuation et peuvent affecter les charges finales., Les conditions de paiement doivent être respectées comme convenu avant le début de l\'expédition., Les devis peuvent varier si le volume d\'expédition augmente ou diminue, ou si des services supplémentaires sont requis., Worldlink Logistics Ltd se réserve le droit de mettre à jour ou de modifier ces conditions à tout moment.'
+      },
+      privacy: {
+        title: 'Politique de Confidentialité',
+        description: 'Chez Worldlink Logistics Ltd, nous valorisons la confidentialité de nos clients. Toute information personnelle, y compris les emails, numéros de téléphone et détails commerciaux, sera traitée avec le plus haut niveau de confidentialité. Les données collectées via notre site web, emails ou autres canaux de communication ne seront utilisées qu\'à des fins opérationnelles et liées aux services.',
+        items: 'Nous ne partageons, ne vendons ou ne divulguons pas les informations clients à des tiers, sauf si la loi l\'exige., Tous les cookies ou le suivi numérique sont utilisés uniquement pour améliorer l\'expérience utilisateur et les performances du site web.'
+      },
+      refund: {
+        title: 'Politique de Remboursement et de Retour',
+        description: 'Les remboursements ou retours ne sont pas applicables, car Worldlink Logistics Ltd fournit des services logistiques, de fret et connexes plutôt que des biens physiques.'
+      },
+      delivery: {
+        title: 'Politique de Livraison',
+        description: 'Une politique de livraison n\'est pas applicable, car Worldlink Logistics Ltd ne vend pas ou ne distribue pas de produits de détail physiques. Les délais et conditions de livraison sont strictement basés sur les services et communiqués aux clients avant l\'expédition.'
+      },
+      disclaimer: {
+        title: 'Avertissement',
+        description: 'Worldlink Logistics Ltd fournit des services de bonne foi et conformément aux standards logistiques internationaux. Bien que tous les efforts soient faits pour assurer l\'exactitude et la livraison en temps voulu, nous ne sommes pas responsables des retards, dommages ou pertes causés par des circonstances imprévisibles hors de notre contrôle (ex: catastrophes naturelles, grèves, retards douaniers, perturbations des lignes maritimes).'
+      },
+      contact: {
+        title: 'Questions sur nos Mentions Légales & Conformité ?',
+        description: 'Si vous avez des questions concernant nos politiques légales ou procédures de conformité, n\'hésitez pas à contacter notre équipe juridique.',
+        email: 'Email :',
+        phone: 'Téléphone :'
+      }
+    },
     footer: {
       company: 'WorldLink Logistics',
       description: 'Votre partenaire de confiance pour le fret, la douane et l\'entreposage.',
@@ -429,11 +460,11 @@ const translations: Record<string, Translation> = {
         contact: {
           title: 'Besoin d\'Aide ?',
           subtitle: 'Notre équipe d\'experts est là pour vous accompagner dans tous vos projets de consolidation de fret',
-          callUs: 'Appelez-nous',
-          writeUs: 'Écrivez-nous',
+          callUs: 'Call us',
+          writeUs: 'Write to us',
           visitUs: 'Venez nous voir',
-          phone: '+230 123 4567',
-          email: 'info@worldlink.mu',
+          phone: '52582275',
+          email: 'Neeraj@worldlink.mu',
           address: 'Jin Fei Business Park',
           city: 'Riche Terre, Maurice',
           responseTime: 'Réponse sous 24h',
@@ -505,11 +536,11 @@ const translations: Record<string, Translation> = {
         contact: {
           title: 'Besoin d\'Aide ?',
           subtitle: 'Notre équipe d\'experts est là pour vous accompagner dans tous vos projets de transport',
-          callUs: 'Appelez-nous',
-          writeUs: 'Écrivez-nous',
+          callUs: 'Call us',
+          writeUs: 'Write to us',
           visitUs: 'Venez nous voir',
-          phone: '+230 123 4567',
-          email: 'info@worldlink.mu',
+          phone: '52582275',
+          email: 'Neeraj@worldlink.mu',
           address: 'Jin Fei Business Park',
           city: 'Riche Terre, Maurice'
         }
@@ -590,11 +621,11 @@ const translations: Record<string, Translation> = {
         contact: {
           title: 'Besoin d\'Aide ?',
           subtitle: 'Notre équipe d\'experts frigorifiques est là pour vous accompagner dans tous vos projets de transport alimentaire',
-          callUs: 'Appelez-nous',
-          writeUs: 'Écrivez-nous',
+          callUs: 'Call us',
+          writeUs: 'Write to us',
           visitUs: 'Venez nous voir',
-          phone: '+230 123 4567',
-          email: 'info@worldlink.mu',
+          phone: '52582275',
+          email: 'Neeraj@worldlink.mu',
           address: 'Jin Fei Business Park',
           city: 'Riche Terre, Maurice',
           responseTime: 'Réponse sous 24h',
@@ -656,11 +687,11 @@ const translations: Record<string, Translation> = {
         contact: {
           title: 'Besoin d\'Aide ?',
           subtitle: 'Notre équipe d\'experts en dédouanement est là pour vous accompagner',
-          callUs: 'Appelez-nous',
-          writeUs: 'Écrivez-nous',
+          callUs: 'Call us',
+          writeUs: 'Write to us',
           visitUs: 'Venez nous voir',
-          phone: '+230 123 4567',
-          email: 'info@worldlink.mu',
+          phone: '52582275',
+          email: 'Neeraj@worldlink.mu',
           address: 'Jin Fei Business Park',
           city: 'Riche Terre, Maurice',
           responseTime: 'Réponse sous 24h',
@@ -722,11 +753,11 @@ const translations: Record<string, Translation> = {
         contact: {
           title: 'Besoin d\'Aide ?',
           subtitle: 'Notre équipe d\'experts en transport aérien est là pour vous accompagner',
-          callUs: 'Appelez-nous',
-          writeUs: 'Écrivez-nous',
+          callUs: 'Call us',
+          writeUs: 'Write to us',
           visitUs: 'Venez nous voir',
-          phone: '+230 123 4567',
-          email: 'info@worldlink.mu',
+          phone: '52582275',
+          email: 'Neeraj@worldlink.mu',
           address: 'Jin Fei Business Park',
           city: 'Riche Terre, Maurice',
           responseTime: 'Réponse sous 24h',
@@ -787,11 +818,11 @@ const translations: Record<string, Translation> = {
         contact: {
           title: 'Besoin d\'Aide ?',
           subtitle: 'Notre équipe d\'experts est là pour vous accompagner',
-          callUs: 'Appelez-nous',
-          writeUs: 'Écrivez-nous',
+          callUs: 'Call us',
+          writeUs: 'Write to us',
           visitUs: 'Venez nous voir',
-          phone: '+230 123 4567',
-          email: 'info@worldlink.mu',
+          phone: '52582275',
+          email: 'Neeraj@worldlink.mu',
           address: 'Jin Fei Business Park',
           city: 'Riche Terre, Maurice',
           responseTime: 'Réponse sous 24h',
@@ -853,11 +884,11 @@ const translations: Record<string, Translation> = {
         contact: {
           title: 'Need Help?',
           subtitle: 'Our team of inland transport experts is here to support you',
-          callUs: 'Call Us',
-          writeUs: 'Write to Us',
+          callUs: 'Call us',
+          writeUs: 'Write to us',
           visitUs: 'Visit Us',
-          phone: '+230 123 4567',
-          email: 'info@worldlink.mu',
+          phone: '52582275',
+          email: 'Neeraj@worldlink.mu',
           address: 'Jin Fei Business Park',
           city: 'Riche Terre, Mauritius',
           responseTime: 'Response within 24h',
@@ -1209,6 +1240,37 @@ const translations: Record<string, Translation> = {
         category: 'General Services'
       }
     },
+    legal: {
+      title: 'Legal & Compliance',
+      subtitle: 'Comprehensive legal information and compliance details for Worldlink Logistics Ltd',
+      terms: {
+        title: 'Terms & Conditions',
+        items: 'All quotations are subject to change without prior notice., Rates of exchange are subject to fluctuation and may affect final charges., Payment terms must be respected as agreed prior to the commencement of shipment., Quotations may vary if shipment volume increases or decreases, or if any additional services are required., Worldlink Logistics Ltd reserves the right to update or amend these terms at any time.'
+      },
+      privacy: {
+        title: 'Privacy Policy',
+        description: 'At Worldlink Logistics Ltd, we value the privacy of our clients. Any personal information, including emails, phone numbers, and business details, will be handled with the highest level of confidentiality. Data collected through our website, emails, or other communication channels will only be used for operational and service-related purposes.',
+        items: 'We do not share, sell, or disclose client information to third parties unless required by law., Any cookies or digital tracking are used solely to improve user experience and website performance.'
+      },
+      refund: {
+        title: 'Refund & Return Policy',
+        description: 'Refunds or returns are not applicable, as Worldlink Logistics Ltd provides logistics, freight, and related services rather than physical goods.'
+      },
+      delivery: {
+        title: 'Delivery Policy',
+        description: 'A delivery policy is not applicable, as Worldlink Logistics Ltd does not sell or distribute physical retail products. Delivery timelines and conditions are strictly service-based and communicated to clients prior to shipment.'
+      },
+      disclaimer: {
+        title: 'Disclaimer',
+        description: 'Worldlink Logistics Ltd provides services in good faith and in accordance with international logistics standards. While every effort is made to ensure accuracy and timely delivery, we are not liable for delays, damages, or losses caused by unforeseen circumstances beyond our control (e.g., natural disasters, strikes, customs delays, shipping line disruptions).'
+      },
+      contact: {
+        title: 'Questions about our Legal & Compliance?',
+        description: 'If you have any questions regarding our legal policies or compliance procedures, please don\'t hesitate to contact our legal team.',
+        email: 'Email:',
+        phone: 'Phone:'
+      }
+    },
     footer: {
       company: 'WorldLink Logistics',
       description: 'Your trusted partner for freight, customs and warehousing.',
@@ -1328,11 +1390,11 @@ const translations: Record<string, Translation> = {
         contact: {
           title: 'Need Help?',
           subtitle: 'Our team of experts is here to support you in all your freight consolidation projects',
-          callUs: 'Call Us',
-          writeUs: 'Write to Us',
+          callUs: 'Call us',
+          writeUs: 'Write to us',
           visitUs: 'Visit Us',
-          phone: '+230 123 4567',
-          email: 'info@worldlink.mu',
+          phone: '52582275',
+          email: 'Neeraj@worldlink.mu',
           address: 'Jin Fei Business Park',
           city: 'Riche Terre, Mauritius',
           responseTime: 'Response within 24h',
@@ -1404,11 +1466,11 @@ const translations: Record<string, Translation> = {
         contact: {
           title: 'Need Help?',
           subtitle: 'Our team of experts is here to support you in all your transport projects',
-          callUs: 'Call Us',
-          writeUs: 'Write to Us',
+          callUs: 'Call us',
+          writeUs: 'Write to us',
           visitUs: 'Visit Us',
-          phone: '+230 123 4567',
-          email: 'info@worldlink.mu',
+          phone: '52582275',
+          email: 'Neeraj@worldlink.mu',
           address: 'Jin Fei Business Park',
           city: 'Riche Terre, Mauritius'
         }
@@ -1489,11 +1551,11 @@ const translations: Record<string, Translation> = {
         contact: {
           title: 'Need Help?',
           subtitle: 'Our team of refrigerated experts is here to support you in all your food transport projects',
-          callUs: 'Call Us',
-          writeUs: 'Write to Us',
+          callUs: 'Call us',
+          writeUs: 'Write to us',
           visitUs: 'Visit Us',
-          phone: '+230 123 4567',
-          email: 'info@worldlink.mu',
+          phone: '52582275',
+          email: 'Neeraj@worldlink.mu',
           address: 'Jin Fei Business Park',
           city: 'Riche Terre, Mauritius',
           responseTime: 'Response within 24h',
@@ -1555,11 +1617,11 @@ const translations: Record<string, Translation> = {
         contact: {
           title: 'Need Help?',
           subtitle: 'Our team of customs experts is here to support you',
-          callUs: 'Call Us',
-          writeUs: 'Write to Us',
+          callUs: 'Call us',
+          writeUs: 'Write to us',
           visitUs: 'Visit Us',
-          phone: '+230 123 4567',
-          email: 'info@worldlink.mu',
+          phone: '52582275',
+          email: 'Neeraj@worldlink.mu',
           address: 'Jin Fei Business Park',
           city: 'Riche Terre, Mauritius',
           responseTime: 'Response within 24h',
@@ -1621,11 +1683,11 @@ const translations: Record<string, Translation> = {
         contact: {
           title: 'Need Help?',
           subtitle: 'Our team of air freight experts is here to support you',
-          callUs: 'Call Us',
-          writeUs: 'Write to Us',
+          callUs: 'Call us',
+          writeUs: 'Write to us',
           visitUs: 'Visit Us',
-          phone: '+230 123 4567',
-          email: 'info@worldlink.mu',
+          phone: '52582275',
+          email: 'Neeraj@worldlink.mu',
           address: 'Jin Fei Business Park',
           city: 'Riche Terre, Mauritius',
           responseTime: 'Response within 24h',
@@ -1687,11 +1749,11 @@ const translations: Record<string, Translation> = {
         contact: {
           title: 'Need Help?',
           subtitle: 'Our team of experts is here to support you',
-          callUs: 'Call Us',
-          writeUs: 'Write to Us',
+          callUs: 'Call us',
+          writeUs: 'Write to us',
           visitUs: 'Visit Us',
-          phone: '+230 123 4567',
-          email: 'info@worldlink.mu',
+          phone: '52582275',
+          email: 'Neeraj@worldlink.mu',
           address: 'Jin Fei Business Park',
           city: 'Riche Terre, Mauritius',
           responseTime: 'Response within 24h',
@@ -1753,11 +1815,11 @@ const translations: Record<string, Translation> = {
         contact: {
           title: 'Need Help?',
           subtitle: 'Our team of inland transport experts is here to support you',
-          callUs: 'Call Us',
-          writeUs: 'Write to Us',
+          callUs: 'Call us',
+          writeUs: 'Write to us',
           visitUs: 'Visit Us',
-          phone: '+230 123 4567',
-          email: 'info@worldlink.mu',
+          phone: '52582275',
+          email: 'Neeraj@worldlink.mu',
           address: 'Jin Fei Business Park',
           city: 'Riche Terre, Mauritius',
           responseTime: 'Response within 24h',

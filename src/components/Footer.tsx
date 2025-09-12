@@ -96,14 +96,63 @@ const Footer: React.FC<FooterProps> = ({ onPageChange }) => {
             <div>
               <h3 className="text-xl font-semibold mb-2">{t('nav.services')}</h3>
               <div className="h-0.5 w-12 bg-white mb-6"></div>
-              <ul className="space-y-3 text-gray-300">
-                <li>Freight Consolidation & Full Container Loads</li>
-                <li>Personal Effects & Project Shipments</li>
-                <li>Refrigerated Food Containers</li>
-                <li>Customs Clearing & Compliance</li>
-                <li>Airfreight Services</li>
-                <li>Product Sourcing & Procurement</li>
-                <li>Inland Transport & CFS Warehousing</li>
+              <ul className="space-y-3">
+                <li>
+                  <button
+                    onClick={() => onPageChange('freight-consolidation')}
+                    className="text-gray-300 hover:text-white transition-colors duration-200 text-left"
+                  >
+                    Freight Consolidation & Full Container Loads
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => onPageChange('personal-effects')}
+                    className="text-gray-300 hover:text-white transition-colors duration-200 text-left"
+                  >
+                    Personal Effects & Project Shipments
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => onPageChange('refrigerated-containers')}
+                    className="text-gray-300 hover:text-white transition-colors duration-200 text-left"
+                  >
+                    Refrigerated Food Containers
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => onPageChange('customs-clearing')}
+                    className="text-gray-300 hover:text-white transition-colors duration-200 text-left"
+                  >
+                    Customs Clearing & Compliance
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => onPageChange('airfreight')}
+                    className="text-gray-300 hover:text-white transition-colors duration-200 text-left"
+                  >
+                    Airfreight Services
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => onPageChange('product-sourcing')}
+                    className="text-gray-300 hover:text-white transition-colors duration-200 text-left"
+                  >
+                    Product Sourcing & Procurement
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => onPageChange('inland-transport')}
+                    className="text-gray-300 hover:text-white transition-colors duration-200 text-left"
+                  >
+                    Inland Transport & CFS Warehousing
+                  </button>
+                </li>
               </ul>
               
               {/* Social Media - Right side */}

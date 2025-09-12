@@ -16,9 +16,9 @@ const Legal: React.FC = () => {
             <div className="flex justify-center mb-4">
               <Shield className="h-16 w-16 text-orange-400" />
             </div>
-            <h1 className="text-4xl font-bold mb-4">Legal & Compliance</h1>
+            <h1 className="text-4xl font-bold mb-4">{t('legal.title')}</h1>
             <p className="text-xl text-blue-100 max-w-3xl mx-auto">
-              Comprehensive legal information and compliance details for Worldlink Logistics Ltd
+              {t('legal.subtitle')}
             </p>
           </div>
         </div>
@@ -32,15 +32,13 @@ const Legal: React.FC = () => {
           <div className="bg-white rounded-lg shadow-lg p-8">
             <div className="flex items-center mb-6">
               <FileText className="h-8 w-8 text-blue-600 mr-3" />
-              <h2 className="text-2xl font-bold text-gray-900">Terms & Conditions</h2>
+              <h2 className="text-2xl font-bold text-gray-900">{t('legal.terms.title')}</h2>
             </div>
             <div className="space-y-4 text-gray-700">
               <ol className="list-decimal list-inside space-y-3">
-                <li>All quotations are subject to change without prior notice.</li>
-                <li>Rates of exchange are subject to fluctuation and may affect final charges.</li>
-                <li>Payment terms must be respected as agreed prior to the commencement of shipment.</li>
-                <li>Quotations may vary if shipment volume increases or decreases, or if any additional services are required.</li>
-                <li>Worldlink Logistics Ltd reserves the right to update or amend these terms at any time.</li>
+                {t('legal.terms.items').split(',').map((item: string, index: number) => (
+                  <li key={index}>{item.trim()}</li>
+                ))}
               </ol>
             </div>
           </div>
@@ -49,18 +47,16 @@ const Legal: React.FC = () => {
           <div className="bg-white rounded-lg shadow-lg p-8">
             <div className="flex items-center mb-6">
               <Lock className="h-8 w-8 text-green-600 mr-3" />
-              <h2 className="text-2xl font-bold text-gray-900">Privacy Policy</h2>
+              <h2 className="text-2xl font-bold text-gray-900">{t('legal.privacy.title')}</h2>
             </div>
             <div className="space-y-4 text-gray-700">
               <p>
-                At Worldlink Logistics Ltd, we value the privacy of our clients. Any personal information, including
-                emails, phone numbers, and business details, will be handled with the highest level of
-                confidentiality. Data collected through our website, emails, or other communication channels will
-                only be used for operational and service-related purposes.
+                {t('legal.privacy.description')}
               </p>
               <ul className="list-disc list-inside space-y-2 ml-4">
-                <li>We do not share, sell, or disclose client information to third parties unless required by law.</li>
-                <li>Any cookies or digital tracking are used solely to improve user experience and website performance.</li>
+                {t('legal.privacy.items').split(',').map((item: string, index: number) => (
+                  <li key={index}>{item.trim()}</li>
+                ))}
               </ul>
             </div>
           </div>
@@ -69,12 +65,11 @@ const Legal: React.FC = () => {
           <div className="bg-white rounded-lg shadow-lg p-8">
             <div className="flex items-center mb-6">
               <Truck className="h-8 w-8 text-orange-600 mr-3" />
-              <h2 className="text-2xl font-bold text-gray-900">Refund & Return Policy</h2>
+              <h2 className="text-2xl font-bold text-gray-900">{t('legal.refund.title')}</h2>
             </div>
             <div className="text-gray-700">
               <p>
-                Refunds or returns are not applicable, as Worldlink Logistics Ltd provides logistics, freight, and
-                related services rather than physical goods.
+                {t('legal.refund.description')}
               </p>
             </div>
           </div>
@@ -83,13 +78,11 @@ const Legal: React.FC = () => {
           <div className="bg-white rounded-lg shadow-lg p-8">
             <div className="flex items-center mb-6">
               <Truck className="h-8 w-8 text-purple-600 mr-3" />
-              <h2 className="text-2xl font-bold text-gray-900">Delivery Policy</h2>
+              <h2 className="text-2xl font-bold text-gray-900">{t('legal.delivery.title')}</h2>
             </div>
             <div className="text-gray-700">
               <p>
-                A delivery policy is not applicable, as Worldlink Logistics Ltd does not sell or distribute physical
-                retail products. Delivery timelines and conditions are strictly service-based and communicated to
-                clients prior to shipment.
+                {t('legal.delivery.description')}
               </p>
             </div>
           </div>
@@ -98,32 +91,28 @@ const Legal: React.FC = () => {
           <div className="bg-white rounded-lg shadow-lg p-8">
             <div className="flex items-center mb-6">
               <AlertTriangle className="h-8 w-8 text-red-600 mr-3" />
-              <h2 className="text-2xl font-bold text-gray-900">Disclaimer</h2>
+              <h2 className="text-2xl font-bold text-gray-900">{t('legal.disclaimer.title')}</h2>
             </div>
             <div className="text-gray-700">
               <p>
-                Worldlink Logistics Ltd provides services in good faith and in accordance with international
-                logistics standards. While every effort is made to ensure accuracy and timely delivery, we are not
-                liable for delays, damages, or losses caused by unforeseen circumstances beyond our control (e.g.,
-                natural disasters, strikes, customs delays, shipping line disruptions).
+                {t('legal.disclaimer.description')}
               </p>
             </div>
           </div>
 
           {/* Contact Information */}
           <div className="bg-blue-50 rounded-lg p-8 text-center">
-            <h3 className="text-xl font-semibold text-blue-900 mb-4">Questions about our Legal & Compliance?</h3>
+            <h3 className="text-xl font-semibold text-blue-900 mb-4">{t('legal.contact.title')}</h3>
             <p className="text-blue-700 mb-6">
-              If you have any questions regarding our legal policies or compliance procedures, 
-              please don't hesitate to contact our legal team.
+              {t('legal.contact.description')}
             </p>
             <div className="flex justify-center space-x-4">
               <div className="text-blue-800">
-                <p className="font-semibold">Email:</p>
-                <p>legal@worldlink.mu</p>
+                <p className="font-semibold">{t('legal.contact.email')}</p>
+                <p>Neeraj@worldlink.mu</p>
               </div>
               <div className="text-blue-800">
-                <p className="font-semibold">Phone:</p>
+                <p className="font-semibold">{t('legal.contact.phone')}</p>
                 <p>+230 52582275</p>
               </div>
             </div>
