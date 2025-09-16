@@ -239,8 +239,9 @@ const CustomsClearingPage: React.FC<CustomsClearingProps> = ({ onPageChange }) =
                 <Phone className="h-8 w-8 text-sky-600" />
               </div>
               <h3 className="text-xl font-bold text-blue-900 mb-4">{t('servicePages.customsClearing.contact.callUs')}</h3>
-              <p className="text-gray-600">+230 123 4567</p>
-              <p className="text-gray-600">Mon-Fri: 8am-6pm</p>
+              <p className="text-gray-600">+230 236 3189</p>
+              <p className="text-gray-600">8:30 to 17:00 mon - friday</p>
+              <p className="text-gray-600">8:30 to 12:00 sat</p>
             </div>
 
             <div className="text-center p-8 bg-white rounded-xl shadow-lg">

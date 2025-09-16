@@ -468,7 +468,7 @@ const translations: Record<string, Translation> = {
           address: 'Jin Fei Business Park',
           city: 'Riche Terre, Maurice',
           responseTime: 'Réponse sous 24h',
-          businessHours: 'Lun-Ven: 8h-18h'
+          businessHours: '8:30 to 17:00 mon - friday, 8:30 to 12:00 sat'
         }
       },
       personalEffects: {
@@ -539,7 +539,7 @@ const translations: Record<string, Translation> = {
           callUs: 'Call us',
           writeUs: 'Write to us',
           visitUs: 'Venez nous voir',
-          phone: '52582275',
+          phone: '+230 236 3189',
           email: 'Neeraj@worldlink.mu',
           address: 'Jin Fei Business Park',
           city: 'Riche Terre, Maurice'
@@ -624,12 +624,12 @@ const translations: Record<string, Translation> = {
           callUs: 'Call us',
           writeUs: 'Write to us',
           visitUs: 'Venez nous voir',
-          phone: '52582275',
+          phone: '+230 236 3189',
           email: 'Neeraj@worldlink.mu',
           address: 'Jin Fei Business Park',
           city: 'Riche Terre, Maurice',
           responseTime: 'Réponse sous 24h',
-          businessHours: 'Lun-Ven: 8h-18h'
+          businessHours: '8:30 to 17:00 mon - friday, 8:30 to 12:00 sat'
         }
       },
       customsClearing: {
@@ -690,12 +690,12 @@ const translations: Record<string, Translation> = {
           callUs: 'Call us',
           writeUs: 'Write to us',
           visitUs: 'Venez nous voir',
-          phone: '52582275',
+          phone: '+230 236 3189',
           email: 'Neeraj@worldlink.mu',
           address: 'Jin Fei Business Park',
           city: 'Riche Terre, Maurice',
           responseTime: 'Réponse sous 24h',
-          businessHours: 'Lun-Ven: 8h-18h'
+          businessHours: '8:30 to 17:00 mon - friday, 8:30 to 12:00 sat'
         }
       },
       airfreight: {
@@ -756,7 +756,7 @@ const translations: Record<string, Translation> = {
           callUs: 'Call us',
           writeUs: 'Write to us',
           visitUs: 'Venez nous voir',
-          phone: '52582275',
+          phone: '+230 236 3189',
           email: 'Neeraj@worldlink.mu',
           address: 'Jin Fei Business Park',
           city: 'Riche Terre, Maurice',
@@ -821,12 +821,12 @@ const translations: Record<string, Translation> = {
           callUs: 'Call us',
           writeUs: 'Write to us',
           visitUs: 'Venez nous voir',
-          phone: '52582275',
+          phone: '+230 236 3189',
           email: 'Neeraj@worldlink.mu',
           address: 'Jin Fei Business Park',
           city: 'Riche Terre, Maurice',
           responseTime: 'Réponse sous 24h',
-          businessHours: 'Lun-Ven: 8h-18h'
+          businessHours: '8:30 to 17:00 mon - friday, 8:30 to 12:00 sat'
         }
       },
       inlandTransport: {
@@ -892,7 +892,7 @@ const translations: Record<string, Translation> = {
           address: 'Jin Fei Business Park',
           city: 'Riche Terre, Mauritius',
           responseTime: 'Response within 24h',
-          businessHours: 'Mon-Fri: 8am-6pm'
+          businessHours: '8:30 to 17:00 mon - friday, 8:30 to 12:00 sat'
         }
       }
     },
@@ -1393,12 +1393,12 @@ const translations: Record<string, Translation> = {
           callUs: 'Call us',
           writeUs: 'Write to us',
           visitUs: 'Visit Us',
-          phone: '52582275',
+          phone: '+230 236 3189',
           email: 'Neeraj@worldlink.mu',
           address: 'Jin Fei Business Park',
           city: 'Riche Terre, Mauritius',
           responseTime: 'Response within 24h',
-          businessHours: 'Mon-Fri: 8am-6pm'
+          businessHours: '8:30 to 17:00 mon - friday, 8:30 to 12:00 sat'
         }
       },
       personalEffects: {
@@ -1469,7 +1469,7 @@ const translations: Record<string, Translation> = {
           callUs: 'Call us',
           writeUs: 'Write to us',
           visitUs: 'Visit Us',
-          phone: '52582275',
+          phone: '+230 236 3189',
           email: 'Neeraj@worldlink.mu',
           address: 'Jin Fei Business Park',
           city: 'Riche Terre, Mauritius'
@@ -1559,7 +1559,7 @@ const translations: Record<string, Translation> = {
           address: 'Jin Fei Business Park',
           city: 'Riche Terre, Mauritius',
           responseTime: 'Response within 24h',
-          businessHours: 'Mon-Fri: 8am-18h'
+          businessHours: '8:30 to 17:00 mon - friday, 8:30 to 12:00 sat'
         }
       },
       customsClearing: {
@@ -1620,12 +1620,12 @@ const translations: Record<string, Translation> = {
           callUs: 'Call us',
           writeUs: 'Write to us',
           visitUs: 'Visit Us',
-          phone: '52582275',
+          phone: '+230 236 3189',
           email: 'Neeraj@worldlink.mu',
           address: 'Jin Fei Business Park',
           city: 'Riche Terre, Mauritius',
           responseTime: 'Response within 24h',
-          businessHours: 'Mon-Fri: 8am-18h'
+          businessHours: '8:30 to 17:00 mon - friday, 8:30 to 12:00 sat'
         }
       },
       airfreight: {
@@ -1686,12 +1686,12 @@ const translations: Record<string, Translation> = {
           callUs: 'Call us',
           writeUs: 'Write to us',
           visitUs: 'Visit Us',
-          phone: '52582275',
+          phone: '+230 236 3189',
           email: 'Neeraj@worldlink.mu',
           address: 'Jin Fei Business Park',
           city: 'Riche Terre, Mauritius',
           responseTime: 'Response within 24h',
-          businessHours: 'Mon-Fri: 8am-18h'
+          businessHours: '8:30 to 17:00 mon - friday, 8:30 to 12:00 sat'
         }
       },
       productSourcing: {
@@ -1752,12 +1752,12 @@ const translations: Record<string, Translation> = {
           callUs: 'Call us',
           writeUs: 'Write to us',
           visitUs: 'Visit Us',
-          phone: '52582275',
+          phone: '+230 236 3189',
           email: 'Neeraj@worldlink.mu',
           address: 'Jin Fei Business Park',
           city: 'Riche Terre, Mauritius',
           responseTime: 'Response within 24h',
-          businessHours: 'Mon-Fri: 8am-6pm'
+          businessHours: '8:30 to 17:00 mon - friday, 8:30 to 12:00 sat'
         }
       },
       inlandTransport: {
@@ -1818,12 +1818,12 @@ const translations: Record<string, Translation> = {
           callUs: 'Call us',
           writeUs: 'Write to us',
           visitUs: 'Visit Us',
-          phone: '52582275',
+          phone: '+230 236 3189',
           email: 'Neeraj@worldlink.mu',
           address: 'Jin Fei Business Park',
           city: 'Riche Terre, Mauritius',
           responseTime: 'Response within 24h',
-          businessHours: 'Mon-Fri: 8am-6pm'
+          businessHours: '8:30 to 17:00 mon - friday, 8:30 to 12:00 sat'
         }
       }
     },

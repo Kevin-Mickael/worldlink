@@ -113,7 +113,9 @@ const Legal: React.FC = () => {
               </div>
               <div className="text-blue-800">
                 <p className="font-semibold">{t('legal.contact.phone')}</p>
-                <p>+230 52582275</p>
+                <p>+230 236 3189</p>
+                <p className="text-sm mt-2">8:30 to 17:00 mon - friday</p>
+                <p className="text-sm">8:30 to 12:00 sat</p>
               </div>
             </div>
           </div>
