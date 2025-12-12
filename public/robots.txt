@@ -1,56 +1,12 @@
 User-agent: *
 Allow: /
 
-# Sitemap
-Sitemap: https://worldlinklogistics.mu/sitemap.xml
-
-# Crawl-delay pour éviter de surcharger le serveur
-Crawl-delay: 1
-
-# Permettre l'accès aux ressources importantes
-Allow: /assets/
-Allow: /images/
-Allow: /favicon.ico
-Allow: /worldlink.png
-
-# Empêcher l'indexation des fichiers de développement
+# Prevent indexing of development files
 Disallow: /src/
 Disallow: /node_modules/
 Disallow: /dist/
 Disallow: /*.js.map
 Disallow: /*.css.map
 
-# Permettre l'accès aux pages de services
-Allow: /freight-consolidation
-Allow: /personal-effects
-Allow: /refrigerated-containers
-Allow: /customs-clearing
-Allow: /airfreight
-Allow: /product-sourcing
-Allow: /inland-transport
-
-# Permettre l'accès aux pages principales
-Allow: /about
-Allow: /services
-Allow: /contact
-Allow: /faq
-Allow: /legal
-
-# Optimisations pour Google
-User-agent: Googlebot
-Allow: /
-Crawl-delay: 0.5
-
-# Optimisations pour Bing
-User-agent: Bingbot
-Allow: /
-Crawl-delay: 1
-
-# Optimisations pour les autres moteurs
-User-agent: Slurp
-Allow: /
-Crawl-delay: 2
-
-User-agent: DuckDuckBot
-Allow: /
-Crawl-delay: 1
+# Sitemap
+Sitemap: https://worldlinklogistics.mu/sitemap.xml
