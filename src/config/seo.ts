@@ -8,7 +8,7 @@ export interface SEOMetadata {
 }
 
 export const getSEOMetadata = (page: string): SEOMetadata => {
-  const baseUrl = 'https://worldlink.mu';
+  const baseUrl = 'https://worldlinklogistics.mu';
   const baseKeywords = 'Worldlink Logistics Mauritius, Freight Forwarder Mauritius, Freight Company Mauritius, Shipping Company Mauritius, Customs Clearing Mauritius, Airfreight Mauritius, Sea Freight Mauritius, Cargo Services Mauritius, Freight Consolidation Mauritius, Container Shipping Mauritius';
 
   const seoData: Record<string, SEOMetadata> = {
@@ -30,12 +30,11 @@ export const getSEOMetadata = (page: string): SEOMetadata => {
           "streetAddress": "Jin Fei Business & Industrial Park",
           "addressLocality": "Riche Terre",
           "addressRegion": "Mauritius",
-          "postalCode": "",
           "addressCountry": "MU"
         },
         "contactPoint": {
           "@type": "ContactPoint",
-          "telephone": "+230-123-4567",
+          "telephone": "+230 5258 2275",
           "contactType": "customer service",
           "areaServed": "MU",
           "availableLanguage": ["English", "French"]
@@ -281,9 +280,9 @@ export const getSEOMetadata = (page: string): SEOMetadata => {
   return seoData[page] || seoData.home;
 };
 
-export const getLocalizedSEOMetadata = (page: string, t: (key: string) => string, lang: string): SEOMetadata => {
+export const getLocalizedSEOMetadata = (page: string, _t: (key: string) => string, lang: string): SEOMetadata => {
   const metadata = getSEOMetadata(page);
-  
+
   // Adaptation des titres et descriptions selon la langue
   if (lang === 'fr') {
     // Traductions françaises spécifiques pour le SEO

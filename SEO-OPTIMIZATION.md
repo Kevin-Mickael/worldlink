@@ -64,7 +64,7 @@ Ce document détaille toutes les optimisations SEO mises en place pour le site W
 <meta property="og:description" content="Premier fournisseur..." />
 <meta property="og:image" content="/worldlink.png" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://worldlink.mu" />
+  <meta property="og:url" content="https://worldlinklogistics.mu" />
 ```
 
 ### Twitter Cards
@@ -82,8 +82,8 @@ Ce document détaille toutes les optimisations SEO mises en place pour le site W
   "@context": "https://schema.org",
   "@type": "Organization",
   "name": "Worldlink Logistics Ltd",
-  "url": "https://worldlink.mu",
-  "logo": "https://worldlink.mu/worldlink.png",
+  "url": "https://worldlinklogistics.mu",
+  "logo": "https://worldlinklogistics.mu/worldlink.png",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "Jin Fei Business & Industrial Park",
@@ -108,9 +108,9 @@ Ce document détaille toutes les optimisations SEO mises en place pour le site W
 
 ### Balises Hreflang
 ```html
-<link rel="alternate" hreflang="en" href="https://worldlink.mu" />
-<link rel="alternate" hreflang="fr" href="https://worldlink.mu/fr" />
-<link rel="alternate" hreflang="x-default" href="https://worldlink.mu" />
+<link rel="alternate" hreflang="en" href="https://worldlinklogistics.mu" />
+<link rel="alternate" hreflang="fr" href="https://worldlinklogistics.mu/fr" />
+<link rel="alternate" hreflang="x-default" href="https://worldlinklogistics.mu" />
 ```
 
 ### Contenu Localisé
@@ -142,7 +142,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://worldlink.mu/sitemap.xml
+Sitemap: https://worldlinklogistics.mu/sitemap.xml
 
 # Optimisations par moteur
 User-agent: Googlebot
@@ -171,7 +171,7 @@ Crawl-delay: 1
 ## 🚀 Recommandations de Déploiement
 
 ### 1. Configuration Google Search Console
-1. Ajouter la propriété `https://worldlink.mu`
+1. Ajouter la propriété `https://worldlinklogistics.mu`
 2. Vérifier la propriété (fichier HTML ou balise meta)
 3. Soumettre le sitemap
 4. Configurer les paramètres internationaux
@@ -225,7 +225,7 @@ Crawl-delay: 1
 
 ### Avant le Déploiement
 1. Remplacer `G-XXXXXXXXXX` par le vrai ID Google Analytics
-2. Vérifier que le domaine `worldlink.mu` est configuré
+2. Vérifier que le domaine `worldlinklogistics.mu` est configuré
 3. Tester toutes les pages en mode production
 4. Valider les données structurées
 

@@ -13,7 +13,7 @@ const cookieOptions = {
   sameSite: 'strict',       // Protection CSRF
   maxAge: 365 * 24 * 60 * 60 * 1000, // 1 an
   path: '/',                // Disponible sur tout le site
-  domain: process.env.NODE_ENV === 'production' ? '.worldlink.mu' : 'localhost'
+  domain: process.env.NODE_ENV === 'production' ? '.worldlinklogistics.mu' : 'localhost'
 };
 
 // Middleware pour parser les cookies
@@ -93,7 +93,7 @@ function setSecureCookie($name, $value, $days = 365) {
     $options = [
         'expires' => $expires,
         'path' => '/',
-        'domain' => $_SERVER['HTTP_HOST'] === 'localhost' ? 'localhost' : '.worldlink.mu',
+        'domain' => $_SERVER['HTTP_HOST'] === 'localhost' ? 'localhost' : '.worldlinklogistics.mu',
         'secure' => true,
         'httponly' => true,
         'samesite' => 'Strict'

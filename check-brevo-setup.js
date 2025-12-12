@@ -41,9 +41,9 @@ const checkBrevoSetup = () => {
   console.log('   - Attendez que la vérification soit effective\n');
   
   console.log('✅ SOLUTION 2: Utiliser un domaine personnalisé');
-  console.log('   - Configurez votre domaine "worldlink.mu" dans Brevo');
+  console.log('   - Configurez votre domaine "worldlinklogistics.mu" dans Brevo');
   console.log('   - Ajoutez les enregistrements DNS requis');
-  console.log('   - Utilisez "noreply@worldlink.mu" comme expéditeur\n');
+  console.log('   - Utilisez "noreply@worldlinklogistics.mu" comme expéditeur\n');
   
   console.log('✅ SOLUTION 3: Vérifier les logs détaillés');
   console.log('   - Dans Cloudflare Pages, allez dans Functions > Logs');

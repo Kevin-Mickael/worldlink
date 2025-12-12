@@ -1,13 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Truck, Warehouse, Package, Home, Building2, CheckCircle, Clock, Shield, Globe, Container, Plane, ShoppingCart, Ship, Snowflake, FileText } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { usePageTitle } from '../hooks/usePageTitle';
 
-interface ServicesProps {
-  onPageChange: (page: string) => void;
-}
-
-const ServicesPage: React.FC<ServicesProps> = ({ onPageChange }) => {
+const ServicesPage: React.FC = () => {
   usePageTitle('Services - WorldLink Logistics');
   const { t } = useLanguage();
 
@@ -171,7 +168,7 @@ const ServicesPage: React.FC<ServicesProps> = ({ onPageChange }) => {
                   </div>
                 </div>
                 <div className="lg:w-1/2">
-                  <img 
+                  <img
                     src={service.image}
                     alt={service.title}
                     className="w-full h-96 object-cover rounded-2xl shadow-2xl"
@@ -245,12 +242,12 @@ const ServicesPage: React.FC<ServicesProps> = ({ onPageChange }) => {
           <p className="text-xl text-sky-200 mb-10">
             Contactez-nous dès aujourd'hui pour discuter de vos besoins et obtenir un devis personnalisé.
           </p>
-          <button
-            onClick={() => onPageChange('contact')}
-            className="bg-sky-500 hover:bg-sky-400 text-white px-10 py-5 rounded-full text-xl font-semibold transition-all duration-300 hover:scale-105 shadow-xl"
+          <Link
+            to="/contact"
+            className="bg-sky-500 hover:bg-sky-400 text-white px-10 py-5 rounded-full text-xl font-semibold transition-all duration-300 hover:scale-105 shadow-xl inline-block"
           >
             Demander un Devis
-          </button>
+          </Link>
         </div>
       </section>
     </div>

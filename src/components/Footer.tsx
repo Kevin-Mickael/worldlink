@@ -1,22 +1,19 @@
 import React from 'react';
 import { Mail, Phone, MapPin, Building, Facebook } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { useLanguage } from '../contexts/LanguageContext';
 
 const publicAsset = (relativePath: string) => `${import.meta.env.BASE_URL}${relativePath.replace(/^\//, '')}`;
 
-interface FooterProps {
-  onPageChange: (page: string) => void;
-}
-
-const Footer: React.FC<FooterProps> = ({ onPageChange }) => {
+const Footer: React.FC = () => {
   const { t } = useLanguage();
 
   const quickLinks = [
-    { id: 'home', label: t('nav.home') },
-    { id: 'about', label: t('nav.about') },
-    { id: 'services', label: t('nav.services') },
-    { id: 'contact', label: t('contact') },
-    { id: 'faq', label: t('nav.faq') }
+    { id: 'home', label: t('nav.home'), path: '/' },
+    { id: 'about', label: t('nav.about'), path: '/about' },
+    { id: 'services', label: t('nav.services'), path: '/services' },
+    { id: 'contact', label: t('contact'), path: '/contact' },
+    { id: 'faq', label: t('nav.faq'), path: '/faq' }
   ];
 
   return (
@@ -25,7 +22,7 @@ const Footer: React.FC<FooterProps> = ({ onPageChange }) => {
       <div className="bg-[#0b2436] text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* Company Info */}
+            {/* Company Info */}
             <div className="col-span-1 lg:col-span-2">
               <div className="flex items-center mb-4">
                 <img src={publicAsset('worldlink.png')} alt="WorldLink" className="h-10 w-auto" />
@@ -33,7 +30,7 @@ const Footer: React.FC<FooterProps> = ({ onPageChange }) => {
               <p className="text-gray-300 mb-6 max-w-md">
                 {t('footer.description')}
               </p>
-              
+
               {/* Business Information */}
               <div className="space-y-3 text-gray-200 mb-6">
                 <div className="flex items-start space-x-3">
@@ -81,12 +78,12 @@ const Footer: React.FC<FooterProps> = ({ onPageChange }) => {
               <ul className="space-y-3">
                 {quickLinks.map((link) => (
                   <li key={link.id}>
-                    <button
-                      onClick={() => onPageChange(link.id)}
-                      className="text-gray-300 hover:text-white transition-colors duration-200"
+                    <Link
+                      to={link.path}
+                      className="text-gray-300 hover:text-white transition-colors duration-200 block"
                     >
                       {link.label}
-                    </button>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -98,74 +95,85 @@ const Footer: React.FC<FooterProps> = ({ onPageChange }) => {
               <div className="h-0.5 w-12 bg-white mb-6"></div>
               <ul className="space-y-3">
                 <li>
-                  <button
-                    onClick={() => onPageChange('freight-consolidation')}
-                    className="text-gray-300 hover:text-white transition-colors duration-200 text-left"
+                  <Link
+                    to="/freight-consolidation"
+                    className="text-gray-300 hover:text-white transition-colors duration-200 text-left block"
                   >
                     Freight Consolidation & Full Container Loads
-                  </button>
+                  </Link>
                 </li>
                 <li>
-                  <button
-                    onClick={() => onPageChange('personal-effects')}
-                    className="text-gray-300 hover:text-white transition-colors duration-200 text-left"
+                  <Link
+                    to="/personal-effects"
+                    className="text-gray-300 hover:text-white transition-colors duration-200 text-left block"
                   >
                     Personal Effects & Project Shipments
-                  </button>
+                  </Link>
                 </li>
                 <li>
-                  <button
-                    onClick={() => onPageChange('refrigerated-containers')}
-                    className="text-gray-300 hover:text-white transition-colors duration-200 text-left"
+                  <Link
+                    to="/refrigerated-containers"
+                    className="text-gray-300 hover:text-white transition-colors duration-200 text-left block"
                   >
                     Refrigerated Food Containers
-                  </button>
+                  </Link>
                 </li>
                 <li>
-                  <button
-                    onClick={() => onPageChange('customs-clearing')}
-                    className="text-gray-300 hover:text-white transition-colors duration-200 text-left"
+                  <Link
+                    to="/customs-clearing"
+                    className="text-gray-300 hover:text-white transition-colors duration-200 text-left block"
                   >
                     Customs Clearing & Compliance
-                  </button>
+                  </Link>
                 </li>
                 <li>
-                  <button
-                    onClick={() => onPageChange('airfreight')}
-                    className="text-gray-300 hover:text-white transition-colors duration-200 text-left"
+                  <Link
+                    to="/airfreight"
+                    className="text-gray-300 hover:text-white transition-colors duration-200 text-left block"
                   >
                     Airfreight Services
-                  </button>
+                  </Link>
                 </li>
                 <li>
-                  <button
-                    onClick={() => onPageChange('product-sourcing')}
-                    className="text-gray-300 hover:text-white transition-colors duration-200 text-left"
+                  <Link
+                    to="/product-sourcing"
+                    className="text-gray-300 hover:text-white transition-colors duration-200 text-left block"
                   >
                     Product Sourcing & Procurement
-                  </button>
+                  </Link>
                 </li>
                 <li>
-                  <button
-                    onClick={() => onPageChange('inland-transport')}
-                    className="text-gray-300 hover:text-white transition-colors duration-200 text-left"
+                  <Link
+                    to="/inland-transport"
+                    className="text-gray-300 hover:text-white transition-colors duration-200 text-left block"
                   >
                     Inland Transport & CFS Warehousing
-                  </button>
+                  </Link>
                 </li>
               </ul>
-              
+
               {/* Social Media - Right side */}
               <div className="mt-6 pt-6 border-t border-gray-600">
                 <div className="flex items-center space-x-3">
                   <Facebook className="h-5 w-5 text-sky-400" />
-                  <a 
-                    href="https://www.facebook.com/worldlinklogisticsltd" 
-                    target="_blank" 
+                  <a
+                    href="https://www.facebook.com/worldlinklogisticsltd"
+                    target="_blank"
                     rel="noopener noreferrer"
                     className="text-gray-300 hover:text-white transition-colors duration-200"
                   >
                     Follow us on Facebook
+                  </a>
+                </div>
+                <div className="mt-2 text-sm text-gray-400">
+                  <span className="mr-1">{t('footer.createdBy')}</span>
+                  <a
+                    href="https://creativfolio.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sky-400 hover:underline"
+                  >
+                    Création de site web & Portfolio
                   </a>
                 </div>
               </div>
@@ -180,12 +188,12 @@ const Footer: React.FC<FooterProps> = ({ onPageChange }) => {
           <div className="flex justify-center items-center space-x-2 text-sm">
             <span className="text-black">© 2025 WorldLink. {t('footer.rights')}</span>
             <span className="text-gray-400">-</span>
-            <button
-              onClick={() => onPageChange('legal')}
+            <Link
+              to="/legal"
               className="text-blue-600 hover:text-blue-800 transition-colors duration-200"
             >
               Legal & Compliance
-            </button>
+            </Link>
           </div>
         </div>
       </div>

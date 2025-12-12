@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Truck, Warehouse, Package, Snowflake, FileText, Plane, ShoppingCart } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import VideoHero from '../components/VideoHero';
@@ -6,15 +7,12 @@ import LogisticsSeparator from '../components/LogisticsSeparator';
 import { usePageTitle } from '../hooks/usePageTitle';
 
 
-interface HomeProps {
-  onPageChange: (page: string) => void;
-}
-
-const HomePage: React.FC<HomeProps> = ({ onPageChange }) => {
+const HomePage: React.FC = () => {
+  const navigate = useNavigate();
   usePageTitle('WorldLink Logistics - Trusted Logistics Worldwide');
   const { t, currentLanguage } = useLanguage();
   const [experienceCount, setExperienceCount] = useState(0);
-  
+
   // États pour le formulaire
   const [formData, setFormData] = useState({
     name: '',
@@ -35,7 +33,7 @@ const HomePage: React.FC<HomeProps> = ({ onPageChange }) => {
     const targetCount = 11;
     const duration = 2000; // 2 secondes
     const increment = targetCount / (duration / 16); // 60 FPS
-    
+
     let currentCount = 0;
     const timer = setInterval(() => {
       currentCount += increment;
@@ -45,7 +43,7 @@ const HomePage: React.FC<HomeProps> = ({ onPageChange }) => {
       }
       setExperienceCount(Math.floor(currentCount));
     }, 16);
-    
+
     return () => clearInterval(timer);
   }, []);
 
@@ -166,8 +164,9 @@ const HomePage: React.FC<HomeProps> = ({ onPageChange }) => {
             posterSrc={publicAsset('worldlink.png')}
             alt=""
             className="w-full h-full"
+            priority={true}
           />
-          
+
           {/* Overlay gradient optimisé */}
           <div className="absolute inset-0 hero-gradient"></div>
         </div>
@@ -195,11 +194,11 @@ const HomePage: React.FC<HomeProps> = ({ onPageChange }) => {
                 </h2>
                 <div className="w-20 h-1 bg-gradient-to-r from-sky-500 to-blue-600 rounded-full"></div>
               </div>
-              
+
               <div className="space-y-6 text-black leading-relaxed">
                 <p className="text-lg" dangerouslySetInnerHTML={{ __html: t('about.homeAbout.description1') }} />
                 <p className="text-lg mb-12" dangerouslySetInnerHTML={{ __html: t('about.homeAbout.description2') }} />
-                
+
                 {/* Experience Stat */}
                 <div className="stat flex items-end mt-32">
                   <span className="stat-number text-7xl font-bold text-[var(--color-darkblue)]">
@@ -217,9 +216,9 @@ const HomePage: React.FC<HomeProps> = ({ onPageChange }) => {
 
             {/* Right Column - About Image */}
             <div className="relative flex justify-end">
-              <img 
-                src="about.jpg" 
-                alt="About Worldlink" 
+              <img
+                src="about.jpg"
+                alt="About Worldlink"
                 className="w-96 h-96 object-cover rounded-2xl"
               />
             </div>
@@ -244,100 +243,100 @@ const HomePage: React.FC<HomeProps> = ({ onPageChange }) => {
           <div className="relative w-full">
             {/* Static services grid instead of auto-scrolling */}
             <div className="flex space-x-6 overflow-x-auto pb-4 scrollbar-hide w-full">
-            {services.map((service, index) => (
-              <div
-                key={index}
+              {services.map((service, index) => (
+                <div
+                  key={index}
                   className="flex-shrink-0 w-[446px] h-96 bg-white rounded-2xl shadow-lg overflow-hidden group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 relative"
                 >
                   {/* Background Image - Fills entire card */}
                   <div className="absolute inset-0">
                     {index === 0 && (
-                      <img 
-                        src="https://forto.com/wp-content/uploads/2024/12/freight-consolidation.png" 
-                        alt="Freight Consolidation" 
+                      <img
+                        src="https://forto.com/wp-content/uploads/2024/12/freight-consolidation.png"
+                        alt="Freight Consolidation"
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                       />
                     )}
                     {index === 1 && (
-                      <img 
-                        src="https://media.istockphoto.com/id/835810076/photo/scanning-and-checking-boxes.jpg?s=612x612&w=0&k=20&c=Wq8kPSXxLEhNJ9LrcB2bUJqzRt6JNGhXLercaYqp2IY=" 
-                        alt="Personal Effects" 
+                      <img
+                        src="https://media.istockphoto.com/id/835810076/photo/scanning-and-checking-boxes.jpg?s=612x612&w=0&k=20&c=Wq8kPSXxLEhNJ9LrcB2bUJqzRt6JNGhXLercaYqp2IY="
+                        alt="Personal Effects"
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                       />
                     )}
                     {index === 2 && (
-                      <img 
-                        src="https://img.freepik.com/premium-photo/container-logistic-reefer-shipping-frozen-food-refrigerated-container-export-logistics_33867-1869.jpg" 
-                        alt="Refrigerated Containers" 
+                      <img
+                        src="https://img.freepik.com/premium-photo/container-logistic-reefer-shipping-frozen-food-refrigerated-container-export-logistics_33867-1869.jpg"
+                        alt="Refrigerated Containers"
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                       />
                     )}
                     {index === 3 && (
-                      <img 
-                        src="https://www.shutterstock.com/image-photo/female-custom-clearance-officer-checking-600nw-2434808501.jpg" 
-                        alt="Customs Clearing" 
+                      <img
+                        src="https://www.shutterstock.com/image-photo/female-custom-clearance-officer-checking-600nw-2434808501.jpg"
+                        alt="Customs Clearing"
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                       />
                     )}
                     {index === 4 && (
-                      <img 
-                        src="https://media.istockphoto.com/id/504606896/photo/stack-of-cargo-containers-at-the-docks.jpg?s=612x612&w=0&k=20&c=JinxScutWXDYJX10eRw6OOolv8ddCgNZZwbvHibi3Uo=" 
-                        alt="Airfreight" 
+                      <img
+                        src="https://media.istockphoto.com/id/504606896/photo/stack-of-cargo-containers-at-the-docks.jpg?s=612x612&w=0&k=20&c=JinxScutWXDYJX10eRw6OOolv8ddCgNZZwbvHibi3Uo="
+                        alt="Airfreight"
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                       />
                     )}
                     {index === 5 && (
-                      <img 
-                        src="https://cdn.prod.website-files.com/6335c554700eee67b981880d/63877d390f3ba7726c6333e4_1Freight-Forwarding-Industry-in-India-Outlook-and-Establishment.jpeg" 
-                        alt="Product Sourcing" 
+                      <img
+                        src="https://cdn.prod.website-files.com/6335c554700eee67b981880d/63877d390f3ba7726c6333e4_1Freight-Forwarding-Industry-in-India-Outlook-and-Establishment.jpeg"
+                        alt="Product Sourcing"
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                       />
                     )}
                     {index === 6 && (
-                      <img 
-                        src="https://www.shutterstock.com/shutterstock/videos/1102479091/thumb/11.jpg?ip=x480" 
-                        alt="Inland Transport" 
+                      <img
+                        src="https://www.shutterstock.com/shutterstock/videos/1102479091/thumb/11.jpg?ip=x480"
+                        alt="Inland Transport"
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                       />
                     )}
                   </div>
-                  
+
                   {/* Dark overlay for better text readability */}
                   <div className="absolute inset-0 bg-black/30"></div>
-                  
+
                   {/* Content overlay - Text and button on top of image */}
                   <div className="absolute inset-0 p-6 flex flex-col justify-between">
                     {/* Title at top */}
                     <h3 className="text-2xl font-bold text-white leading-tight">
                       {service.title}
                     </h3>
-                    
+
                     {/* Bottom content area */}
                     <div className="space-y-4">
                       {/* Description */}
                       <p className="text-white leading-relaxed text-sm font-medium">
                         {service.description}
                       </p>
-                      
+
                       {/* Dots separator */}
                       <div className="dots text-xl text-white/80">•••</div>
-                      
+
                       {/* CTA Section */}
                       <div className="freight-content-cta flex items-center justify-between">
                         <button
-                          onClick={() => onPageChange(index === 0 ? 'freight-consolidation' : 
-                                                   index === 1 ? 'personal-effects' : 
-                                                   index === 2 ? 'refrigerated-containers' : 
-                                                   index === 3 ? 'customs-clearing' : 
-                                                   index === 4 ? 'airfreight' : 
-                                                   index === 5 ? 'product-sourcing' : 
-                                                   'inland-transport')}
+                          onClick={() => navigate(index === 0 ? '/freight-consolidation' :
+                            index === 1 ? '/personal-effects' :
+                              index === 2 ? '/refrigerated-containers' :
+                                index === 3 ? '/customs-clearing' :
+                                  index === 4 ? '/airfreight' :
+                                    index === 5 ? '/product-sourcing' :
+                                      '/inland-transport')}
                           className="freight-cta main__btn bg-gradient-to-r from-[var(--color-darkblue)] to-sky-600 hover:from-[var(--color-darkblue)] hover:to-sky-500 text-white px-6 py-3 rounded-full text-sm font-semibold transition-all duration-300 hover:scale-105 shadow-lg flex items-center space-x-2 group"
                         >
                           <span className="text-lg font-bold group-hover:rotate-90 transition-transform duration-300">+</span>
                           <span>{t('services.homeServices.seeDetails')}</span>
                         </button>
-                        
+
                         {/* Small circles decoration */}
                         <div className="flex space-x-2">
                           <div className="w-3 h-3 bg-white/60 rounded-full"></div>
@@ -345,10 +344,10 @@ const HomePage: React.FC<HomeProps> = ({ onPageChange }) => {
                         </div>
                       </div>
                     </div>
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
 
             {/* Custom Navigation Arrow */}
             <div className="custom-nav-arrow" onClick={() => {
@@ -358,7 +357,7 @@ const HomePage: React.FC<HomeProps> = ({ onPageChange }) => {
               }
             }}>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M9 18l6-6-6-6"/>
+                <path d="M9 18l6-6-6-6" />
               </svg>
             </div>
           </div>
@@ -371,14 +370,14 @@ const HomePage: React.FC<HomeProps> = ({ onPageChange }) => {
       <section className="py-20 bg-gray-50 relative overflow-hidden">
         {/* Background Image avec overlay */}
         <div className="absolute inset-0 z-0">
-          <img 
+          <img
             src="https://static.vecteezy.com/system/resources/previews/029/551/910/large_2x/warehouse-of-modern-logistics-with-rows-of-tall-shelves-full-of-boxes-and-products-huge-distribution-warehouse-generative-ai-photo.jpg"
             alt="Warehouse background"
             className="w-full h-full object-cover object-center"
           />
           <div className="absolute inset-0 bg-black/40"></div>
         </div>
-        
+
         {/* Content Container */}
         <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
           {/* Form Container */}
@@ -393,20 +392,20 @@ const HomePage: React.FC<HomeProps> = ({ onPageChange }) => {
                   {t('contact.homeContact.subtitle')}
                 </p>
               </div>
-              
+
               <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {/* Full Name */}
                 <div className="form-item md:col-span-2">
                   <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
                     {t('contact.homeContact.form.name')}
                   </label>
-                  <input 
-                    type="text" 
-                    id="name" 
-                    name="name" 
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
                     value={formData.name}
                     onChange={handleInputChange}
-                    placeholder={t('contact.homeContact.form.namePlaceholder')} 
+                    placeholder={t('contact.homeContact.form.namePlaceholder')}
                     className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-blue-600 focus:outline-none transition-all duration-300"
                     required
                   />
@@ -417,13 +416,13 @@ const HomePage: React.FC<HomeProps> = ({ onPageChange }) => {
                   <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
                     {t('contact.homeContact.form.email')}
                   </label>
-                  <input 
-                    type="email" 
-                    id="email" 
-                    name="email" 
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
                     value={formData.email}
                     onChange={handleInputChange}
-                    placeholder={t('contact.homeContact.form.emailPlaceholder')} 
+                    placeholder={t('contact.homeContact.form.emailPlaceholder')}
                     className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-blue-600 focus:outline-none transition-all duration-300"
                     required
                   />
@@ -434,13 +433,13 @@ const HomePage: React.FC<HomeProps> = ({ onPageChange }) => {
                   <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
                     {t('contact.homeContact.form.phone')}
                   </label>
-                  <input 
-                    type="tel" 
-                    id="phone" 
-                    name="phone_number" 
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone_number"
                     value={formData.phone_number}
                     onChange={handleInputChange}
-                    placeholder={t('contact.homeContact.form.phonePlaceholder')} 
+                    placeholder={t('contact.homeContact.form.phonePlaceholder')}
                     className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-blue-600 focus:outline-none transition-all duration-300"
                   />
                 </div>
@@ -450,9 +449,9 @@ const HomePage: React.FC<HomeProps> = ({ onPageChange }) => {
                   <label htmlFor="country" className="block text-sm font-medium text-gray-700 mb-2">
                     {t('contact.homeContact.form.country')}
                   </label>
-                  <select 
-                    id="country" 
-                    name="country" 
+                  <select
+                    id="country"
+                    name="country"
                     value={formData.country}
                     onChange={handleInputChange}
                     className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-blue-600 focus:outline-none transition-all duration-300 bg-white"
@@ -724,12 +723,12 @@ const HomePage: React.FC<HomeProps> = ({ onPageChange }) => {
                   <label htmlFor="services" className="block text-sm font-medium text-gray-700 mb-2">
                     {t('contact.homeContact.form.services')}
                   </label>
-                  <select 
-                    id="services" 
-                    name="services" 
+                  <select
+                    id="services"
+                    name="services"
                     value={formData.services}
                     onChange={handleInputChange}
-                    required 
+                    required
                     className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-blue-600 focus:outline-none transition-all duration-300 bg-white"
                   >
                     <option value="">{t('contact.homeContact.form.servicesPlaceholder')}</option>
@@ -748,13 +747,13 @@ const HomePage: React.FC<HomeProps> = ({ onPageChange }) => {
                   <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
                     {t('contact.homeContact.form.message')}
                   </label>
-                  <textarea 
-                    id="message" 
-                    name="message" 
+                  <textarea
+                    id="message"
+                    name="message"
                     value={formData.message}
                     onChange={handleInputChange}
-                    rows={5} 
-                    placeholder={t('contact.homeContact.form.messagePlaceholder')} 
+                    rows={5}
+                    placeholder={t('contact.homeContact.form.messagePlaceholder')}
                     className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-blue-600 focus:outline-none transition-all duration-300 resize-vertical"
                     required
                   ></textarea>
@@ -762,8 +761,8 @@ const HomePage: React.FC<HomeProps> = ({ onPageChange }) => {
 
                 {/* Submit Button */}
                 <div className="form-item md:col-span-2">
-                  <button 
-                    type="submit" 
+                  <button
+                    type="submit"
                     disabled={isSubmitting}
                     className="w-full bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 disabled:from-gray-400 disabled:to-gray-500 disabled:cursor-not-allowed text-white font-semibold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
                   >
@@ -784,11 +783,10 @@ const HomePage: React.FC<HomeProps> = ({ onPageChange }) => {
                 {/* Status Message */}
                 {submitStatus !== 'idle' && (
                   <div className="form-item md:col-span-2">
-                    <div className={`p-4 rounded-lg ${
-                      submitStatus === 'success' 
-                        ? 'bg-green-100 border border-green-400 text-green-700' 
-                        : 'bg-red-100 border border-red-400 text-red-700'
-                    }`}>
+                    <div className={`p-4 rounded-lg ${submitStatus === 'success'
+                      ? 'bg-green-100 border border-green-400 text-green-700'
+                      : 'bg-red-100 border border-red-400 text-red-700'
+                      }`}>
                       {submitMessage}
                     </div>
                   </div>

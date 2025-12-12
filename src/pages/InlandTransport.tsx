@@ -1,12 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Warehouse, CheckCircle, Clock, Shield, Globe, Truck, MapPin, Phone, Mail, Package, Route, Building2, Users } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 
-interface InlandTransportProps {
-  onPageChange: (page: string) => void;
-}
-
-const InlandTransportPage: React.FC<InlandTransportProps> = ({ onPageChange }) => {
+const InlandTransportPage: React.FC = () => {
   const { t } = useLanguage();
 
   const features = [
@@ -108,7 +105,7 @@ const InlandTransportPage: React.FC<InlandTransportProps> = ({ onPageChange }) =
               </div>
             </div>
             <div className="relative">
-              <img 
+              <img
                 src="https://www.shutterstock.com/shutterstock/videos/1102479091/thumb/11.jpg?ip=x480"
                 alt="Inland Transport & CFS Warehousing"
                 className="w-full h-96 object-cover rounded-2xl shadow-2xl"
@@ -133,7 +130,7 @@ const InlandTransportPage: React.FC<InlandTransportProps> = ({ onPageChange }) =
               {t('servicePages.inlandTransport.services.subtitle')}
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {services.map((service, index) => (
               <div key={index} className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
@@ -159,7 +156,7 @@ const InlandTransportPage: React.FC<InlandTransportProps> = ({ onPageChange }) =
               {t('servicePages.inlandTransport.features.subtitle')}
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {features.map((feature, index) => (
               <div key={index} className="flex items-start space-x-4 p-6 bg-gray-50 rounded-xl hover:bg-blue-50 transition-colors duration-300">
@@ -207,18 +204,18 @@ const InlandTransportPage: React.FC<InlandTransportProps> = ({ onPageChange }) =
             {t('servicePages.inlandTransport.cta.description')}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button
-              onClick={() => onPageChange('contact')}
-              className="bg-sky-500 hover:bg-sky-400 text-white px-10 py-5 rounded-full text-xl font-semibold transition-all duration-300 hover:scale-105 shadow-xl"
+            <Link
+              to="/contact"
+              className="bg-sky-500 hover:bg-sky-400 text-white px-10 py-5 rounded-full text-xl font-semibold transition-all duration-300 hover:scale-105 shadow-xl inline-block"
             >
               {t('servicePages.inlandTransport.cta.primaryButton')}
-            </button>
-            <button
-              onClick={() => onPageChange('services')}
-              className="bg-transparent border-2 border-white hover:bg-white hover:text-blue-800 text-white px-10 py-5 rounded-full text-xl font-semibold transition-all duration-300 hover:scale-105"
+            </Link>
+            <Link
+              to="/services"
+              className="bg-transparent border-2 border-white hover:bg-white hover:text-blue-800 text-white px-10 py-5 rounded-full text-xl font-semibold transition-all duration-300 hover:scale-105 inline-block"
             >
               {t('servicePages.inlandTransport.cta.secondaryButton')}
-            </button>
+            </Link>
           </div>
         </div>
       </section>

@@ -1,13 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Container, CheckCircle, Clock, Shield, Globe, Truck, Package, MapPin, Phone, Mail } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { usePageTitle } from '../hooks/usePageTitle';
 
-interface FreightConsolidationProps {
-  onPageChange: (page: string) => void;
-}
-
-const FreightConsolidationPage: React.FC<FreightConsolidationProps> = ({ onPageChange }) => {
+const FreightConsolidationPage: React.FC = () => {
   usePageTitle('Freight Consolidation - WorldLink Logistics');
   const { t } = useLanguage();
 
@@ -115,7 +112,7 @@ const FreightConsolidationPage: React.FC<FreightConsolidationProps> = ({ onPageC
               </div>
             </div>
             <div className="relative">
-              <img 
+              <img
                 src="https://forto.com/wp-content/uploads/2024/12/freight-consolidation.png"
                 alt="Freight Consolidation"
                 className="w-full h-96 object-cover rounded-2xl shadow-2xl"
@@ -140,7 +137,7 @@ const FreightConsolidationPage: React.FC<FreightConsolidationProps> = ({ onPageC
               {t('servicePages.freightConsolidation.features.subtitle')}
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {features.map((feature, index) => (
               <div key={index} className="flex items-start space-x-4 p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
@@ -217,18 +214,18 @@ const FreightConsolidationPage: React.FC<FreightConsolidationProps> = ({ onPageC
             {t('servicePages.freightConsolidation.cta.description')}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button
-              onClick={() => onPageChange('contact')}
-              className="bg-sky-500 hover:bg-sky-400 text-white px-10 py-5 rounded-full text-xl font-semibold transition-all duration-300 hover:scale-105 shadow-xl"
+            <Link
+              to="/contact"
+              className="bg-sky-500 hover:bg-sky-400 text-white px-10 py-5 rounded-full text-xl font-semibold transition-all duration-300 hover:scale-105 shadow-xl inline-block"
             >
               {t('servicePages.freightConsolidation.cta.primaryButton')}
-            </button>
-            <button
-              onClick={() => onPageChange('services')}
-              className="bg-transparent border-2 border-white hover:bg-white hover:text-blue-900 text-white px-10 py-5 rounded-full text-xl font-semibold transition-all duration-300 hover:scale-105"
+            </Link>
+            <Link
+              to="/services"
+              className="bg-transparent border-2 border-white hover:bg-white hover:text-blue-900 text-white px-10 py-5 rounded-full text-xl font-semibold transition-all duration-300 hover:scale-105 inline-block"
             >
               {t('servicePages.freightConsolidation.cta.secondaryButton')}
-            </button>
+            </Link>
           </div>
         </div>
       </section>

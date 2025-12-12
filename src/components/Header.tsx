@@ -1,15 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Menu, X, ChevronDown, Plane, Package, Snowflake, Ship, FileText, ShoppingCart, MapPin } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
 import { useLanguage, languages } from '../contexts/LanguageContext';
 
 const publicAsset = (relativePath: string) => `${import.meta.env.BASE_URL}${relativePath.replace(/^\//, '')}`;
 
-interface HeaderProps {
-  currentPage: string;
-  onPageChange: (page: string) => void;
-}
-
-const Header: React.FC<HeaderProps> = ({ currentPage, onPageChange }) => {
+const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLanguageOpen, setIsLanguageOpen] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
@@ -17,6 +13,7 @@ const Header: React.FC<HeaderProps> = ({ currentPage, onPageChange }) => {
   const { currentLanguage, changeLanguage, t } = useLanguage();
   const servicesRef = useRef<HTMLDivElement | null>(null);
   const servicesCloseTimeoutRef = useRef<number | null>(null);
+  const location = useLocation();
 
   const clearServicesCloseTimeout = () => {
     if (servicesCloseTimeoutRef.current !== null) {
@@ -33,14 +30,14 @@ const Header: React.FC<HeaderProps> = ({ currentPage, onPageChange }) => {
   };
 
   const navigation = [
-    { id: 'home', label: t('nav.home') },
-    { id: 'about', label: t('nav.about') },
-    { id: 'services', label: t('nav.services') },
-    { id: 'contact', label: t('nav.contact') },
-    { id: 'faq', label: t('nav.faq') }
+    { id: 'home', label: t('nav.home'), path: '/' },
+    { id: 'about', label: t('nav.about'), path: '/about' },
+    { id: 'services', label: t('nav.services'), path: '/services' },
+    { id: 'contact', label: t('nav.contact'), path: '/contact' },
+    { id: 'faq', label: t('nav.faq'), path: '/faq' }
   ];
 
-  const isHome = currentPage === 'home';
+  const isHome = location.pathname === '/';
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -81,58 +78,41 @@ const Header: React.FC<HeaderProps> = ({ currentPage, onPageChange }) => {
 
   const homeTop = isHome && !isScrolled;
   const homeBorderClass = '';
-  
-
-
-  // Fonction helper pour mapper les IDs des services vers les routes
-  const getServiceRoute = (serviceId: string) => {
-    const routeMap: { [key: string]: string } = {
-      'freight': 'freight-consolidation',
-      'personal': 'personal-effects',
-      'refrigerated': 'refrigerated-containers',
-      'customs': 'customs-clearing',
-      'airfreight': 'airfreight',
-      'sourcing': 'product-sourcing',
-      'inland': 'inland-transport'
-    };
-    return routeMap[serviceId] || 'services';
-  };
 
   const serviceOptions = [
-    { id: 'freight', label: 'Freight Consolidation & Full Container Loads', icon: Ship },
-    { id: 'personal', label: 'Personal Effects & Project Shipments', icon: Package },
-    { id: 'refrigerated', label: 'Refrigerated Food Containers', icon: Snowflake },
-    { id: 'customs', label: 'Customs Clearing & Compliance', icon: FileText },
-    { id: 'airfreight', label: 'Airfreight Services', icon: Plane },
-    { id: 'sourcing', label: 'Product Sourcing & Procurement', icon: ShoppingCart },
-    { id: 'inland', label: 'Inland Transport & CFS Warehousing', icon: MapPin }
+    { id: 'freight', label: 'Freight Consolidation & Full Container Loads', icon: Ship, path: '/freight-consolidation' },
+    { id: 'personal', label: 'Personal Effects & Project Shipments', icon: Package, path: '/personal-effects' },
+    { id: 'refrigerated', label: 'Refrigerated Food Containers', icon: Snowflake, path: '/refrigerated-containers' },
+    { id: 'customs', label: 'Customs Clearing & Compliance', icon: FileText, path: '/customs-clearing' },
+    { id: 'airfreight', label: 'Airfreight Services', icon: Plane, path: '/airfreight' },
+    { id: 'sourcing', label: 'Product Sourcing & Procurement', icon: ShoppingCart, path: '/product-sourcing' },
+    { id: 'inland', label: 'Inland Transport & CFS Warehousing', icon: MapPin, path: '/inland-transport' }
   ];
 
   return (
-    <header className={`${
-      homeTop 
-        ? 'absolute top-0 left-0 w-full bg-black/40 backdrop-blur-[1px]' 
+    <header className={`${homeTop
+        ? 'absolute top-0 left-0 w-full bg-black/40 backdrop-blur-[1px]'
         : 'sticky top-0 bg-white/95 backdrop-blur-md shadow-lg'
-    } ${homeBorderClass} z-40`}>
+      } ${homeBorderClass} z-40`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className={`flex justify-between items-center ${isScrolled ? 'py-3' : 'py-4'}`}>
           {/* Logo */}
-          <div className="flex items-center cursor-pointer" onClick={() => onPageChange('home')}>
+          <Link to="/" className="flex items-center cursor-pointer">
             <img src={publicAsset('worldlink.png')} alt="WorldLink" className={`${isScrolled ? 'h-10' : 'h-12'} w-auto`} />
-          </div>
+          </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-8">
             {navigation.map((item) => {
               if (item.id !== 'services') {
                 return (
-                  <button
+                  <Link
                     key={item.id}
-                    onClick={() => onPageChange(item.id)}
+                    to={item.path}
                     className={`text-lg font-medium ${homeTop ? 'text-white' : 'text-gray-900'}`}
                   >
                     {item.label}
-                  </button>
+                  </Link>
                 );
               }
               return (
@@ -162,19 +142,17 @@ const Header: React.FC<HeaderProps> = ({ currentPage, onPageChange }) => {
                       {serviceOptions.map(option => {
                         const IconComponent = option.icon;
                         return (
-                          <button
+                          <Link
                             key={option.id}
-                            onClick={() => {
-                              onPageChange(getServiceRoute(option.id));
-                              setIsServicesOpen(false);
-                            }}
-                            className="group w-full text-left px-4 py-2 rounded-lg text-gray-700 hover:text-sky-800 hover:bg-gradient-to-r hover:from-sky-50 hover:to-blue-50 transition-all duration-200"
+                            to={option.path}
+                            onClick={() => setIsServicesOpen(false)}
+                            className="group w-full text-left px-4 py-2 rounded-lg text-gray-700 hover:text-sky-800 hover:bg-gradient-to-r hover:from-sky-50 hover:to-blue-50 transition-all duration-200 block"
                           >
                             <div className="flex items-center space-x-3">
                               <IconComponent className="h-4 w-4 text-gray-500 group-hover:text-sky-600 transition-colors" />
                               <span className="text-sm font-medium">{option.label}</span>
                             </div>
-                          </button>
+                          </Link>
                         );
                       })}
                     </div>
@@ -190,16 +168,15 @@ const Header: React.FC<HeaderProps> = ({ currentPage, onPageChange }) => {
             <div className="relative">
               <button
                 onClick={() => setIsLanguageOpen(!isLanguageOpen)}
-                className={`flex items-center space-x-1 px-2 py-1 rounded-lg transition-all duration-200 ${
-                  homeTop 
-                    ? 'text-white hover:bg-white/20' 
+                className={`flex items-center space-x-1 px-2 py-1 rounded-lg transition-all duration-200 ${homeTop
+                    ? 'text-white hover:bg-white/20'
                     : 'text-gray-900 hover:bg-gray-100'
-                }`}
+                  }`}
               >
                 <span className={`text-sm font-medium ${homeTop ? 'text-white' : 'text-gray-900'}`}>{currentLanguage.name}</span>
                 <ChevronDown className={`h-4 w-4 ${homeTop ? 'text-white' : 'text-gray-900'}`} />
               </button>
-              
+
               {isLanguageOpen && (
                 <div className="absolute right-0 mt-2 py-2 w-40 bg-white/95 backdrop-blur-md rounded-lg shadow-xl border border-gray-200/50 z-50">
                   {languages.map((lang) => (
@@ -221,11 +198,10 @@ const Header: React.FC<HeaderProps> = ({ currentPage, onPageChange }) => {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className={`lg:hidden p-2 rounded-lg transition-all duration-200 ${
-                homeTop 
-                  ? 'text-white hover:bg-white/20 hover:bg-opacity-20' 
+              className={`lg:hidden p-2 rounded-lg transition-all duration-200 ${homeTop
+                  ? 'text-white hover:bg-white/20 hover:bg-opacity-20'
                   : 'text-gray-900 hover:bg-gray-100'
-              }`}
+                }`}
               aria-label={isMenuOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
             >
               {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -240,16 +216,14 @@ const Header: React.FC<HeaderProps> = ({ currentPage, onPageChange }) => {
               {navigation.map((item) => {
                 if (item.id !== 'services') {
                   return (
-                    <button
+                    <Link
                       key={item.id}
-                      onClick={() => {
-                        onPageChange(item.id);
-                        setIsMenuOpen(false);
-                      }}
-                      className="text-left py-3 px-4 rounded-lg text-gray-800 hover:bg-sky-50 hover:text-sky-700 font-medium transition-all duration-200"
+                      to={item.path}
+                      onClick={() => setIsMenuOpen(false)}
+                      className="text-left py-3 px-4 rounded-lg text-gray-800 hover:bg-sky-50 hover:text-sky-700 font-medium transition-all duration-200 block"
                     >
                       {item.label}
-                    </button>
+                    </Link>
                   );
                 }
                 return (
@@ -266,20 +240,20 @@ const Header: React.FC<HeaderProps> = ({ currentPage, onPageChange }) => {
                         {serviceOptions.map(option => {
                           const IconComponent = option.icon;
                           return (
-                            <button
+                            <Link
                               key={option.id}
+                              to={option.path}
                               onClick={() => {
-                                onPageChange(getServiceRoute(option.id));
                                 setIsMenuOpen(false);
                                 setIsMobileServicesOpen(false);
                               }}
-                              className="w-full text-left py-2 px-3 rounded-md text-gray-700 hover:bg-sky-100 hover:text-sky-800 transition-colors font-medium"
+                              className="w-full text-left py-2 px-3 rounded-md text-gray-700 hover:bg-sky-100 hover:text-sky-800 transition-colors font-medium block"
                             >
                               <div className="flex items-center space-x-3">
                                 <IconComponent className="h-4 w-4 text-gray-500" />
                                 <span className="text-sm">{option.label}</span>
                               </div>
-                            </button>
+                            </Link>
                           );
                         })}
                       </div>

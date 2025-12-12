@@ -1,12 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Plane, CheckCircle, Clock, Shield, Globe, Truck, MapPin, Phone, Mail, Zap, Package, Route, Users } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 
-interface AirfreightProps {
-  onPageChange: (page: string) => void;
-}
-
-const AirfreightPage: React.FC<AirfreightProps> = ({ onPageChange }) => {
+const AirfreightPage: React.FC = () => {
   const { t } = useLanguage();
 
   const features = [
@@ -108,7 +105,7 @@ const AirfreightPage: React.FC<AirfreightProps> = ({ onPageChange }) => {
               </div>
             </div>
             <div className="relative">
-              <img 
+              <img
                 src="https://media.istockphoto.com/id/504606896/photo/stack-of-cargo-containers-at-the-docks.jpg?s=612x612&w=0&k=20&c=JinxScutWXDYJX10eRw6OOolv8ddCgNZZwbvHibi3Uo="
                 alt="Airfreight Services"
                 className="w-full h-96 object-cover rounded-2xl shadow-2xl"
@@ -133,7 +130,7 @@ const AirfreightPage: React.FC<AirfreightProps> = ({ onPageChange }) => {
               {t('servicePages.airfreight.services.subtitle')}
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {services.map((service, index) => (
               <div key={index} className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
@@ -159,7 +156,7 @@ const AirfreightPage: React.FC<AirfreightProps> = ({ onPageChange }) => {
               {t('servicePages.airfreight.features.subtitle')}
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {features.map((feature, index) => (
               <div key={index} className="flex items-start space-x-4 p-6 bg-gray-50 rounded-xl hover:bg-blue-50 transition-colors duration-300">
@@ -207,18 +204,18 @@ const AirfreightPage: React.FC<AirfreightProps> = ({ onPageChange }) => {
             {t('servicePages.airfreight.cta.description')}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button
-              onClick={() => onPageChange('contact')}
-              className="bg-sky-500 hover:bg-sky-400 text-white px-10 py-5 rounded-full text-xl font-semibold transition-all duration-300 hover:scale-105 shadow-xl"
+            <Link
+              to="/contact"
+              className="bg-sky-500 hover:bg-sky-400 text-white px-10 py-5 rounded-full text-xl font-semibold transition-all duration-300 hover:scale-105 shadow-xl inline-block"
             >
               {t('servicePages.airfreight.cta.primaryButton')}
-            </button>
-            <button
-              onClick={() => onPageChange('services')}
-              className="bg-transparent border-2 border-white hover:bg-white hover:text-blue-900 text-white px-10 py-5 rounded-full text-xl font-semibold transition-all duration-300 hover:scale-105"
+            </Link>
+            <Link
+              to="/services"
+              className="bg-transparent border-2 border-white hover:bg-white hover:text-blue-900 text-white px-10 py-5 rounded-full text-xl font-semibold transition-all duration-300 hover:scale-105 inline-block"
             >
               {t('servicePages.airfreight.cta.secondaryButton')}
-            </button>
+            </Link>
           </div>
         </div>
       </section>

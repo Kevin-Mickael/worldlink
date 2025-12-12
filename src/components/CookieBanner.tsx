@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { X, Shield, BarChart3, Target, Settings } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 interface CookiePreferences {
   necessary: boolean;
@@ -9,14 +10,10 @@ interface CookiePreferences {
   functional: boolean;
 }
 
-interface CookieBannerProps {
-  onPageChange?: (page: string) => void;
-}
-
-const CookieBanner: React.FC<CookieBannerProps> = ({ onPageChange }) => {
+const CookieBanner: React.FC = () => {
   const { t } = useLanguage();
   const [isVisible, setIsVisible] = useState(false);
-  
+
   // Fonction pour gérer les assets publics
   const publicAsset = (relativePath: string) => `${import.meta.env.BASE_URL}${relativePath.replace(/^\//, '')}`;
   const [showModal, setShowModal] = useState(false);
@@ -38,7 +35,7 @@ const CookieBanner: React.FC<CookieBannerProps> = ({ onPageChange }) => {
   const setSecureCookie = (name: string, value: string, days: number = 365) => {
     const expires = new Date();
     expires.setTime(expires.getTime() + (days * 24 * 60 * 60 * 1000));
-    
+
     // Cookie sécurisé avec httpOnly (géré côté serveur) et autres attributs de sécurité
     document.cookie = `${name}=${value}; expires=${expires.toUTCString()}; path=/; SameSite=Strict; Secure`;
   };
@@ -50,17 +47,17 @@ const CookieBanner: React.FC<CookieBannerProps> = ({ onPageChange }) => {
       marketing: true,
       functional: true
     };
-    
+
     setPreferences(allPreferences);
     localStorage.setItem('cookiesAccepted', 'true');
     localStorage.setItem('cookiePreferences', JSON.stringify(allPreferences));
-    
+
     // Définir les cookies sécurisés
     setSecureCookie('cookiesAccepted', 'true');
     setSecureCookie('analyticsCookies', 'true');
     setSecureCookie('marketingCookies', 'true');
     setSecureCookie('functionalCookies', 'true');
-    
+
     setIsVisible(false);
   };
 
@@ -71,17 +68,17 @@ const CookieBanner: React.FC<CookieBannerProps> = ({ onPageChange }) => {
       marketing: false,
       functional: false
     };
-    
+
     setPreferences(necessaryOnly);
     localStorage.setItem('cookiesAccepted', 'true');
     localStorage.setItem('cookiePreferences', JSON.stringify(necessaryOnly));
-    
+
     // Définir les cookies sécurisés
     setSecureCookie('cookiesAccepted', 'true');
     setSecureCookie('analyticsCookies', 'false');
     setSecureCookie('marketingCookies', 'false');
     setSecureCookie('functionalCookies', 'false');
-    
+
     setIsVisible(false);
   };
 
@@ -92,20 +89,20 @@ const CookieBanner: React.FC<CookieBannerProps> = ({ onPageChange }) => {
   const handleSavePreferences = () => {
     localStorage.setItem('cookiesAccepted', 'true');
     localStorage.setItem('cookiePreferences', JSON.stringify(preferences));
-    
+
     // Définir les cookies sécurisés
     setSecureCookie('cookiesAccepted', 'true');
     setSecureCookie('analyticsCookies', preferences.analytics.toString());
     setSecureCookie('marketingCookies', preferences.marketing.toString());
     setSecureCookie('functionalCookies', preferences.functional.toString());
-    
+
     setShowModal(false);
     setIsVisible(false);
   };
 
   const handlePreferenceChange = (type: keyof CookiePreferences, value: boolean) => {
     if (type === 'necessary') return; // Ne peut pas être désactivé
-    
+
     setPreferences(prev => ({
       ...prev,
       [type]: value
@@ -124,9 +121,9 @@ const CookieBanner: React.FC<CookieBannerProps> = ({ onPageChange }) => {
           <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
             {/* Logo et texte à gauche */}
             <div className="flex items-start gap-3 w-full lg:w-auto">
-              <img 
-                src={publicAsset('worldlink.png')} 
-                alt="WorldLink Logistics" 
+              <img
+                src={publicAsset('worldlink.png')}
+                alt="WorldLink Logistics"
                 className="h-10 w-auto flex-shrink-0 mt-1"
               />
               <div className="text-sm text-gray-700 flex-1 min-w-0">
@@ -171,9 +168,9 @@ const CookieBanner: React.FC<CookieBannerProps> = ({ onPageChange }) => {
             {/* Header */}
             <div className="flex items-center justify-between p-6 border-b border-gray-200">
               <div className="flex items-center gap-3">
-                <img 
-                  src={publicAsset('worldlink.png')} 
-                  alt="WorldLink Logistics" 
+                <img
+                  src={publicAsset('worldlink.png')}
+                  alt="WorldLink Logistics"
                   className="h-8 w-auto"
                 />
                 <div>
@@ -181,19 +178,13 @@ const CookieBanner: React.FC<CookieBannerProps> = ({ onPageChange }) => {
                     {t('cookieBanner.modal.title')}
                   </h3>
                   <p className="text-sm text-gray-600 mt-1">
-                    WorldLink Logistics - {onPageChange ? (
-                      <button
-                        onClick={() => {
-                          onPageChange('legal');
-                          setShowModal(false);
-                        }}
-                        className="text-blue-600 hover:text-blue-800 transition-colors cursor-pointer underline"
-                      >
-                        {t('cookieBanner.modal.compliance.title').split('&')[0].trim()}
-                      </button>
-                    ) : (
-                      t('cookieBanner.modal.compliance.title').split('&')[0].trim()
-                    )}
+                    WorldLink Logistics - <Link
+                      to="/legal"
+                      onClick={() => setShowModal(false)}
+                      className="text-blue-600 hover:text-blue-800 transition-colors cursor-pointer underline"
+                    >
+                      {t('cookieBanner.modal.compliance.title').split('&')[0].trim()}
+                    </Link>
                   </p>
                 </div>
               </div>
@@ -207,9 +198,9 @@ const CookieBanner: React.FC<CookieBannerProps> = ({ onPageChange }) => {
 
             {/* Contenu */}
             <div className="p-6 space-y-6">
-                             <p className="text-gray-600">
-                 {t('cookieBanner.modal.description')}
-               </p>
+              <p className="text-gray-600">
+                {t('cookieBanner.modal.description')}
+              </p>
 
               {/* Section Conformité Légale */}
               <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
@@ -221,19 +212,19 @@ const CookieBanner: React.FC<CookieBannerProps> = ({ onPageChange }) => {
                     </h4>
                     <div className="text-sm text-blue-800 space-y-2">
                       <p>
-                        <strong>{t('cookieBanner.modal.compliance.rgpd').split(':')[0]}:</strong> 
+                        <strong>{t('cookieBanner.modal.compliance.rgpd').split(':')[0]}:</strong>
                         {t('cookieBanner.modal.compliance.rgpd').split(':')[1]}
                       </p>
                       <p>
-                        <strong>{t('cookieBanner.modal.compliance.consent').split(':')[0]}:</strong> 
+                        <strong>{t('cookieBanner.modal.compliance.consent').split(':')[0]}:</strong>
                         {t('cookieBanner.modal.compliance.consent').split(':')[1]}
                       </p>
                       <p>
-                        <strong>{t('cookieBanner.modal.compliance.withdrawal').split(':')[0]}:</strong> 
+                        <strong>{t('cookieBanner.modal.compliance.withdrawal').split(':')[0]}:</strong>
                         {t('cookieBanner.modal.compliance.withdrawal').split(':')[1]}
                       </p>
                       <p>
-                        <strong>{t('cookieBanner.modal.compliance.transparency').split(':')[0]}:</strong> 
+                        <strong>{t('cookieBanner.modal.compliance.transparency').split(':')[0]}:</strong>
                         {t('cookieBanner.modal.compliance.transparency').split(':')[1]}
                       </p>
                     </div>
@@ -251,15 +242,15 @@ const CookieBanner: React.FC<CookieBannerProps> = ({ onPageChange }) => {
                     </h4>
                     <div className="text-sm text-gray-700 space-y-2">
                       <p>
-                        <strong>{t('cookieBanner.modal.technical.duration').split(':')[0]}:</strong> 
+                        <strong>{t('cookieBanner.modal.technical.duration').split(':')[0]}:</strong>
                         {t('cookieBanner.modal.technical.duration').split(':')[1]}
                       </p>
                       <p>
-                        <strong>{t('cookieBanner.modal.technical.transfer').split(':')[0]}:</strong> 
+                        <strong>{t('cookieBanner.modal.technical.transfer').split(':')[0]}:</strong>
                         {t('cookieBanner.modal.technical.transfer').split(':')[1]}
                       </p>
                       <p>
-                        <strong>{t('cookieBanner.modal.technical.security').split(':')[0]}:</strong> 
+                        <strong>{t('cookieBanner.modal.technical.security').split(':')[0]}:</strong>
                         {t('cookieBanner.modal.technical.security').split(':')[1]}
                       </p>
                     </div>
@@ -273,12 +264,12 @@ const CookieBanner: React.FC<CookieBannerProps> = ({ onPageChange }) => {
                   <div className="flex items-center gap-3">
                     <Shield className="h-5 w-5 text-green-600" />
                     <div>
-                                             <h4 className="font-medium text-gray-900">
-                         {t('cookieBanner.modal.necessary.title')}
-                       </h4>
-                       <p className="text-sm text-gray-600">
-                         {t('cookieBanner.modal.necessary.description')}
-                       </p>
+                      <h4 className="font-medium text-gray-900">
+                        {t('cookieBanner.modal.necessary.title')}
+                      </h4>
+                      <p className="text-sm text-gray-600">
+                        {t('cookieBanner.modal.necessary.description')}
+                      </p>
                     </div>
                   </div>
                   <div className="flex items-center">
@@ -298,12 +289,12 @@ const CookieBanner: React.FC<CookieBannerProps> = ({ onPageChange }) => {
                   <div className="flex items-center gap-3">
                     <BarChart3 className="h-5 w-5 text-blue-600" />
                     <div>
-                                             <h4 className="font-medium text-gray-900">
-                         {t('cookieBanner.modal.analytics.title')}
-                       </h4>
-                       <p className="text-sm text-gray-600">
-                         {t('cookieBanner.modal.analytics.description')}
-                       </p>
+                      <h4 className="font-medium text-gray-900">
+                        {t('cookieBanner.modal.analytics.title')}
+                      </h4>
+                      <p className="text-sm text-gray-600">
+                        {t('cookieBanner.modal.analytics.description')}
+                      </p>
                     </div>
                   </div>
                   <div className="flex items-center">
@@ -323,52 +314,52 @@ const CookieBanner: React.FC<CookieBannerProps> = ({ onPageChange }) => {
                   <div className="flex items-center gap-3">
                     <Target className="h-5 w-5 text-purple-600" />
                     <div>
-                                             <h4 className="font-medium text-gray-900">
-                         {t('cookieBanner.modal.marketing.title')}
-                       </h4>
-                       <p className="text-sm text-gray-600">
-                         {t('cookieBanner.modal.marketing.description')}
-                       </p>
-                     </div>
-                   </div>
-                   <div className="flex items-center">
-                     <input
-                       type="checkbox"
-                       checked={preferences.marketing}
-                       onChange={(e) => handlePreferenceChange('marketing', e.target.checked)}
-                       className="h-4 w-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"
-                     />
-                   </div>
-                 </div>
-               </div>
+                      <h4 className="font-medium text-gray-900">
+                        {t('cookieBanner.modal.marketing.title')}
+                      </h4>
+                      <p className="text-sm text-gray-600">
+                        {t('cookieBanner.modal.marketing.description')}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-center">
+                    <input
+                      type="checkbox"
+                      checked={preferences.marketing}
+                      onChange={(e) => handlePreferenceChange('marketing', e.target.checked)}
+                      className="h-4 w-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"
+                    />
+                  </div>
+                </div>
+              </div>
 
-               {/* Cookies fonctionnels */}
-               <div className="border border-gray-200 rounded-lg p-4">
-                 <div className="flex items-center justify-between">
-                   <div className="flex items-center gap-3">
-                     <Settings className="h-5 w-5 text-orange-600" />
-                     <div>
-                                                <h4 className="font-medium text-gray-900">
-                           {t('cookieBanner.modal.functional.title')}
-                         </h4>
-                         <p className="text-sm text-gray-600">
-                           {t('cookieBanner.modal.functional.description')}
-                         </p>
-                     </div>
-                   </div>
-                   <div className="flex items-center">
-                     <input
-                       type="checkbox"
-                       checked={preferences.functional}
-                       onChange={(e) => handlePreferenceChange('functional', e.target.checked)}
-                       className="h-4 w-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"
-                     />
-                   </div>
-                 </div>
-               </div>
-             </div>
+              {/* Cookies fonctionnels */}
+              <div className="border border-gray-200 rounded-lg p-4">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <Settings className="h-5 w-5 text-orange-600" />
+                    <div>
+                      <h4 className="font-medium text-gray-900">
+                        {t('cookieBanner.modal.functional.title')}
+                      </h4>
+                      <p className="text-sm text-gray-600">
+                        {t('cookieBanner.modal.functional.description')}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-center">
+                    <input
+                      type="checkbox"
+                      checked={preferences.functional}
+                      onChange={(e) => handlePreferenceChange('functional', e.target.checked)}
+                      className="h-4 w-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
 
-                         {/* Footer */}
+            {/* Footer */}
             <div className="border-t border-gray-200 bg-gray-50">
               {/* Boutons d'Action */}
               <div className="flex items-center justify-between p-6">

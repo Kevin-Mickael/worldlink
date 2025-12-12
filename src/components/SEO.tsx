@@ -97,23 +97,6 @@ const SEO: React.FC<SEOProps> = ({
       script.textContent = JSON.stringify(structuredData);
     }
 
-    // Hreflang pour le multilingue
-    const updateHreflang = (lang: string, url: string) => {
-      let hreflang = document.querySelector(`link[hreflang="${lang}"]`);
-      if (!hreflang) {
-        hreflang = document.createElement('link');
-        hreflang.setAttribute('rel', 'alternate');
-        hreflang.setAttribute('hreflang', lang);
-        document.head.appendChild(hreflang);
-      }
-      hreflang.setAttribute('href', url);
-    };
-
-    const currentUrl = window.location.href;
-    updateHreflang('en', currentUrl.replace('/fr/', '/en/'));
-    updateHreflang('fr', currentUrl.replace('/en/', '/fr/'));
-    updateHreflang('x-default', currentUrl);
-
   }, [title, description, keywords, canonical, ogImage, ogType, structuredData, currentLanguage.code, t]);
 
   return null; // Ce composant ne rend rien visuellement

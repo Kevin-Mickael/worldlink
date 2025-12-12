@@ -1,10 +1,11 @@
-import React, { useEffect, useRef, useState, useCallback, memo } from 'react';
+import { useEffect, useRef, useState, useCallback, memo } from 'react';
 
 interface VideoHeroProps {
   videoSrc: string;
   posterSrc: string;
   alt?: string;
   className?: string;
+  priority?: boolean;
   onVideoReady?: () => void;
   onVideoError?: () => void;
 }
@@ -14,19 +15,22 @@ const VideoHero = memo<VideoHeroProps>(({
   posterSrc,
   alt = '',
   className = '',
+  priority = false,
   onVideoReady,
   onVideoError
 }) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [hasError, setHasError] = useState(false);
-  const [shouldLoad, setShouldLoad] = useState(false);
-  
+  const [shouldLoad, setShouldLoad] = useState(priority);
+
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
   // Détection de la visibilité avec Intersection Observer
   useEffect(() => {
+    if (priority) return;
+
     if (!containerRef.current || typeof IntersectionObserver === 'undefined') {
       setShouldLoad(true);
       return;
@@ -41,7 +45,7 @@ const VideoHero = memo<VideoHeroProps>(({
           }
         });
       },
-      { 
+      {
         threshold: 0.1,
         rootMargin: '50px'
       }
@@ -57,7 +61,7 @@ const VideoHero = memo<VideoHeroProps>(({
 
     try {
       const video = videoRef.current;
-      
+
       // Attendre que la vidéo soit prête avec un état plus avancé
       if (video.readyState < 4) {
         await new Promise((resolve) => {
@@ -98,10 +102,10 @@ const VideoHero = memo<VideoHeroProps>(({
   useEffect(() => {
     if (shouldLoad && videoRef.current) {
       const video = videoRef.current;
-      
+
       // Précharger les métadonnées
       video.preload = 'metadata';
-      
+
       // Charger progressivement
       const loadProgressively = () => {
         if (video.readyState < 4) {
@@ -109,7 +113,7 @@ const VideoHero = memo<VideoHeroProps>(({
           setTimeout(loadProgressively, 100);
         }
       };
-      
+
       loadProgressively();
     }
   }, [shouldLoad]);
@@ -167,9 +171,8 @@ const VideoHero = memo<VideoHeroProps>(({
           playsInline
           preload="auto"
           poster={posterSrc}
-          className={`absolute inset-0 w-full h-full object-cover video-smooth video-optimized ${
-            isLoaded && isPlaying ? 'opacity-100' : 'opacity-0'
-          }`}
+          className={`absolute inset-0 w-full h-full object-cover video-smooth video-optimized ${isLoaded && isPlaying ? 'opacity-100' : 'opacity-0'
+            }`}
           onLoadedData={handleLoadedData}
           onError={handleError}
           onCanPlay={handlePlay}

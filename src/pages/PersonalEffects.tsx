@@ -1,12 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Package, CheckCircle, Clock, Shield, Globe, Truck, Home, Building2, MapPin, Phone, Mail, Users, Car } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 
-interface PersonalEffectsProps {
-  onPageChange: (page: string) => void;
-}
-
-const PersonalEffectsPage: React.FC<PersonalEffectsProps> = ({ onPageChange }) => {
+const PersonalEffectsPage: React.FC = () => {
   const { t } = useLanguage();
 
   const features = [
@@ -131,7 +128,7 @@ const PersonalEffectsPage: React.FC<PersonalEffectsProps> = ({ onPageChange }) =
               </div>
             </div>
             <div className="relative">
-              <img 
+              <img
                 src="https://media.istockphoto.com/id/835810076/photo/scanning-and-checking-boxes.jpg?s=612x612&w=0&k=20&c=Wq8kPSXxLEhNJ9LrcB2bUJqzRt6JNGhXLercaYqp2IY="
                 alt="Personal Effects & Project Shipments"
                 className="w-full h-96 object-cover rounded-2xl shadow-2xl"
@@ -156,7 +153,7 @@ const PersonalEffectsPage: React.FC<PersonalEffectsProps> = ({ onPageChange }) =
               {t('servicePages.personalEffects.services.subtitle')}
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {services.map((service, index) => (
               <div key={index} className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
@@ -182,7 +179,7 @@ const PersonalEffectsPage: React.FC<PersonalEffectsProps> = ({ onPageChange }) =
               {t('servicePages.personalEffects.features.subtitle')}
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {features.map((feature, index) => (
               <div key={index} className="flex items-start space-x-4 p-6 bg-gray-50 rounded-xl hover:bg-sky-50 transition-colors duration-300">
@@ -259,18 +256,18 @@ const PersonalEffectsPage: React.FC<PersonalEffectsProps> = ({ onPageChange }) =
             {t('servicePages.personalEffects.cta.description')}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button
-              onClick={() => onPageChange('contact')}
-              className="bg-white text-sky-600 hover:bg-gray-100 px-10 py-5 rounded-full text-xl font-semibold transition-all duration-300 hover:scale-105 shadow-xl"
+            <Link
+              to="/contact"
+              className="bg-white text-sky-600 hover:bg-gray-100 px-10 py-5 rounded-full text-xl font-semibold transition-all duration-300 hover:scale-105 shadow-xl inline-block"
             >
               {t('servicePages.personalEffects.cta.primaryButton')}
-            </button>
-            <button
-              onClick={() => onPageChange('services')}
-              className="bg-transparent border-2 border-white hover:bg-white hover:text-sky-600 text-white px-10 py-5 rounded-full text-xl font-semibold transition-all duration-300 hover:scale-105"
+            </Link>
+            <Link
+              to="/services"
+              className="bg-transparent border-2 border-white hover:bg-white hover:text-sky-600 text-white px-10 py-5 rounded-full text-xl font-semibold transition-all duration-300 hover:scale-105 inline-block"
             >
               {t('servicePages.personalEffects.cta.secondaryButton')}
-            </button>
+            </Link>
           </div>
         </div>
       </section>

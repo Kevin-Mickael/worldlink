@@ -346,6 +346,7 @@ const translations: Record<string, Translation> = {
       description: 'Votre partenaire de confiance pour le fret, la douane et l\'entreposage.',
       links: 'Liens Rapides',
       contact: 'Contact',
+      createdBy: 'Site créé par',
       rights: 'Tous droits réservés.'
     },
     chat: {
@@ -1276,6 +1277,7 @@ const translations: Record<string, Translation> = {
       description: 'Your trusted partner for freight, customs and warehousing.',
       links: 'Quick Links',
       contact: 'Contact',
+      createdBy: 'Website created by',
       rights: 'All rights reserved.'
     },
     chat: {
