@@ -1910,7 +1910,7 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
   const t = (key: string): string => {
     const keys = key.split('.');
     let value: any = translations[currentLanguage.code];
-    
+
     for (const k of keys) {
       if (value && typeof value === 'object' && k in value) {
         value = value[k];
@@ -1918,7 +1918,7 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
         return key; // Return key if translation not found
       }
     }
-    
+
     return typeof value === 'string' ? value : key;
   };
 

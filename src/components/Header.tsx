@@ -91,8 +91,8 @@ const Header: React.FC = () => {
 
   return (
     <header className={`${homeTop
-        ? 'absolute top-0 left-0 w-full bg-black/40 backdrop-blur-[1px]'
-        : 'sticky top-0 bg-white/95 backdrop-blur-md shadow-lg'
+      ? 'absolute top-0 left-0 w-full bg-black/40 backdrop-blur-[1px]'
+      : 'sticky top-0 bg-white/95 backdrop-blur-md shadow-lg'
       } ${homeBorderClass} z-40`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className={`flex justify-between items-center ${isScrolled ? 'py-3' : 'py-4'}`}>
@@ -169,8 +169,8 @@ const Header: React.FC = () => {
               <button
                 onClick={() => setIsLanguageOpen(!isLanguageOpen)}
                 className={`flex items-center space-x-1 px-2 py-1 rounded-lg transition-all duration-200 ${homeTop
-                    ? 'text-white hover:bg-white/20'
-                    : 'text-gray-900 hover:bg-gray-100'
+                  ? 'text-white hover:bg-white/20'
+                  : 'text-gray-900 hover:bg-gray-100'
                   }`}
               >
                 <span className={`text-sm font-medium ${homeTop ? 'text-white' : 'text-gray-900'}`}>{currentLanguage.name}</span>
@@ -199,8 +199,8 @@ const Header: React.FC = () => {
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className={`lg:hidden p-2 rounded-lg transition-all duration-200 ${homeTop
-                  ? 'text-white hover:bg-white/20 hover:bg-opacity-20'
-                  : 'text-gray-900 hover:bg-gray-100'
+                ? 'text-white hover:bg-white/20 hover:bg-opacity-20'
+                : 'text-gray-900 hover:bg-gray-100'
                 }`}
               aria-label={isMenuOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
             >
