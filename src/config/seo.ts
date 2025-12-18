@@ -274,10 +274,32 @@ export const getSEOMetadata = (page: string): SEOMetadata => {
         "description": "Find answers to common questions about logistics services in Mauritius.",
         "mainEntity": []
       }
+    },
+    legal: {
+      title: 'Legal Information - Terms, Privacy & Returns | Worldlink Logistics',
+      description: 'Legal information, terms and conditions, privacy policy, and return policies for Worldlink Logistics Mauritius services.',
+      keywords: `${baseKeywords}, Legal Terms Mauritius, Privacy Policy Worldlink, Logistics Terms and Conditions`,
+      canonical: `${baseUrl}/legal`,
+      ogType: 'website',
+      structuredData: {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Legal Information",
+        "description": "Legal terms, privacy policy and conditions of service."
+      }
     }
   };
 
-  return seoData[page] || seoData.home;
+  const defaultMetadata: SEOMetadata = {
+    title: 'Worldlink Logistics Mauritius',
+    description: 'Premier fournisseur de services logistiques à Maurice.',
+    keywords: baseKeywords,
+    canonical: '', // Will be handled dynamically by SEO component
+    ogType: 'website',
+    structuredData: {}
+  };
+
+  return seoData[page] || defaultMetadata;
 };
 
 export const getLocalizedSEOMetadata = (page: string, _t: (key: string) => string, lang: string): SEOMetadata => {

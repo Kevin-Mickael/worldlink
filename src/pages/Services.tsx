@@ -1,11 +1,10 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { Truck, Warehouse, Package, Home, Building2, CheckCircle, Clock, Shield, Globe, Container, Plane, ShoppingCart, Ship, Snowflake, FileText } from 'lucide-react';
+import { Truck, Package, CheckCircle, Clock, Shield, Globe, Container, Plane, ShoppingCart, Snowflake, FileText } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
-import { usePageTitle } from '../hooks/usePageTitle';
+import SEO from '../components/SEO';
 
 const ServicesPage: React.FC = () => {
-  usePageTitle('Services - WorldLink Logistics');
   const { t } = useLanguage();
 
   const services = [
@@ -125,8 +124,33 @@ const ServicesPage: React.FC = () => {
     }
   ];
 
+  const structuredData = useMemo(() => ({
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "itemListElement": services.map((service, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "item": {
+        "@type": "Service",
+        "name": service.title,
+        "description": service.description,
+        "provider": {
+          "@type": "Organization",
+          "name": "WorldLink Logistics",
+          "url": "https://worldlinklogistics.mu"
+        }
+      }
+    }))
+  }), [services]);
+
   return (
     <div className="min-h-screen">
+      <SEO
+        title={t('services.title') + " - WorldLink Logistics"}
+        description={t('services.subtitle')}
+        structuredData={structuredData}
+        canonical="https://worldlinklogistics.mu/services"
+      />
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-blue-900 via-blue-800 to-sky-600 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

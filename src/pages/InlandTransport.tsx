@@ -1,10 +1,31 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { Warehouse, CheckCircle, Clock, Shield, Globe, Truck, MapPin, Phone, Mail, Package, Route, Building2, Users } from 'lucide-react';
+import { Warehouse, CheckCircle, Clock, Shield, Globe, Truck, MapPin, Phone, Mail, Package, Route, Building2 } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
+import SEO from '../components/SEO';
 
 const InlandTransportPage: React.FC = () => {
   const { t } = useLanguage();
+
+  const structuredData = useMemo(() => ({
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "Inland Transport & CFS Warehousing",
+    "provider": {
+      "@type": "Organization",
+      "name": "WorldLink Logistics",
+      "url": "https://worldlinklogistics.mu"
+    },
+    "areaServed": "Mauritius",
+    "description": t('servicePages.inlandTransport.hero.description'),
+    "name": t('servicePages.inlandTransport.hero.title'),
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "MUR",
+      "availability": "https://schema.org/InStock"
+    }
+  }), [t]);
 
   const features = [
     t('servicePages.inlandTransport.features.items.0'),
@@ -65,6 +86,12 @@ const InlandTransportPage: React.FC = () => {
 
   return (
     <div className="min-h-screen">
+      <SEO
+        title={t('servicePages.inlandTransport.hero.title') + " - WorldLink Logistics"}
+        description={t('servicePages.inlandTransport.hero.description')}
+        structuredData={structuredData}
+        canonical="https://worldlinklogistics.mu/inland-transport"
+      />
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-blue-800 via-blue-700 to-sky-600 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

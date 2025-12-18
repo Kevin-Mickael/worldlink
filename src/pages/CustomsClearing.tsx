@@ -1,10 +1,31 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { FileText, CheckCircle, Clock, Shield, Globe, Truck, MapPin, Phone, Mail, Scale, File, AlertTriangle, CheckSquare } from 'lucide-react';
+import { FileText, CheckCircle, Clock, Shield, Globe, MapPin, Phone, Mail, Scale, File, AlertTriangle, CheckSquare } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
+import SEO from '../components/SEO';
 
 const CustomsClearingPage: React.FC = () => {
   const { t } = useLanguage();
+
+  const structuredData = useMemo(() => ({
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "Customs Clearing Services",
+    "provider": {
+      "@type": "Organization",
+      "name": "WorldLink Logistics",
+      "url": "https://worldlinklogistics.mu"
+    },
+    "areaServed": "Mauritius",
+    "description": t('servicePages.customsClearing.hero.description'),
+    "name": t('servicePages.customsClearing.hero.title'),
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "MUR",
+      "availability": "https://schema.org/InStock"
+    }
+  }), [t]);
 
   const features = [
     t('servicePages.customsClearing.features.items.0'),
@@ -65,6 +86,12 @@ const CustomsClearingPage: React.FC = () => {
 
   return (
     <div className="min-h-screen">
+      <SEO
+        title={t('servicePages.customsClearing.hero.title') + " - WorldLink Logistics"}
+        description={t('servicePages.customsClearing.hero.description')}
+        structuredData={structuredData}
+        canonical="https://worldlinklogistics.mu/customs-clearing"
+      />
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-sky-700 via-sky-600 to-blue-700 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

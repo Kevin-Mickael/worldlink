@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { ChevronDown, ChevronUp, Search, HelpCircle, Container, Package, Snowflake, FileText, Plane, ShoppingCart, Truck, Shield, Clock, Globe, CheckCircle } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
-import { usePageTitle } from '../hooks/usePageTitle';
+import SEO from '../components/SEO';
 
 const FAQPage: React.FC = () => {
-  usePageTitle('FAQ - WorldLink Logistics');
   const { t } = useLanguage();
   const [openFAQ, setOpenFAQ] = useState<number | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
@@ -203,10 +202,23 @@ const FAQPage: React.FC = () => {
     }
   ];
 
+  const structuredData = useMemo(() => ({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map(faq => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer
+      }
+    }))
+  }), [faqs]);
+
   const categories = [
     t('faq.allCategories'),
     t('faqItems.freightConsolidation.category'),
-    t('faqItems.personalEffects.category'), 
+    t('faqItems.personalEffects.category'),
     t('faqItems.temperatureRange.category'),
     t('faqItems.customsDocuments.category'),
     t('faqItems.airDeliveryTime.category'),
@@ -222,15 +234,15 @@ const FAQPage: React.FC = () => {
 
   const filteredFAQs = selectedCategory === t('faq.allCategories') || selectedCategory === ""
     ? faqs.filter(faq =>
-        faq.question.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        faq.answer.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        faq.category.toLowerCase().includes(searchTerm.toLowerCase())
-      )
+      faq.question.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      faq.answer.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      faq.category.toLowerCase().includes(searchTerm.toLowerCase())
+    )
     : faqs.filter(faq =>
-        faq.category === selectedCategory &&
-        (faq.question.toLowerCase().includes(searchTerm.toLowerCase()) ||
-         faq.answer.toLowerCase().includes(searchTerm.toLowerCase()))
-      );
+      faq.category === selectedCategory &&
+      (faq.question.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        faq.answer.toLowerCase().includes(searchTerm.toLowerCase()))
+    );
 
   const toggleFAQ = (id: number) => {
     setOpenFAQ(openFAQ === id ? null : id);
@@ -243,6 +255,12 @@ const FAQPage: React.FC = () => {
 
   return (
     <div className="min-h-screen">
+      <SEO
+        title={t('faq.title') + " - WorldLink Logistics"}
+        description={t('faq.description')}
+        structuredData={structuredData}
+        canonical="https://worldlinklogistics.mu/faq"
+      />
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-blue-900 via-blue-800 to-sky-600 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -280,12 +298,11 @@ const FAQPage: React.FC = () => {
               <button
                 key={category}
                 onClick={() => handleCategorySelect(category)}
-                className={`px-6 py-3 rounded-full transition-all duration-300 flex items-center gap-2 ${
-                  (selectedCategory === "" && category === t('faq.allCategories')) || 
+                className={`px-6 py-3 rounded-full transition-all duration-300 flex items-center gap-2 ${(selectedCategory === "" && category === t('faq.allCategories')) ||
                   (selectedCategory === category && category !== t('faq.allCategories'))
-                    ? 'bg-blue-900 text-white shadow-lg'
-                    : 'bg-white text-blue-900 hover:bg-blue-50 hover:shadow-md'
-                }`}
+                  ? 'bg-blue-900 text-white shadow-lg'
+                  : 'bg-white text-blue-900 hover:bg-blue-50 hover:shadow-md'
+                  }`}
               >
                 {getCategoryIcon(category) && category !== t('faq.allCategories') && (
                   <span className="text-sky-300">
@@ -328,7 +345,7 @@ const FAQPage: React.FC = () => {
                       <ChevronDown className="h-6 w-6 text-blue-900 flex-shrink-0" />
                     )}
                   </button>
-                  
+
                   {openFAQ === faq.id && (
                     <div className="px-8 pb-6 border-t border-gray-100">
                       <p className="text-gray-600 leading-relaxed pt-4">

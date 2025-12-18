@@ -1,10 +1,31 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { Snowflake, CheckCircle, Clock, Shield, Globe, Truck, Thermometer, Package, MapPin, Phone, Mail, Droplets, Zap } from 'lucide-react';
+import { Snowflake, CheckCircle, Clock, Shield, Globe, Thermometer, Package, MapPin, Phone, Mail, Droplets, Zap } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
+import SEO from '../components/SEO';
 
 const RefrigeratedContainersPage: React.FC = () => {
   const { t } = useLanguage();
+
+  const structuredData = useMemo(() => ({
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "Refrigerated Food Containers",
+    "provider": {
+      "@type": "Organization",
+      "name": "WorldLink Logistics",
+      "url": "https://worldlinklogistics.mu"
+    },
+    "areaServed": "Worldwide",
+    "description": t('servicePages.refrigeratedContainers.hero.description'),
+    "name": t('servicePages.refrigeratedContainers.hero.title'),
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "MUR",
+      "availability": "https://schema.org/InStock"
+    }
+  }), [t]);
 
   const features = [
     t('servicePages.refrigeratedContainers.features.items.0'),
@@ -86,6 +107,12 @@ const RefrigeratedContainersPage: React.FC = () => {
 
   return (
     <div className="min-h-screen">
+      <SEO
+        title={t('servicePages.refrigeratedContainers.hero.title') + " - WorldLink Logistics"}
+        description={t('servicePages.refrigeratedContainers.hero.description')}
+        structuredData={structuredData}
+        canonical="https://worldlinklogistics.mu/refrigerated-containers"
+      />
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-blue-800 via-blue-700 to-sky-600 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

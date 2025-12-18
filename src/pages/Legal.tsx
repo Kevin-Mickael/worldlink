@@ -1,14 +1,31 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Shield, FileText, Lock, Truck, AlertTriangle } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
-import { usePageTitle } from '../hooks/usePageTitle';
+import SEO from '../components/SEO';
 
 const Legal: React.FC = () => {
-  usePageTitle('Legal & Compliance - WorldLink Logistics');
   const { t } = useLanguage();
+
+  const structuredData = useMemo(() => ({
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": t('legal.title'),
+    "description": t('legal.subtitle'),
+    "publisher": {
+      "@type": "Organization",
+      "name": "WorldLink Logistics",
+      "url": "https://worldlinklogistics.mu"
+    }
+  }), [t]);
 
   return (
     <div className="min-h-screen bg-gray-50">
+      <SEO
+        title={t('legal.title') + " - WorldLink Logistics"}
+        description={t('legal.subtitle')}
+        structuredData={structuredData}
+        canonical="https://worldlinklogistics.mu/legal"
+      />
       {/* Header Section */}
       <div className="bg-gradient-to-r from-blue-900 to-blue-700 text-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -27,7 +44,7 @@ const Legal: React.FC = () => {
       {/* Content Section */}
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="space-y-12">
-          
+
           {/* Terms & Conditions */}
           <div className="bg-white rounded-lg shadow-lg p-8">
             <div className="flex items-center mb-6">

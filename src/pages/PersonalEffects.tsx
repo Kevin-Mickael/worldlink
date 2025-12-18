@@ -1,10 +1,31 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { Package, CheckCircle, Clock, Shield, Globe, Truck, Home, Building2, MapPin, Phone, Mail, Users, Car } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
+import SEO from '../components/SEO';
 
 const PersonalEffectsPage: React.FC = () => {
   const { t } = useLanguage();
+
+  const structuredData = useMemo(() => ({
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "Personal Effects & Project Shipments",
+    "provider": {
+      "@type": "Organization",
+      "name": "WorldLink Logistics",
+      "url": "https://worldlinklogistics.mu"
+    },
+    "areaServed": "Worldwide",
+    "description": t('servicePages.personalEffects.hero.description'),
+    "name": t('servicePages.personalEffects.hero.title'),
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "MUR",
+      "availability": "https://schema.org/InStock"
+    }
+  }), [t]);
 
   const features = [
     t('servicePages.personalEffects.features.items.0'),
@@ -88,6 +109,12 @@ const PersonalEffectsPage: React.FC = () => {
 
   return (
     <div className="min-h-screen">
+      <SEO
+        title={t('servicePages.personalEffects.hero.title') + " - WorldLink Logistics"}
+        description={t('servicePages.personalEffects.hero.description')}
+        structuredData={structuredData}
+        canonical="https://worldlinklogistics.mu/personal-effects"
+      />
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-sky-600 via-sky-700 to-blue-800 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

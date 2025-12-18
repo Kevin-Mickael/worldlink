@@ -1,10 +1,31 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { Plane, CheckCircle, Clock, Shield, Globe, Truck, MapPin, Phone, Mail, Zap, Package, Route, Users } from 'lucide-react';
+import { Plane, CheckCircle, Clock, Shield, Globe, MapPin, Phone, Mail, Zap, Package, Route, Users } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
+import SEO from '../components/SEO';
 
 const AirfreightPage: React.FC = () => {
   const { t } = useLanguage();
+
+  const structuredData = useMemo(() => ({
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "Air Freight Services",
+    "provider": {
+      "@type": "Organization",
+      "name": "WorldLink Logistics",
+      "url": "https://worldlinklogistics.mu"
+    },
+    "areaServed": "Worldwide",
+    "description": t('servicePages.airfreight.hero.description'),
+    "name": t('servicePages.airfreight.hero.title'),
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "MUR",
+      "availability": "https://schema.org/InStock"
+    }
+  }), [t]);
 
   const features = [
     t('servicePages.airfreight.features.items.0'),
@@ -65,6 +86,12 @@ const AirfreightPage: React.FC = () => {
 
   return (
     <div className="min-h-screen">
+      <SEO
+        title={t('servicePages.airfreight.hero.title') + " - WorldLink Logistics"}
+        description={t('servicePages.airfreight.hero.description')}
+        structuredData={structuredData}
+        canonical="https://worldlinklogistics.mu/airfreight"
+      />
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-blue-900 via-blue-800 to-sky-700 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

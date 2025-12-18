@@ -76,15 +76,18 @@ const SEO: React.FC<SEOProps> = ({
     updateMetaTag('twitter:image', ogImage);
 
     // Canonical URL
-    if (canonical) {
-      let canonicalLink = document.querySelector('link[rel="canonical"]');
-      if (!canonicalLink) {
-        canonicalLink = document.createElement('link');
-        canonicalLink.setAttribute('rel', 'canonical');
-        document.head.appendChild(canonicalLink);
-      }
-      canonicalLink.setAttribute('href', canonical);
+    const effectiveCanonical = canonical || `${window.location.origin}${window.location.pathname}`;
+
+    let canonicalLink = document.querySelector('link[rel="canonical"]');
+    if (!canonicalLink) {
+      canonicalLink = document.createElement('link');
+      canonicalLink.setAttribute('rel', 'canonical');
+      document.head.appendChild(canonicalLink);
     }
+    canonicalLink.setAttribute('href', effectiveCanonical);
+
+    // Also update og:url to match
+    updatePropertyTag('og:url', effectiveCanonical);
 
     // Structured Data (JSON-LD)
     if (structuredData) {

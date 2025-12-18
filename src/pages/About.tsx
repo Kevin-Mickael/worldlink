@@ -1,12 +1,11 @@
 import React from 'react';
 import { Target, Eye, Users, Award, Globe, Shield, Building2 } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
-import { usePageTitle } from '../hooks/usePageTitle';
+import SEO from '../components/SEO';
 
 const AboutPage: React.FC = () => {
-  usePageTitle('About Us - WorldLink Logistics');
   const { t } = useLanguage();
-  
+
   const publicAsset = (relativePath: string) => `${import.meta.env.BASE_URL}${relativePath.replace(/^\//, '')}`;
 
   const values = [
@@ -33,8 +32,29 @@ const AboutPage: React.FC = () => {
   ];
 
 
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "name": "About WorldLink Logistics",
+    "description": "Founded in 2014, WorldLink Logistics Ltd has rapidly grown from a two-person team to a leading logistics provider in Mauritius.",
+    "publisher": {
+      "@type": "Organization",
+      "name": "WorldLink Logistics",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://worldlinklogistics.mu/worldlink.png"
+      }
+    }
+  };
+
   return (
     <div className="min-h-screen">
+      <SEO
+        title={t('about.title') + " - WorldLink Logistics"}
+        description="WorldLink Logistics Ltd is a leading logistics provider in Mauritius offering freight forwarding, warehousing, and customs clearing services."
+        structuredData={structuredData}
+        canonical="https://worldlinklogistics.mu/about"
+      />
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-blue-900 via-blue-800 to-sky-600 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -66,7 +86,7 @@ const AboutPage: React.FC = () => {
             </div>
 
             <div>
-              <img 
+              <img
                 src={publicAsset('worldlink.png')}
                 alt="WorldLink Logistics"
                 className="w-full h-96 object-contain"
@@ -106,7 +126,7 @@ const AboutPage: React.FC = () => {
             </div>
 
             <div>
-              <img 
+              <img
                 src="https://core-docs.s3.amazonaws.com/central_public_schools_ar/article/image/large_2364f5a7-9c2f-4acf-b6e6-ced27397fcd8.png"
                 alt="Mission & Vision"
                 className="w-full h-96 object-contain"

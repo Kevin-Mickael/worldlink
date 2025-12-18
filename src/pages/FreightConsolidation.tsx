@@ -1,12 +1,31 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { Container, CheckCircle, Clock, Shield, Globe, Truck, Package, MapPin, Phone, Mail } from 'lucide-react';
+import { Container, CheckCircle, Clock, Shield, Globe, Truck, MapPin, Phone, Mail } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
-import { usePageTitle } from '../hooks/usePageTitle';
+import SEO from '../components/SEO';
 
 const FreightConsolidationPage: React.FC = () => {
-  usePageTitle('Freight Consolidation - WorldLink Logistics');
   const { t } = useLanguage();
+
+  const structuredData = useMemo(() => ({
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "Freight Consolidation",
+    "provider": {
+      "@type": "Organization",
+      "name": "WorldLink Logistics",
+      "url": "https://worldlinklogistics.mu"
+    },
+    "areaServed": "Worldwide",
+    "description": t('servicePages.freightConsolidation.hero.description'),
+    "name": t('servicePages.freightConsolidation.hero.title'),
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "MUR",
+      "availability": "https://schema.org/InStock"
+    }
+  }), [t]);
 
   const features = [
     t('servicePages.freightConsolidation.features.items.0'),
@@ -72,6 +91,12 @@ const FreightConsolidationPage: React.FC = () => {
 
   return (
     <div className="min-h-screen">
+      <SEO
+        title={t('servicePages.freightConsolidation.hero.title') + " - WorldLink Logistics"}
+        description={t('servicePages.freightConsolidation.hero.description')}
+        structuredData={structuredData}
+        canonical="https://worldlinklogistics.mu/freight-consolidation"
+      />
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-blue-900 via-blue-800 to-sky-600 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

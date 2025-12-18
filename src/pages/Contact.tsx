@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import { MapPin, Phone, Mail, Send, CheckCircle, Building } from 'lucide-react';
 import { ContactForm } from '../types';
-import { usePageTitle } from '../hooks/usePageTitle';
 import { useLanguage } from '../contexts/LanguageContext';
+import SEO from '../components/SEO';
 
 const ContactPage: React.FC = () => {
-  usePageTitle('Contact - WorldLink Logistics');
   const { currentLanguage } = useLanguage();
-  
+
   const [formData, setFormData] = useState<ContactForm>({
     name: '',
     email: '',
@@ -130,8 +129,33 @@ const ContactPage: React.FC = () => {
     }
   };
 
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "name": "Contact WorldLink Logistics",
+    "description": "Get in touch with WorldLink Logistics for all your shipping and logistics needs in Mauritius.",
+    "mainEntity": {
+      "@type": "Organization",
+      "name": "WorldLink Logistics",
+      "telephone": "+230 5258 2275",
+      "email": "neeraj@worldlink.mu",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "PLOT 30A BUSINESS & INDUSTRIAL PARK, JIN FEI ZONE RICHE TERRE",
+        "addressLocality": "Riche Terre",
+        "addressCountry": "MU"
+      }
+    }
+  };
+
   return (
     <div className="min-h-screen">
+      <SEO
+        title="Contact - WorldLink Logistics"
+        description="Contact WorldLink Logistics for quotes, enquiries, and support. We are located in Riche Terre, Mauritius."
+        structuredData={structuredData}
+        canonical="https://worldlinklogistics.mu/contact"
+      />
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-blue-900 via-blue-800 to-sky-600 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

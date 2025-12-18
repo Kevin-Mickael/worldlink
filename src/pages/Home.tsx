@@ -4,14 +4,56 @@ import { Truck, Warehouse, Package, Snowflake, FileText, Plane, ShoppingCart } f
 import { useLanguage } from '../contexts/LanguageContext';
 import VideoHero from '../components/VideoHero';
 import LogisticsSeparator from '../components/LogisticsSeparator';
-import { usePageTitle } from '../hooks/usePageTitle';
+import SEO from '../components/SEO';
 
 
 const HomePage: React.FC = () => {
   const navigate = useNavigate();
-  usePageTitle('WorldLink Logistics - Trusted Logistics Worldwide');
   const { t, currentLanguage } = useLanguage();
   const [experienceCount, setExperienceCount] = useState(0);
+
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://worldlinklogistics.mu/#organization",
+        "name": "WorldLink Logistics",
+        "url": "https://worldlinklogistics.mu",
+        "logo": "https://worldlinklogistics.mu/worldlink.png",
+        "email": "neeraj@worldlink.mu",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "PLOT 30A BUSINESS & INDUSTRIAL PARK, JIN FEI ZONE RICHE TERRE",
+          "addressLocality": "Riche Terre",
+          "addressCountry": "MU"
+        },
+        "contactPoint": [
+          {
+            "@type": "ContactPoint",
+            "telephone": "+230 5258 2275",
+            "contactType": "customer service",
+            "areaServed": "MU",
+            "availableLanguage": ["en", "fr"]
+          }
+        ],
+        "sameAs": [
+          "https://www.facebook.com/worldlinklogistics"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://worldlinklogistics.mu/#website",
+        "url": "https://worldlinklogistics.mu",
+        "name": "WorldLink Logistics",
+        "description": "Leading logistics provider in Mauritius offering freight forwarding, customs clearing, and transportation services.",
+        "publisher": {
+          "@id": "https://worldlinklogistics.mu/#organization"
+        },
+        "inLanguage": currentLanguage.code
+      }
+    ]
+  };
 
   // États pour le formulaire
   const [formData, setFormData] = useState({
@@ -155,6 +197,12 @@ const HomePage: React.FC = () => {
 
   return (
     <div className="min-h-screen">
+      <SEO
+        title="WorldLink Logistics - Trusted Logistics Worldwide"
+        description={t('hero.description')}
+        structuredData={structuredData}
+        canonical="https://worldlinklogistics.mu/"
+      />
       {/* Hero Section with Video */}
       <section className="relative h-screen overflow-hidden">
         {/* Background Video */}
